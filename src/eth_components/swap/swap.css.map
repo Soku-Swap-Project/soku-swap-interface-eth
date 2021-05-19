@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC,EAAE,CAAC;EACZ,SAAS,EAAE,eAAe;EAC1B,KAAK,EAAE,kBAAkB;EACzB,WAAW,EAAE,GAAG;CACnB;;AAED,AAAA,SAAS,CAAC;EACN,SAAS,EAAE,eAAe;EAC1B,KAAK,EAAE,OAAO;EACd,MAAM,EAAE,OAAO;CAClB;;AAED,AAAA,SAAS,AAAA,MAAM,CAAC;EACZ,KAAK,EAAE,OAAoC;CAC9C",
+    "sources": [
+        "swap.scss"
+    ],
+    "names": [],
+    "file": "swap.css"
+}

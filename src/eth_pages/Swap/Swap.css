@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+.css-10ob8xa {
+    font-weight: 900 !important;
+    font-size: 16px !important;
+}
+
+.css-8mokm4,
+.css-xy7yfl {
+    color: #05195a !important;
+}
+
+#join-pool-button .css-xy7yfl {
+    color: #fff !important;
+}
+
+.sokuswap__swapButton {
+    background-color: #04bbfb;
+    border: none;
+    padding: 10px;
+    border-radius: 25px;
+    color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+.sokuswap__swapButton:hover,
+.sokuswap__swapButton button:hover {
+    background-color: #3acaff;
+}
+
+.sokuswap__swapButton button {
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}

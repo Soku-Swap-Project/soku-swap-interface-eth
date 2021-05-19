@@ -1,0 +1,142 @@
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #c9c9c9 !important;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #c9c9c9 !important;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #c9c9c9 !important;
+}
+
+.maxButton {
+    color: #04bbfb !important;
+    font-size: 10px !important;
+    margin-right: -10px;
+    display: none !important;
+}
+
+.token-amount-input {
+    font-size: 20px !important;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.fromLabel,
+.balanceLabel {
+    font-size: 14px !important;
+}
+
+.fromLabel {
+    color: #05195a !important;
+    font-weight: 600 !important;
+}
+
+.balanceLabel {
+    color: #c9c9c9 !important;
+    font-weight: bold !important;
+}
+
+#pair {
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.currencySelector svg {
+    /* border: 1px solid red !important; */
+    margin-right: 10px;
+    /* fill: #000; */
+}
+
+.currencyLogoText {
+    font-family: 'Poppins', 'sans-serif';
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.currency_input_panel {
+    border-radius: 16px !important;
+    background-color: #fff !important;
+    border: 1px solid #ebebeb !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 5px 20px;
+}
+
+.currency_input_container {
+    height: 100px;
+}
+
+.currencyContainer {
+    width: auto;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+
+.open-currency-select-button:hover {
+    background: rgb(239, 239, 239);
+}
+
+.open-currency-select-button {
+    width: auto;
+    margin-left: 0 !important;
+    padding: 0px 10px;
+}
+
+.currencyLogo {
+    margin-right: -5px;
+    min-width: 20px;
+}
+
+.currencyLogoContainer {
+    display: flex !important;
+    -webkit-box-align: center !important;
+    align-items: center !important;
+    -webkit-box-pack: justify !important;
+    justify-content: space-between !important;
+    flex-direction: row !important;
+    margin-right: -20px;
+}
+
+.token-amount-input {
+    font-size: 12px;
+    /* border: 1px solid red !important; */
+}
+
+/* .inputPanel {
+    border: 1px solid red;
+    width: 100%;
+    margin-right: 70px;
+    padding-right: 10px;
+  } */
+
+.sokuswap__fromAmount,
+.sokuswap__fromAmount input:focus,
+.sokuswap__toAmount input,
+.sokuswap__toAmount input:focus {
+    font-family: 'Roboto Mono', monospace;
+    outline: none;
+    font-size: 20px !important;
+    padding: 15px 0px !important;
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red !important; */
+}
+
+@media (max-height: 720px) {
+    .sokuswap__fromAmount,
+    .sokuswap__fromAmount input:focus,
+    .sokuswap__toAmount input,
+    .sokuswap__toAmount input:focus {
+        font-size: 14px !important;
+    }
+}

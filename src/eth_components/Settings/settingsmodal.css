@@ -1,0 +1,42 @@
+.settings_modal_container {
+    width: auto !important;
+    min-width: 360px !important;
+    max-width: 42rem !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.settings_modal {
+    background: #ffffff;
+    box-shadow: 0px 20px 36px -8px rgb(14 14 44 / 10%), 0px 1px 1px rgb(0 0 0 / 5%);
+    border: 1px solid #e9eaeb;
+    border-radius: 32px;
+    width: 100%;
+    z-index: 100;
+    overflow-y: auto;
+    min-width: 360px !important;
+    max-width: 36rem !important;
+    padding: 24px;
+}
+
+.settings_modal__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e9eaeb;
+    align-items: center;
+    padding-top: 6px;
+    padding-bottom: 18px;
+}
+
+.settings_modal_transactionSettings {
+    color: #05195a;
+    font-size: 20px;
+}
+
+@media (max-width: 650px) {
+    .settings_modal {
+        max-width: 20rem !important;
+    }
+}
