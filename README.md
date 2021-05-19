@@ -4,7 +4,7 @@
 
 ## An open source interface for SokuSwap
 
--   Website: [sushi.com](https://sokuwap.finance/)
+-   Website: [SokuSwap.Finance](https://sokuwap.finance/)
 -   Interface: Link Coming Soon!
 -   Docs: Link Coming Soon!
 
