@@ -19,6 +19,15 @@
             ]
         },
         {
+            "source": "/(.*).html",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/hmtl"
+                }
+            ]
+        },
+        {
             "source": "/(.*).css",
             "headers": [
                 {
