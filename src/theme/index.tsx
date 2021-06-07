@@ -200,7 +200,22 @@ export const FixedGlobalStyle = createGlobalStyle`
 
 .fromBalance {
     display: flex;
-    border: 1px solid red;
+}
+
+.farm_approve_button {
+    background: #04bbfb !important;
+    color: #fff !important;
+    border-radius: 24px !important;
+}
+
+.farm_liquidity_button {
+    background: #05195a !important;
+    border-radius: 24px !important;
+
+}
+
+.farm_liquidity_button:hover, .farm_approve_button:hover {
+    opacity: 0.85;
 }
 
 reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="false"] {
@@ -224,8 +239,12 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
     // padding-bottom: 10px !important;
 }
 
-.liquidity-box {
-    padding: 30px !important;
+// .liquidity-box {
+//     padding: 30px !important;
+// }
+
+.css-1yxyz72 {
+    font-weight: 900;
 }
 
 @media (max-width: 650px) {
@@ -289,7 +308,6 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
 }
 
 .wallet_modal_header {
-    border: 1px solid red;
     display: flex !important;
     align-items: center !important;
     margin: 0 !important;
@@ -303,7 +321,6 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
     border-radius: 32px !important;
 
 }
-
 
 #token-search-input {
     color: #05195a;
@@ -357,8 +374,21 @@ body {
 }
 
 .lightcard_border {
-    border: 2px solid #E9EAEB;
+    border-bottom: 2px solid #E7E3EB;
     border-radius: 16px;
+}
+
+.farm_row {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.farm_liquidity_value {
+    display: flex;
+    align-items: center;
 }
 
 .add_liquidity_wrapper {

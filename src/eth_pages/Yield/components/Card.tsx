@@ -12,9 +12,9 @@ export default function Card({
 }: any) {
     return (
         <div
-            className={`relative ${className}`}
+            className={`relative ${className} rounded card_border`}
             style={{
-                borderRadius: '10px',
+                borderRadius: '20px',
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'contain',
@@ -24,7 +24,7 @@ export default function Card({
             <div>
                 {header && <>{header}</>}
 
-                <div className="px-2 py-4 sm:p-8">
+                <div style={{ padding: '0.75rem 0.25rem' }}>
                     {title && <div className="text-2xl text-high-emphesis mb-4">{title}</div>}
                     {description && <div className="text-base text-secondary">{description}</div>}
                     {children}

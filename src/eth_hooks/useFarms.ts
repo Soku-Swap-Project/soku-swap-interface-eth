@@ -25,7 +25,7 @@ const useFarms = () => {
             exchange.query({
                 // results[1]
                 query: liquidityPositionSubsetQuery,
-                variables: { user: '0xc2edad668740f1aa35e4d8f227fb8e17dca888cd' }
+                variables: { user: '0xD78EEcdaf0E4d629041bCE85902bDd95fF202c40' }
             }),
             getAverageBlockTime(), // results[2]
             sushiData.sushi.priceUSD(), // results[3]

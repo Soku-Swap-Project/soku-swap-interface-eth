@@ -26,9 +26,7 @@ export const StyledMenuButton = styled.button`
   > * {
     stroke: ${({ theme }) => theme.text1};
   }
-  // ${({ theme }) => theme.mediaWidth.upToMedium`
-  //   margin-left: 4px;
-  // `};
+
 `
 
 export const StyledMenu = styled.div`

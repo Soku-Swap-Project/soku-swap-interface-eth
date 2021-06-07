@@ -89,11 +89,11 @@ function App(): JSX.Element {
                         <Switch>
                             <PublicRoute exact path="/connect" component={Connect} />
                             {/* BentoApps */}
-                            <Route exact strict path="/bento" component={Bento} />
-                            <WalletRoute exact strict path="/bento/balances" component={BentoBalances} />
+                            {/* <Route exact strict path="/bento" component={Bento} />
+                            <WalletRoute exact strict path="/bento/balances" component={BentoBalances} /> */}
 
                             {/* Kashi */}
-                            <Route
+                            {/* <Route
                                 exact
                                 strict
                                 path="/bento/kashi"
@@ -103,10 +103,10 @@ function App(): JSX.Element {
                             <WalletRoute exact strict path="/bento/kashi/borrow" component={BorrowMarkets} />
                             <WalletRoute exact strict path="/bento/kashi/create" component={CreateMarkets} />
                             <WalletRoute exact strict path="/bento/kashi/lend/:pairAddress" component={LendPair} />
-                            <WalletRoute exact strict path="/bento/kashi/borrow/:pairAddress" component={BorrowPair} />
+                            <WalletRoute exact strict path="/bento/kashi/borrow/:pairAddress" component={BorrowPair} /> */}
 
                             <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
-                            <Route exact strict path="/yield" component={Yield} />
+                            <Route exact strict path="/farms" component={Yield} />
                             <Route exact strict path="/vesting" component={Vesting} />
                             {chainId === ChainId.MAINNET && (
                                 <Route exact strict path="/migrate/v2" component={MigrateV2} />

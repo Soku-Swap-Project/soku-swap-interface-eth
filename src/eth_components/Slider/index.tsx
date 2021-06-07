@@ -19,9 +19,9 @@ const StyledRangeInput = styled.input<{ size: number }>`
         -webkit-appearance: none;
         height: ${({ size }) => size}px;
         width: ${({ size }) => size}px;
-        background-color: #565a69;
+        background-color: #fff;
         border-radius: 100%;
-        border: none;
+        border: 1px solid #04bbfb;
         transform: translateY(-50%);
         color: ${({ theme }) => theme.bg1};
 
@@ -35,7 +35,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     &::-moz-range-thumb {
         height: ${({ size }) => size}px;
         width: ${({ size }) => size}px;
-        background-color: #565a69;
+        background-color: #04bbfb;
         border-radius: 100%;
         border: none;
         color: ${({ theme }) => theme.bg1};
@@ -50,7 +50,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     &::-ms-thumb {
         height: ${({ size }) => size}px;
         width: ${({ size }) => size}px;
-        background-color: #565a69;
+        background-color: #000;
         border-radius: 100%;
         color: ${({ theme }) => theme.bg1};
 
@@ -62,12 +62,12 @@ const StyledRangeInput = styled.input<{ size: number }>`
     }
 
     &::-webkit-slider-runnable-track {
-        background: linear-gradient(90deg, ${({ theme }) => theme.bg5}, ${({ theme }) => theme.bg3});
+        background: #04bbfb;
         height: 2px;
     }
 
     &::-moz-range-track {
-        background: linear-gradient(90deg, ${({ theme }) => theme.bg5}, ${({ theme }) => theme.bg3});
+        background: #000;
         height: 2px;
     }
 
@@ -76,11 +76,11 @@ const StyledRangeInput = styled.input<{ size: number }>`
         border-color: transparent;
         color: transparent;
 
-        background: ${({ theme }) => theme.bg5};
+        background: #000;
         height: 2px;
     }
     &::-ms-fill-lower {
-        background: ${({ theme }) => theme.bg5};
+        background: #000;
     }
     &::-ms-fill-upper {
         background: ${({ theme }) => theme.bg3};

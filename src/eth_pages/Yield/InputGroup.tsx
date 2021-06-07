@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { BigNumber } from '@ethersproject/bignumber'
 import { MASTERCHEF_ADDRESS, Token, TokenAmount } from '@sushiswap/sdk'
 import { Input as NumericalInput } from 'eth_components/NumericalInput'
@@ -11,9 +12,14 @@ import useMasterChef from 'eth_hooks/useMasterChef'
 import usePendingSushi from 'eth_hooks/usePendingSushi'
 import useStakedBalance from 'eth_hooks/useStakedBalance'
 import useTokenBalance from 'sushi-hooks/useTokenBalance'
+import { useWalletModalToggle } from 'eth_state/application/hooks'
+import useFarms from 'eth_hooks/useFarms'
+
 import { formattedNum, isAddressString, isWETH } from 'utils'
 import { Dots } from '../Pool/styleds'
 import { Button } from './components'
+
+console.log(MASTERCHEF_ADDRESS)
 
 const fixedFormatting = (value: BigNumber, decimals?: number) => {
     return Fraction.from(value, BigNumber.from(10).pow(BigNumber.from(decimals))).toString(decimals)
@@ -43,6 +49,13 @@ export default function InputGroup({
     const [pendingTx, setPendingTx] = useState(false)
     const [depositValue, setDepositValue] = useState('')
     const [withdrawValue, setWithdrawValue] = useState('')
+    const toggleWalletModal = useWalletModalToggle()
+
+    const query = useFarms()
+    const farms = query?.farms
+    const userFarms = query?.userFarms
+
+    console.log(useFarms)
 
     const pairAddressChecksum = isAddressString(pairAddress)
 
@@ -58,7 +71,7 @@ export default function InputGroup({
             new Token(chainId || 1, pairAddressChecksum, balance.decimals, pairSymbol, ''),
             ethers.constants.MaxUint256.toString()
         ),
-        MASTERCHEF_ADDRESS[1]
+        MASTERCHEF_ADDRESS[3]
     )
 
     const { deposit, withdraw, harvest } = useMasterChef()
@@ -67,18 +80,21 @@ export default function InputGroup({
 
     return (
         <>
-            <div className="flex flex-col space-y-4 py-6">
+            <div
+                className="flex flex-col space-y-4 py-6"
+                style={{ background: '#fff', borderTop: '1px solid #ebebeb' }}
+            >
                 <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 px-4">
                     {type === 'LP' && (
                         <>
                             <Button
-                                color="default"
+                                className="farm_liquidity_button"
                                 onClick={() => history.push(`/add/${isWETH(token0Address)}/${isWETH(token1Address)}`)}
                             >
                                 Add Liquidity
                             </Button>
                             <Button
-                                color="default"
+                                className="farm_liquidity_button"
                                 onClick={() =>
                                     history.push(`/remove/${isWETH(token0Address)}/${isWETH(token1Address)}`)
                                 }
@@ -87,31 +103,37 @@ export default function InputGroup({
                             </Button>
                         </>
                     )}
-                    {type === 'KMP' && assetSymbol && (
-                        <>
-                            <Button
-                                color="default"
-                                onClick={() => history.push(`/bento/kashi/lend/${isWETH(pairAddress)}`)}
-                            >
-                                Lend {assetSymbol}
-                            </Button>
-                            <Button
-                                color="default"
-                                onClick={() => history.push(`/bento/kashi/lend/${isWETH(pairAddress)}`)}
-                            >
-                                Withdraw {assetSymbol}
-                            </Button>
-                        </>
-                    )}
                 </div>
-
-                {(approvalState === ApprovalState.NOT_APPROVED || approvalState === ApprovalState.PENDING) && (
+                {account ? (
+                    (approvalState === ApprovalState.NOT_APPROVED || approvalState === ApprovalState.PENDING) && (
+                        <div className="px-4">
+                            <Button
+                                className="farm_approve_button"
+                                disabled={approvalState === ApprovalState.PENDING}
+                                onClick={approve}
+                            >
+                                {approvalState === ApprovalState.PENDING ? <Dots>Approving </Dots> : 'Approve'}
+                            </Button>
+                        </div>
+                    )
+                ) : (
                     <div className="px-4">
-                        <Button color="blue" disabled={approvalState === ApprovalState.PENDING} onClick={approve}>
-                            {approvalState === ApprovalState.PENDING ? <Dots>Approving </Dots> : 'Approve'}
+                        <Button className="farm_approve_button" onClick={toggleWalletModal}>
+                            Connect Wallet
                         </Button>
                     </div>
                 )}
+                {/* {(approvalState === ApprovalState.NOT_APPROVED || approvalState === ApprovalState.PENDING) && (
+                     <div className="px-4">
+                         <Button
+                             className="farm_approve_button"
+                             disabled={approvalState === ApprovalState.PENDING}
+                             onClick={approve}
+                         >
+                             {approvalState === ApprovalState.PENDING ? <Dots>Approving </Dots> : 'Approve'}
+                         </Button>
+                     </div>
+                 )} */}
                 {approvalState === ApprovalState.APPROVED && (
                     <div className="grid gap-4 grid-cols-2 px-4">
                         {/* Deposit */}

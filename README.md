@@ -4,9 +4,9 @@
 
 ## An open source interface for SokuSwap
 
--   Website: [SokuSwap.Finance](https://sokuwap.finance/)
--   Interface: Link Coming Soon!
--   Docs: Link Coming Soon!
+-   Website: [sokuswap.finance](https://sokuwap.finance/)
+-   Interface: Coming Soon!
+-   Docs: Coming Soon!
 
 ## Development
 
@@ -20,10 +20,4 @@ yarn
 
 ```bash
 yarn start
-```
-
-## Build
-
-```bash
-yarn build
 ```

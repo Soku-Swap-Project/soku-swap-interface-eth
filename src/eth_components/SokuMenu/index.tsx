@@ -28,6 +28,8 @@ const SokuMenu: React.FC = props => {
     const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
     const toggleWalletModal = useWalletModalToggle()
 
+    const origin = window.location.origin
+
     const openHiddenLinks = () => {
         const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
         // console.log(hiddenLinks)
@@ -51,6 +53,12 @@ const SokuMenu: React.FC = props => {
                         </NavLink>
                         <NavLink className="nav_link" to="/pool" activeClassName="active">
                             <li>Pool</li>
+                        </NavLink>
+                        <a className="nav_link" href="https://www.binance.org/en/bridge">
+                            <li>Bridge</li>
+                        </a>
+                        <NavLink className="nav_link" to="/farms" activeClassName="active">
+                            <li>Farms</li>
                         </NavLink>
                     </div>
                 </ul>

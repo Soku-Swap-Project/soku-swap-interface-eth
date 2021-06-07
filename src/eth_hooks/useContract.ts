@@ -5,7 +5,7 @@ import {
     ChainId,
     FACTORY_ADDRESS,
     MAKER_ADDRESS,
-    MASTERCHEF_ADDRESS,
+    // MASTERCHEF_ADDRESS,
     ROUTER_ADDRESS,
     SUSHI_ADDRESS,
     TIMELOCK_ADDRESS,
@@ -56,6 +56,8 @@ import TIMELOCK_ABI from '../eth_constants/abis/timelock.json'
 import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../eth_constants/v1'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
+
+const MASTERCHEF_ADDRESS = '0xD78EEcdaf0E4d629041bCE85902bDd95fF202c40'
 
 // returns null on errors
 export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {

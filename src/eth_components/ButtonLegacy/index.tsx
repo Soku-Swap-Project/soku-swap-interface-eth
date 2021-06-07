@@ -72,24 +72,24 @@ export const ButtonPrimary = styled(Base)`
   }
   &:hover {
     /*background: ${({ theme }) => darken(0.05, theme.primary1)};*/
-    background: #05195a;
+    opacity: 0.75;
     background-origin: border-box;
     &::after {
       animation: ${sheen} 0.5s forwards;
     }
   }
   
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    bottom: -50%;
-    left: -130%;
-    background: linear-gradient(to bottom, rgba(229, 172, 142, 0), rgba(255,255,255,0.5) 50%, rgba(229, 172, 142, 0));
-    transform: rotateZ(60deg) translate(-5em, 7.5em);
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: -50%;
+//     right: -50%;
+//     bottom: -50%;
+//     left: -130%;
+//     background: linear-gradient(to bottom, rgba(229, 172, 142, 0), rgba(255,255,255,0.5) 50%, rgba(229, 172, 142, 0));
+//     transform: rotateZ(60deg) translate(-5em, 7.5em);
 
-  }
+//   }
 `
 
 export const ButtonPrimaryNormal = styled(Base)`

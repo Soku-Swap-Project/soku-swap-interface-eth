@@ -20,14 +20,14 @@ export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LEN
 
 export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
-// SUSHI
+// SOKU
 export const SUSHI: ChainTokenMap = {
     [ChainId.MAINNET]: new Token(
         ChainId.MAINNET,
-        '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2',
+        '0x287e57bc655c7b019e4ce5f225f5a6832fef99ae',
         18,
-        'SUSHI',
-        'SushiToken'
+        'Soku',
+        'Soku Token'
     ),
     [ChainId.ROPSTEN]: new Token(
         ChainId.ROPSTEN,
