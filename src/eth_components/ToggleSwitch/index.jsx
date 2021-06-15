@@ -17,7 +17,7 @@ const Toggle = () => {
         ethToggle?.classList.remove('toggleActive')
     }
 
-    checkbox?.addEventListener('change', function() {
+    checkbox?.addEventListener('change', function () {
         // Check if toggle switch is on BSC
         if (this.checked) {
             window.location.href = `${origin}/bsc/#/swap`
@@ -50,14 +50,16 @@ const Toggle = () => {
         }
     })
 
+    const isBSCPage = window.location.pathname.includes("bsc")
+
     return (
         <div className="sokuswap__toggleContainer">
-            <p className="form-check-label ethToggle toggleActive">ETH</p>
+            <p className={`form-check-label ethToggle ${isBSCPage ? '' : 'toggleActive'}`}>ETH</p>
             <CheckBoxWrapper>
-                <CheckBox id="checkbox" type="checkbox" defaultChecked={false} />
+                <CheckBox id="checkbox" type="checkbox" defaultChecked={isBSCPage} />
                 <CheckBoxLabel htmlFor="checkbox" />
             </CheckBoxWrapper>
-            <p className="form-check-label bscToggle">BSC</p>
+            <p className={`form-check-label bscToggle ${isBSCPage ? 'toggleActive' : ''}`}>BSC</p>
         </div>
     )
 }
