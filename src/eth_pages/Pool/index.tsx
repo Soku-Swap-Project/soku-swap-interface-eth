@@ -28,7 +28,7 @@ import { Helmet } from 'react-helmet'
 const PageWrapper = styled(AutoColumn)`
     max-width: 640px;
     width: 100%;
-    padding: 16px;
+    // padding: 16px;
 `
 
 const VoteCard = styled(DataCard)`
@@ -147,7 +147,7 @@ export default function Pool() {
             >
                 <SwapPoolTabs active={'pool'} />
                 <CardNav />
-                <AutoColumn className="liquidity-box" style={{ marginTop: '25px' }} gap="sm" justify="center">
+                <AutoColumn className="liquidity-box" gap="sm" justify="center">
                     <AutoColumn gap="md" style={{ width: '100%' }}>
                         <TitleRow
                             style={{ marginTop: '1rem', marginBottom: '1rem' }}
@@ -165,14 +165,14 @@ export default function Pool() {
                                 Liquidity
                             </TYPE.mediumHeader>
                             <ButtonRow>
-                                <ResponsiveButtonSecondary
+                                {/* <ResponsiveButtonSecondary
                                     className="pool_button"
                                     as={Link}
                                     padding="6px 8px"
                                     to="/create/"
                                 >
                                     Create a pair
-                                </ResponsiveButtonSecondary>
+                                </ResponsiveButtonSecondary> */}
                                 <ResponsiveButtonPrimary
                                     id="join-pool-button"
                                     as={Link}

@@ -27,40 +27,50 @@ export function ConfirmAddModalBottom({
     return (
         <>
             <RowBetween>
-                <TYPE.body>{currencies[Field.CURRENCY_A]?.getSymbol(chainId)} Deposited</TYPE.body>
+                <TYPE.body style={{ color: '#05195a' }}>
+                    {currencies[Field.CURRENCY_A]?.getSymbol(chainId)} Deposited
+                </TYPE.body>
                 <RowFixed>
                     <CurrencyLogo currency={currencies[Field.CURRENCY_A]} style={{ marginRight: '8px' }} />
-                    <TYPE.body>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</TYPE.body>
+                    <TYPE.body style={{ color: '#05195a' }}>
+                        {parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}
+                    </TYPE.body>
                 </RowFixed>
             </RowBetween>
             <RowBetween>
-                <TYPE.body>{currencies[Field.CURRENCY_B]?.getSymbol(chainId)} Deposited</TYPE.body>
+                <TYPE.body style={{ color: '#05195a' }}>
+                    {currencies[Field.CURRENCY_B]?.getSymbol(chainId)} Deposited
+                </TYPE.body>
                 <RowFixed>
                     <CurrencyLogo currency={currencies[Field.CURRENCY_B]} style={{ marginRight: '8px' }} />
-                    <TYPE.body>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</TYPE.body>
+                    <TYPE.body style={{ color: '#05195a' }}>
+                        {parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}
+                    </TYPE.body>
                 </RowFixed>
             </RowBetween>
             <RowBetween>
-                <TYPE.body>Rates</TYPE.body>
-                <TYPE.body>
+                <TYPE.body style={{ color: '#05195a' }}>Rates</TYPE.body>
+                <TYPE.body style={{ color: '#05195a' }}>
                     {`1 ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)} = ${price?.toSignificant(4)} ${currencies[
                         Field.CURRENCY_B
                     ]?.getSymbol(chainId)}`}
                 </TYPE.body>
             </RowBetween>
             <RowBetween style={{ justifyContent: 'flex-end' }}>
-                <TYPE.body>
+                <TYPE.body style={{ color: '#05195a' }}>
                     {`1 ${currencies[Field.CURRENCY_B]?.getSymbol(chainId)} = ${price
                         ?.invert()
                         .toSignificant(4)} ${currencies[Field.CURRENCY_A]?.getSymbol(chainId)}`}
                 </TYPE.body>
             </RowBetween>
             <RowBetween>
-                <TYPE.body>Share of Pool:</TYPE.body>
-                <TYPE.body>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</TYPE.body>
+                <TYPE.body style={{ color: '#05195a' }}>Share of Pool:</TYPE.body>
+                <TYPE.body style={{ color: '#05195a' }}>
+                    {noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%
+                </TYPE.body>
             </RowBetween>
-            <ButtonLight style={{ margin: '20px 0 0 0' }} onClick={onAdd}>
-                <Text fontWeight={500} fontSize={20}>
+            <ButtonLight style={{ margin: '20px 0 0 0', borderRadius: '16px' }} onClick={onAdd}>
+                <Text fontWeight={600} fontSize={16} color="#fff">
                     {noLiquidity ? 'Create Pool & Supply' : 'Confirm Supply'}
                 </Text>
             </ButtonLight>

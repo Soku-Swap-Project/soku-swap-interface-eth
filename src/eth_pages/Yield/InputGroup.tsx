@@ -55,8 +55,6 @@ export default function InputGroup({
     const farms = query?.farms
     const userFarms = query?.userFarms
 
-    console.log(useFarms)
-
     const pairAddressChecksum = isAddressString(pairAddress)
 
     //const { deposit } = useBentoBox()

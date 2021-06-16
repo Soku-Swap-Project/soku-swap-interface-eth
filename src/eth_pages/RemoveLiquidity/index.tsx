@@ -67,6 +67,7 @@ export default function RemoveLiquidity({
     // burn state
     const { independentField, typedValue } = useBurnState()
     const { pair, parsedAmounts, error } = useDerivedBurnInfo(currencyA ?? undefined, currencyB ?? undefined)
+    console.log(pair)
     const { onUserInput: _onUserInput } = useBurnActionHandlers()
     const isValid = !error
 
@@ -99,6 +100,7 @@ export default function RemoveLiquidity({
     const atMaxAmount = parsedAmounts[Field.LIQUIDITY_PERCENT]?.equalTo(new Percent('1'))
 
     // pair contract
+
     const pairContract: Contract | null = usePairContract(pair?.liquidityToken?.address)
 
     // allowance handling
@@ -129,10 +131,10 @@ export default function RemoveLiquidity({
                 { name: 'verifyingContract', type: 'address' }
             ]
             const domain = {
-                name: 'SushiSwap LP Token',
+                name: 'SokuSwap LP Token',
                 version: '1',
                 chainId: chainId,
-                verifyingContract: pair.liquidityToken.address
+                verifyingContract: '0x0'
             }
             const Permit = [
                 { name: 'owner', type: 'address' },

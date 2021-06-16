@@ -220,8 +220,15 @@ export default function AddLiquidity({
         return noLiquidity ? (
             <AutoColumn gap="20px">
                 <LightCard mt="20px" borderRadius="20px">
-                    <RowFlat>
-                        <Text fontSize="48px" fontWeight={500} lineHeight="42px" marginRight={10}>
+                    <RowFlat
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                            // paddingBottom: '16px'
+                        }}
+                    >
+                        <Text fontSize="30px" fontWeight={500} lineHeight="42px" marginRight={10}>
                             {currencies[Field.CURRENCY_A]?.getSymbol(chainId) +
                                 '/' +
                                 currencies[Field.CURRENCY_B]?.getSymbol(chainId)}
@@ -237,7 +244,7 @@ export default function AddLiquidity({
         ) : (
             <AutoColumn gap="20px">
                 <RowFlat style={{ marginTop: '20px' }}>
-                    <Text fontSize="48px" fontWeight={500} lineHeight="42px" marginRight={10}>
+                    <Text fontSize="30px" fontWeight={500} lineHeight="42px" marginRight={10}>
                         {liquidityMinted?.toSignificant(6)}
                     </Text>
                     <DoubleCurrencyLogo
@@ -254,10 +261,10 @@ export default function AddLiquidity({
                             ' Pool Tokens'}
                     </Text>
                 </Row>
-                <TYPE.italic fontSize={12} textAlign="left" padding={'8px 0 0 0 '}>
+                {/* <TYPE.italic fontSize={12} textAlign="left" padding={'8px 0 0 0 '}>
                     {`Output is estimated. If the price changes by more than ${allowedSlippage /
                         100}% your transaction will revert.`}
-                </TYPE.italic>
+                </TYPE.italic> */}
             </AutoColumn>
         )
     }
@@ -318,13 +325,14 @@ export default function AddLiquidity({
     }, [onFieldAInput, txHash])
 
     const isCreate = history.location.pathname.includes('/create')
+    const isAdd = history.location.pathname.includes('/add')
 
     const addIsUnsupported = useIsTransactionUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B)
 
     return (
         <>
             <Helmet>
-                <title>SokuSwap | Add Liquidity</title>
+                <title>SokuSwap | ETH | Add Liquidity</title>
             </Helmet>
             <CardNav />
             <div className="add_liquidity_wrapper bg-white rounded">
@@ -346,15 +354,14 @@ export default function AddLiquidity({
                         pendingText={pendingText}
                     />
                     <AutoColumn gap="20px">
-                        {noLiquidity ||
-                            (isCreate ? (
-                                <Alert
-                                    message="You are the first liquidity provider.
+                        {isAdd && noLiquidity ? (
+                            <Alert
+                                message="You are the first liquidity provider.
                                     The ratio of tokens you add will set the price of this pool.
                                     Once you are happy with the rate click supply to review."
-                                    type="information"
-                                />
-                            ) : null)}
+                                type="information"
+                            />
+                        ) : null}
                         <CurrencyInputPanel
                             value={formattedAmounts[Field.CURRENCY_A]}
                             onUserInput={onFieldAInput}
@@ -471,7 +478,7 @@ export default function AddLiquidity({
                                         !!parsedAmounts[Field.CURRENCY_A] &&
                                         !!parsedAmounts[Field.CURRENCY_B]
                                     }
-                                    backgroundColor="#04bbfb;"
+                                    backgroundColor="#04bbfb"
                                 >
                                     <Text fontSize={20} fontWeight={500}>
                                         {error ?? 'Supply'}
