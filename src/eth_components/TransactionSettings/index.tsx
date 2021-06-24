@@ -44,7 +44,7 @@ const Option = styled(FancyButton)<{ active: boolean }>`
     :hover {
         cursor: pointer;
     }
-    background-color: ${({ active, theme }) => active && theme.primary1};
+    background-color: ${({ active, theme }) => active && theme.primary6};
     color: ${({ active }) => (active && 'white') || '#05489c'};
     font-family: 'Roboto Mono', monospace !important;
     font-size: 16px !important;

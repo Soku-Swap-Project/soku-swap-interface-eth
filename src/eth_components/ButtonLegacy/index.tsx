@@ -100,7 +100,8 @@ export const ButtonPrimaryNormal = styled(Base)`
         background-color: ${({ theme }) => darken(0.05, theme.primary1)};
     }
     &:hover {
-        background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+        // background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+        opacity: 0.7
     }
     &:active {
         box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};

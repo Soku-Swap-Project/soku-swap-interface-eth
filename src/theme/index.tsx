@@ -65,6 +65,7 @@ export function colors(darkMode: boolean): Colors {
         primary3: darkMode ? '#04bbfb' : '#FF99C9',
         primary4: darkMode ? '#04bbfb' : '#F6DDE8',
         primary5: darkMode ? '#04bbfb' : '#ebebeb',
+        primary6: darkMode ? '#05489c' : '#05489c',
 
         // color text
         primaryText1: darkMode ? '#04bbfb' : '#0e0e23',
@@ -402,6 +403,10 @@ body {
 .farm_liquidity_value {
     display: flex;
     align-items: center;
+}
+
+button:hover, [role="button"]:hover {
+    border: none !important;
 }
 
 .add_liquidity_wrapper {
