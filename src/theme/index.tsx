@@ -49,9 +49,9 @@ export function colors(darkMode: boolean): Colors {
         text5: darkMode ? '#04bbfb' : '#EDEEF2',
 
         // backgrounds / greys
-        bg1: darkMode ? 'red' : '#FFFFFF',
-        bg2: darkMode ? '#E9EAEB' : '#F7F8FA',
-        bg3: darkMode ? '#E9EAEB' : '#EDEEF2',
+        bg1: darkMode ? '#fff' : '#FFFFFF',
+        bg2: darkMode ? '#fff' : '#F7F8FA',
+        bg3: darkMode ? '#fff' : '#EDEEF2',
         bg4: darkMode ? '#3a506f' : '#CED0D9',
         bg5: darkMode ? '#6C7284' : '#888D9B',
 
@@ -65,9 +65,10 @@ export function colors(darkMode: boolean): Colors {
         primary3: darkMode ? '#04bbfb' : '#FF99C9',
         primary4: darkMode ? '#04bbfb' : '#F6DDE8',
         primary5: darkMode ? '#04bbfb' : '#ebebeb',
+        primary6: darkMode ? '#05489c' : '#05489c',
 
         // color text
-        primaryText1: darkMode ? '#05195a' : '#0e0e23',
+        primaryText1: darkMode ? '#04bbfb' : '#0e0e23',
 
         // secondary colors
         secondary1: darkMode ? '#0094ec' : '#ff007a',
@@ -200,6 +201,19 @@ export const FixedGlobalStyle = createGlobalStyle`
 
 .fromBalance {
     display: flex;
+}
+
+.liquidity_header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 12px;
 }
 
 .farm_approve_button {
@@ -391,6 +405,10 @@ body {
     align-items: center;
 }
 
+button:hover, [role="button"]:hover {
+    border: none !important;
+}
+
 .add_liquidity_wrapper {
     // border-radius: 20px !important;
     // box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb;
@@ -444,12 +462,17 @@ html {
 }
 
 .alert_box {
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(233, 234, 235);
+    border-bottom: 2px solid rgb(233, 234, 235) !important;
     border-image: initial;
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 16px;
+}
+
+.alert_box p {
+    color: #04bbfb;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 

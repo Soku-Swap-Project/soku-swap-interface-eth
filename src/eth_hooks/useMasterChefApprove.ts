@@ -12,6 +12,8 @@ const useApprove = (lpAddress: string) => {
     const lpAddressChecksum = isAddress(lpAddress)
     const lpContract = useContract(lpAddressChecksum ? lpAddressChecksum : undefined, ERC20_ABI, true) // withSigner = true
 
+    console.log(lpContract)
+
     const approve = async (lpContract: Contract | null, masterChefContract: Contract | null) => {
         return lpContract?.approve(masterChefContract?.address, ethers.constants.MaxUint256.toString())
     }

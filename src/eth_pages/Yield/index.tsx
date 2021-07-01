@@ -36,6 +36,10 @@ export default function Yield(): JSX.Element {
     // Sorting Setup
     const { items, requestSort, sortConfig } = useSortableData(flattenSearchResults)
 
+    // console.log('Query: ', query)
+    // console.log('farms: ', farms)
+    // console.log('userFarms: ', userFarms)
+
     useEffect(() => {
         if (items.length > 0) {
             setLoading(false)
@@ -133,6 +137,7 @@ export default function Yield(): JSX.Element {
 
 const TokenBalance = ({ farm }: any) => {
     const [expand, setExpand] = useState<boolean>(false)
+    // console.log(farm)
     return (
         <>
             {farm.type === 'SLP' && (
