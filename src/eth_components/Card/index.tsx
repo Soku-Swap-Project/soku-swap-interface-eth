@@ -22,6 +22,12 @@ export const GreyCard = styled(Card)`
     background-color: #ebebeb;
 `
 
+export const WhiteCard = styled(Card)`
+    background-color: #fff;
+    max-width: 350px;
+    border-radius: 35px;
+`
+
 export const LightGreyCard = styled(Card)`
     background-color: ${({ theme }) => theme.bg2};
 `

@@ -14,7 +14,7 @@ import { TYPE } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { ButtonEmpty, ButtonPrimary, ButtonPrimaryNormal } from '../ButtonLegacy'
-import Card, { GreyCard, LightCard } from '../Card'
+import Card, { GreyCard, LightCard, WhiteCard } from '../Card'
 import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
@@ -79,11 +79,16 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
     return (
         <>
             {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
-                <GreyCard border={border}>
+                <WhiteCard>
                     <AutoColumn gap="12px">
                         <FixedHeightRow>
                             <RowFixed>
-                                <Text fontWeight={500} fontSize={16}>
+                                <Text
+                                    fontWeight={600}
+                                    fontSize={14}
+                                    color={'#05489c'}
+                                    style={{ textTransform: 'uppercase' }}
+                                >
                                     LP Tokens in your Wallet
                                 </Text>
                             </RowFixed>
@@ -96,12 +101,12 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                                     margin={true}
                                     size={20}
                                 />
-                                <Text fontWeight={500} fontSize={20}>
+                                <Text fontWeight={500} fontSize={14} color={'#05195a'}>
                                     {currency0.getSymbol(chainId)}/{currency1.getSymbol(chainId)}
                                 </Text>
                             </RowFixed>
                             <RowFixed>
-                                <Text fontWeight={500} fontSize={20}>
+                                <Text fontWeight={500} fontSize={14} color={'#05195a'}>
                                     {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
                                 </Text>
                             </RowFixed>
@@ -116,12 +121,12 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                                 </Text>
                             </FixedHeightRow> */}
                             <FixedHeightRow>
-                                <Text fontSize={16} fontWeight={500}>
+                                <Text fontSize={14} color={'#05195a'} fontWeight={500}>
                                     {currency0.getSymbol(chainId)}:
                                 </Text>
                                 {token0Deposited ? (
                                     <RowFixed>
-                                        <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
+                                        <Text fontSize={14} color={'#05195a'} fontWeight={500} marginLeft={'6px'}>
                                             {token0Deposited?.toSignificant(6)}
                                         </Text>
                                     </RowFixed>
@@ -130,12 +135,12 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                                 )}
                             </FixedHeightRow>
                             <FixedHeightRow>
-                                <Text fontSize={16} fontWeight={500}>
+                                <Text fontSize={14} color={'#05195a'} fontWeight={500}>
                                     {currency1.getSymbol(chainId)}:
                                 </Text>
                                 {token1Deposited ? (
                                     <RowFixed>
-                                        <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
+                                        <Text fontSize={14} color={'#05195a'} fontWeight={500} marginLeft={'6px'}>
                                             {token1Deposited?.toSignificant(6)}
                                         </Text>
                                     </RowFixed>
@@ -145,7 +150,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                             </FixedHeightRow>
                         </AutoColumn>
                     </AutoColumn>
-                </GreyCard>
+                </WhiteCard>
             ) : null
             // <LightCard>
             //     <TYPE.subHeader style={{ textAlign: 'center' }}>

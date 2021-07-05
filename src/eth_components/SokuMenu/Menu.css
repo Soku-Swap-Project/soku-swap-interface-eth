@@ -299,7 +299,7 @@ nav {
 }
 
 .disabled_link {
-    cursor: not-allowed !important;
+    cursor: pointer !important;
     pointer-events: none;
 }
 
