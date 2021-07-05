@@ -57,9 +57,9 @@ const SokuMenu: React.FC = props => {
                         <a className="nav_link" href="https://www.binance.org/en/bridge">
                             <li>Bridge</li>
                         </a>
-                        <NavLink className="nav_link" to="/farms" activeClassName="active">
+                        {/* <NavLink className="nav_link disabled_link" to="/farms" activeClassName="active">
                             <li>Farms</li>
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                 </ul>
                 <ul className="connectWallet__options__DESKTOP">
