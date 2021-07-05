@@ -91,8 +91,8 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
     const dispatch = useDispatch<AppDispatch>()
 
     return (
-        <Tabs>
-            <RowBetween style={{ padding: '1rem 1rem 0 1rem' }}>
+        <Tabs style={{ width: '100%' }}>
+            <RowBetween>
                 <HistoryLink
                     to="/pool"
                     onClick={() => {

@@ -236,16 +236,30 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
     background: #fff !important
 }
 
+@media (max-width: 800px) {
+    .remove_liquidity_percentage {
+        font-size: 24px !important;
+    }
+
+    .liquidity-box {
+        padding: 30px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+}
+
 .swap-box, .liquidity-box, .bodyBox {
     // border: 1px solid red !important;
-    display: block !important;
+    display: block;
     position: relative !important;
     border: 1px solid white !important;
     border-radius: 25px !important;
     background-color: #fff !important;
     width: 70% !important;
     max-width: 420px !important;
-    padding: 20px !important;
+    padding: 20px;
     color: #05195a !important;
     overflow: visible;
     box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb !important;
