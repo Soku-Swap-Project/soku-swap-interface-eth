@@ -435,7 +435,7 @@ export default function Swap() {
                                 <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
                                     {Boolean(trade) && (
                                         <RowBetween align="center">
-                                            <Text fontWeight={500} fontSize={14} color={theme.text2}>
+                                            <Text fontWeight={500} fontSize={14} color={theme.text3}>
                                                 Price
                                             </Text>
                                             <TradePrice

@@ -31,7 +31,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
                         <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
                     </RowFixed>
                     <RowFixed>
-                        <div color="#04bbfb" className="text-sm font-bold text-high-emphesis swap_detail_secondary">
+                        <div color="#04bbfb" className="text-sm text-high-emphesis swap_detail_primary">
                             {isExactIn
                                 ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(
                                       4
@@ -53,9 +53,9 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
                 <RowBetween>
                     <RowFixed>
                         <div className="text-secondary text-sm swap_detail_primary">Liquidity Provider Fee</div>
-                        <QuestionHelper text="A portion of each trade (0.25%) goes to liquidity providers as a protocol incentive." />
+                        <QuestionHelper text="For each trade a 0.25% fee is paid. 0.17% goes to liquidity providers, 0.05% goes towards staking, 0.02% to the SokuSwap treasury, and 0.01% goes towards rewards." />
                     </RowFixed>
-                    <div className="text-sm font-bold text-high-emphesis swap_detail_secondary">
+                    <div className="text-sm text-high-emphesis swap_detail_primary">
                         {realizedLPFee
                             ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.getSymbol(chainId)}`
                             : '-'}
@@ -93,7 +93,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
                             </RowBetween>
                         </>
                     )}
-                    {!showRoute && (
+                    {/* {!showRoute && (
                         <div className="flex justify-center pt-3 px-4 ">
                             <ExternalLink
                                 href={
@@ -104,7 +104,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
                                 View pair analytics
                             </ExternalLink>
                         </div>
-                    )}
+                    )} */}
                 </>
             )}
         </AutoColumn>

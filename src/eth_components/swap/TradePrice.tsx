@@ -34,7 +34,7 @@ export default function TradePrice({ price, showInverted, setShowInverted }: Tra
                 <>
                     {formattedPrice ?? '-'} {label}
                     <StyledBalanceMaxMini onClick={() => setShowInverted(!showInverted)}>
-                        <Repeat size={14} />
+                        <Repeat color={theme.text2} size={14} />
                     </StyledBalanceMaxMini>
                 </>
             ) : (
