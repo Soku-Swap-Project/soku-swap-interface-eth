@@ -377,7 +377,7 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
 
 body {
     background: linear-gradient(250deg, #05195a 33.3%, #040f31);
-    min-height: 100vh;
+    min-height: 125vh;
 
   }
 
@@ -494,10 +494,10 @@ html {
     display: flex;
     flex-flow: column;
     align-items: flex-start;
-    overflow-x: hidden;
-    overflow-y: auto;
+    // overflow-x: hidden;
+    // overflow-y: auto;
     background: linear-gradient(250deg, #05195a 20%, #040f31);
-    min-height: 100vh;
+    min-height: 125vh;
     height: auto;
     // max-height: 192vh;
     font-family: 'Poppins', sans-serif;

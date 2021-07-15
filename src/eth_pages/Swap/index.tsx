@@ -434,7 +434,14 @@ export default function Swap() {
                             <Card padding={showWrap ? '.25rem 1rem 0 1rem' : '0px'} borderRadius={'20px'}>
                                 <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
                                     {Boolean(trade) && (
-                                        <RowBetween align="center">
+                                        <RowBetween
+                                        // style={{
+                                        //     display: 'flex',
+                                        //     flexDirection: 'column',
+                                        //     alignItems: 'flex-start'
+                                        // }}
+                                        // align="center"
+                                        >
                                             <Text fontWeight={500} fontSize={14} color={theme.text3}>
                                                 Price
                                             </Text>
