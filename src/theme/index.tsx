@@ -347,7 +347,7 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
     background-color: transparent !important;
     box-shadow: 0 4px 10px 0 #05195a !important;
     border-radius: 32px !important;
-
+    margin: 0 auto;
 }
 
 #token-search-input {
@@ -378,7 +378,7 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
 body {
     background: linear-gradient(250deg, #05195a 33.3%, #040f31);
     min-height: 125vh;
-
+    
   }
 
 
@@ -390,7 +390,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-
 }
 
  a {
@@ -494,8 +493,8 @@ html {
     display: flex;
     flex-flow: column;
     align-items: flex-start;
-    // overflow-x: hidden;
-    // overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: linear-gradient(250deg, #05195a 20%, #040f31);
     min-height: 125vh;
     height: auto;
