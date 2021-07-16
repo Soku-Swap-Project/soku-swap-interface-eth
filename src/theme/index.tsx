@@ -373,12 +373,15 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
     border: 1px solid red;
 }
 
+button[id='connect-Portis'] {
+    display: none;
+}
+
 
 
 body {
     background: linear-gradient(250deg, #05195a 33.3%, #040f31);
     min-height: 125vh;
-    
   }
 
 

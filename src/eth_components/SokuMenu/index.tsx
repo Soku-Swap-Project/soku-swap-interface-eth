@@ -103,6 +103,7 @@ const SokuMenu: React.FC = props => {
                             href="https://sokuswap-1.gitbook.io/sokuswap-whitepaper/"
                             rel="noreferrer noopener"
                             target="_blank"
+                            className="disabled_link"
                         >
                             <span className="material-icons">school</span>
                             <p>Docs</p>
