@@ -44,7 +44,7 @@ export function colors(darkMode: boolean): Colors {
         // text
         text1: darkMode ? '#04bbfb' : '#000000',
         text2: darkMode ? '#04bbfb' : '#565A69',
-        text3: darkMode ? '#04bbfb' : '#888D9B',
+        text3: darkMode ? '#05195a' : '#888D9B',
         text4: darkMode ? '#04bbfb' : '#C3C5CB',
         text5: darkMode ? '#04bbfb' : '#EDEEF2',
 
@@ -347,7 +347,7 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
     background-color: transparent !important;
     box-shadow: 0 4px 10px 0 #05195a !important;
     border-radius: 32px !important;
-
+    margin: 0 auto;
 }
 
 #token-search-input {
@@ -373,12 +373,15 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
     border: 1px solid red;
 }
 
+button[id='connect-Portis'] {
+    display: none;
+}
+
 
 
 body {
     background: linear-gradient(250deg, #05195a 33.3%, #040f31);
-    min-height: 100vh;
-
+    min-height: 125vh;
   }
 
 
@@ -390,7 +393,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-
 }
 
  a {
@@ -497,7 +499,7 @@ html {
     overflow-x: hidden;
     overflow-y: auto;
     background: linear-gradient(250deg, #05195a 20%, #040f31);
-    min-height: 100vh;
+    min-height: 125vh;
     height: auto;
     // max-height: 192vh;
     font-family: 'Poppins', sans-serif;

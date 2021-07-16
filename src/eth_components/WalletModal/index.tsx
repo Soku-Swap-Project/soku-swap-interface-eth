@@ -355,14 +355,18 @@ export default function WalletModal({
 
                 <ContentWrapper>
                     {walletView === WALLET_VIEWS.PENDING ? (
-                        <PendingView
-                            connector={pendingWallet}
-                            error={pendingError}
-                            setPendingError={setPendingError}
-                            tryActivation={tryActivation}
-                        />
+                        <>
+                            <PendingView
+                                connector={pendingWallet}
+                                error={pendingError}
+                                setPendingError={setPendingError}
+                                tryActivation={tryActivation}
+                            />
+                        </>
                     ) : (
-                        <OptionGrid>{getOptions()}</OptionGrid>
+                        <>
+                            <OptionGrid>{getOptions()}</OptionGrid>
+                        </>
                     )}
                     {/* {walletView !== WALLET_VIEWS.PENDING && (
                         <Blurb>
