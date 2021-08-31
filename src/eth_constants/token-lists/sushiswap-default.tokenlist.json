@@ -19,6 +19,14 @@
             "logoURI": "https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0x111111111117dC0aa78b770fA6A738034120C302/logo.png"
         },
         {
+            "address": "0xcf8335727b776d190f9d15a54e6b9b9348439eee",
+            "chainId": 1,
+            "name": "Whackd",
+            "symbol": "WHACKD",
+            "decimals": 18,
+            "logoURI": "https://i.ibb.co/1fS2dwd/IMG-20210818-145133-897.png"
+        },
+        {
             "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
             "chainId": 1,
             "name": "AAVE",
