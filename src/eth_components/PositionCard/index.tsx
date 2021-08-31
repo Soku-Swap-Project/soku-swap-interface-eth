@@ -14,7 +14,7 @@ import { TYPE } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { ButtonEmpty, ButtonPrimary, ButtonPrimaryNormal } from '../ButtonLegacy'
-import Card, { GreyCard, LightCard } from '../Card'
+import Card, { GreyCard, LightCard, WhiteCard } from '../Card'
 import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
@@ -26,19 +26,19 @@ export const FixedHeightRow = styled(RowBetween)`
 `
 
 export const HoverCard = styled(Card)`
-    border: 1px solid transparent;
-    :hover {
-        border: 1px solid ${({ theme }) => darken(0.06, theme.bg2)};
-    }
+    border: 1px solid ${({ theme }) => darken(0.06, theme.colors.invertedContrast)};
+    padding: 20px;
 `
 const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
-  /* border: 1px solid ${({ theme }) => theme.text4}; */
-  border: none
-  background: ${({ theme }) => transparentize(0.6, theme.bg1)};
+  border: 1px solid #f0f0f0;
+//   border: none
+  background: #fff;
   /* background: ${({ theme, bgColor }) =>
       `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.bg3} 100%) `}; */
   position: relative;
   overflow: hidden;
+  padding: 20px;
+  border-radius: 30px;
 `
 
 interface PositionCardProps {
@@ -79,12 +79,17 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
     return (
         <>
             {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
-                <GreyCard border={border}>
+                <WhiteCard>
                     <AutoColumn gap="12px">
                         <FixedHeightRow>
                             <RowFixed>
-                                <Text fontWeight={500} fontSize={16}>
-                                    Your position
+                                <Text
+                                    fontWeight={600}
+                                    fontSize={14}
+                                    color={'#05489c'}
+                                    style={{ textTransform: 'uppercase' }}
+                                >
+                                    LP Tokens in your Wallet
                                 </Text>
                             </RowFixed>
                         </FixedHeightRow>
@@ -96,32 +101,32 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                                     margin={true}
                                     size={20}
                                 />
-                                <Text fontWeight={500} fontSize={20}>
+                                <Text fontWeight={500} fontSize={14} color={'#05195a'}>
                                     {currency0.getSymbol(chainId)}/{currency1.getSymbol(chainId)}
                                 </Text>
                             </RowFixed>
                             <RowFixed>
-                                <Text fontWeight={500} fontSize={20}>
+                                <Text fontWeight={500} fontSize={14} color={'#05195a'}>
                                     {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
                                 </Text>
                             </RowFixed>
                         </FixedHeightRow>
                         <AutoColumn gap="4px">
-                            <FixedHeightRow>
+                            {/* <FixedHeightRow>
                                 <Text fontSize={16} fontWeight={500}>
                                     Your pool share:
                                 </Text>
                                 <Text fontSize={16} fontWeight={500}>
                                     {poolTokenPercentage ? poolTokenPercentage.toFixed(6) + '%' : '-'}
                                 </Text>
-                            </FixedHeightRow>
+                            </FixedHeightRow> */}
                             <FixedHeightRow>
-                                <Text fontSize={16} fontWeight={500}>
+                                <Text fontSize={14} color={'#05195a'} fontWeight={500}>
                                     {currency0.getSymbol(chainId)}:
                                 </Text>
                                 {token0Deposited ? (
                                     <RowFixed>
-                                        <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
+                                        <Text fontSize={14} color={'#05195a'} fontWeight={500} marginLeft={'6px'}>
                                             {token0Deposited?.toSignificant(6)}
                                         </Text>
                                     </RowFixed>
@@ -130,12 +135,12 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                                 )}
                             </FixedHeightRow>
                             <FixedHeightRow>
-                                <Text fontSize={16} fontWeight={500}>
+                                <Text fontSize={14} color={'#05195a'} fontWeight={500}>
                                     {currency1.getSymbol(chainId)}:
                                 </Text>
                                 {token1Deposited ? (
                                     <RowFixed>
-                                        <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
+                                        <Text fontSize={14} color={'#05195a'} fontWeight={500} marginLeft={'6px'}>
                                             {token1Deposited?.toSignificant(6)}
                                         </Text>
                                     </RowFixed>
@@ -145,7 +150,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                             </FixedHeightRow>
                         </AutoColumn>
                     </AutoColumn>
-                </GreyCard>
+                </WhiteCard>
             ) : null
             // <LightCard>
             //     <TYPE.subHeader style={{ textAlign: 'center' }}>
@@ -196,12 +201,12 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
     const backgroundColor = useColor(pair?.token0)
 
     return (
-        <StyledPositionCard border={border} bgColor={backgroundColor}>
+        <StyledPositionCard bgColor={backgroundColor}>
             <AutoColumn gap="12px">
-                <FixedHeightRow>
+                <FixedHeightRow onClick={() => setShowMore(!showMore)}>
                     <AutoRow gap="8px">
                         <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={20} />
-                        <Text fontWeight={500} fontSize={20}>
+                        <Text fontWeight={500} fontSize={16}>
                             {!currency0 || !currency1 ? (
                                 <Dots>Loading</Dots>
                             ) : (
@@ -210,20 +215,13 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                         </Text>
                     </AutoRow>
                     <RowFixed gap="8px">
-                        <ButtonEmpty
-                            padding="6px 8px"
-                            borderRadius="20px"
-                            width="fit-content"
-                            onClick={() => setShowMore(!showMore)}
-                        >
+                        <ButtonEmpty padding="6px 8px" borderRadius="20px" width="fit-content">
                             {showMore ? (
                                 <>
-                                    Manage
                                     <ChevronUp size="20" style={{ marginLeft: '10px' }} />
                                 </>
                             ) : (
                                 <>
-                                    Manage
                                     <ChevronDown size="20" style={{ marginLeft: '10px' }} />
                                 </>
                             )}
@@ -232,7 +230,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                 </FixedHeightRow>
 
                 {showMore && (
-                    <AutoColumn gap="8px">
+                    <AutoColumn gap="30px">
                         <FixedHeightRow>
                             <Text fontSize={16} fontWeight={500}>
                                 Your total pool tokens:
@@ -311,20 +309,22 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                         {userDefaultPoolBalance && JSBI.greaterThan(userDefaultPoolBalance.raw, BIG_INT_ZERO) && (
                             <RowBetween marginTop="10px">
                                 <ButtonPrimaryNormal
-                                    padding="8px"
-                                    borderRadius="8px"
+                                    padding="14px"
+                                    borderRadius="16px"
                                     as={Link}
                                     to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                                     width="48%"
+                                    style={{ fontWeight: 'bold' }}
                                 >
                                     Add
                                 </ButtonPrimaryNormal>
                                 <ButtonPrimaryNormal
-                                    padding="8px"
-                                    borderRadius="8px"
+                                    padding="14px"
+                                    borderRadius="16px"
                                     as={Link}
                                     width="48%"
                                     to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
+                                    style={{ fontWeight: 'bold' }}
                                 >
                                     Remove
                                 </ButtonPrimaryNormal>
@@ -332,11 +332,12 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                         )}
                         {stakedBalance && JSBI.greaterThan(stakedBalance.raw, BIG_INT_ZERO) && (
                             <ButtonPrimary
-                                padding="8px"
-                                borderRadius="8px"
+                                padding="14px"
+                                borderRadius="16px"
                                 as={Link}
                                 to={`/uni/${currencyId(currency0)}/${currencyId(currency1)}`}
                                 width="100%"
+                                style={{ fontWeight: 'bold' }}
                             >
                                 Manage Liquidity in Rewards Pool
                             </ButtonPrimary>

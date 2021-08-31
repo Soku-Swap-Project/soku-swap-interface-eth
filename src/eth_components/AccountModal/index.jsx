@@ -39,6 +39,11 @@ export default function AccountModal() {
         setOpen(false)
     }
 
+    const logoutAccount = () => {
+        localStorage.removeItem('redux_localstorage_simple_user')
+        return deactivate
+    }
+
     const body = (
         <div className={`account__modal ${classes.paper}`}>
             <div className="account__modal_header">
@@ -63,7 +68,7 @@ export default function AccountModal() {
                     <h2>View on Etherscan</h2>
                     <span className="material-icons ">open_in_new</span>
                 </a>
-                <button className="account_logout" onClick={deactivate}>
+                <button className="account_logout" onClick={logoutAccount()}>
                     <h2>Log Out</h2>
                     <span className="material-icons ">logout</span>
                 </button>

@@ -1,16 +1,20 @@
 .swap_header h2 {
-  font-size: 20px !important;
-  color: #05195a !important;
-  font-weight: 900;
+    font-size: 20px !important;
+    color: #05195a !important;
+    font-weight: 900;
 }
 
 .settings {
-  font-size: 25px !important;
-  color: #d8d8d8;
-  cursor: pointer;
+    font-size: 25px !important;
+    color: #d8d8d8;
+    cursor: pointer;
 }
 
 .settings:hover {
-  color: #bfbfbf;
+    color: #bfbfbf;
+}
+
+.swap_detail_primary {
+    color: #05195a !important;
 }
 /*# sourceMappingURL=swap.css.map */

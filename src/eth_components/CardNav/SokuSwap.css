@@ -8,8 +8,7 @@
 
 @media (max-height: 800px) and (max-width: 415px) {
     .sokuswap__logo {
-        height: 100px;
-        bottom: 0;
+        /* height: 7%; */
     }
 }
 

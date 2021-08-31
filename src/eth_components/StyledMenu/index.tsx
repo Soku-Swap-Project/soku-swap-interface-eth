@@ -11,7 +11,7 @@ export const StyledMenuButton = styled.button`
   height: 35px;
   // background-color: ${({ theme }) => theme.bg3};
   padding: 0.15rem 0.5rem;
-  border-radius: 10px;
+  border-radius: 16px;
   :hover,
   :focus {
     cursor: pointer;
@@ -26,9 +26,7 @@ export const StyledMenuButton = styled.button`
   > * {
     stroke: ${({ theme }) => theme.text1};
   }
-  // ${({ theme }) => theme.mediaWidth.upToMedium`
-  //   margin-left: 4px;
-  // `};
+
 `
 
 export const StyledMenu = styled.div`

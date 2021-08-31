@@ -12,7 +12,14 @@ import React from 'react'
 // `
 
 export default function CardHeader({ className, children }: any) {
-    return <div className={`${className} flex items-center rounded-t px-2 py-4 sm:px-8 sm:py-6`}>{children}</div>
+    return (
+        <div
+            className={`${className} flex items-center farm_input_header rounded-t px-2 py-4 sm:px-8 sm:py-6`}
+            style={{ padding: '16px 32px' }}
+        >
+            {children}
+        </div>
+    )
 }
 
 export function BorrowCardHeader({ children }: any) {

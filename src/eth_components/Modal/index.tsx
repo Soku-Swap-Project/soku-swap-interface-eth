@@ -31,7 +31,7 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, maxWidth, mobile, is
 )).attrs({
     'aria-label': 'dialog'
 })`
-    overflow-y: ${({ mobile }) => (mobile ? 'scroll' : 'hidden')};
+    // overflow-y: ${({ mobile }) => (mobile ? 'scroll' : 'hidden')};
     border-radios: 100px;
     &[data-reach-dialog-content] {
         margin: 0 0 2rem 0;
@@ -39,10 +39,10 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, maxWidth, mobile, is
         box-shadow: 0 4px 8px 0 ${({ theme }) => transparentize(0.95, theme.shadow1)};
         padding: 0px;
         width: 50vw;
-        overflow-y: ${({ mobile }) => (mobile ? 'scroll' : 'hidden')};
-        overflow-x: hidden;
+        // overflow-y: ${({ mobile }) => (mobile ? 'scroll' : 'hidden')};
+        // overflow-x: hidden;
 
-        align-self: ${({ mobile }) => (mobile ? 'flex-end' : 'center')};
+        align-self: 'center';
 
         // max-width: 420px;
         ${({ maxWidth }) =>
@@ -146,7 +146,7 @@ export default function Modal({
                             >
                                 <div className="token_search_box rounded p-px">
                                     <div
-                                        className={`flex token_search_box flex-col h-full w-full bg-white rounded p-${padding} overflow-y-auto`}
+                                        className={`flex token_search_box flex-col h-full w-full bg-white rounded p-${padding}`}
                                     >
                                         {/* prevents the automatic focusing of inputs on mobile by the reach dialog */}
                                         {!initialFocusRef && isMobile ? <div tabIndex={1} /> : null}

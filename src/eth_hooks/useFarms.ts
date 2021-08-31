@@ -25,12 +25,13 @@ const useFarms = () => {
             exchange.query({
                 // results[1]
                 query: liquidityPositionSubsetQuery,
-                variables: { user: '0xc2edad668740f1aa35e4d8f227fb8e17dca888cd' }
+                variables: { user: '0xD78EEcdaf0E4d629041bCE85902bDd95fF202c40' }
             }),
             getAverageBlockTime(), // results[2]
             sushiData.sushi.priceUSD(), // results[3]
             sushiData.bentobox.kashiStakedInfo() //results[4]
         ])
+
         const pools = results[0]?.data.pools
         const pairAddresses = pools
             .map((pool: any) => {
@@ -43,6 +44,7 @@ const useFarms = () => {
         })
 
         const liquidityPositions = results[1]?.data.liquidityPositions
+        console.log(results)
         const averageBlockTime = results[2]
         const sushiPrice = results[3]
         const kashiPairs = results[4].filter(result => result !== undefined) // filter out undefined (not in onsen) from all kashiPairs
@@ -104,6 +106,8 @@ const useFarms = () => {
                     const roiPerMonth = roiPerDay * 30
                     const roiPerYear = roiPerMonth * 12
 
+                    console.log(liquidityPosition)
+
                     return {
                         ...pool,
                         type: 'SLP',
@@ -133,52 +137,54 @@ const useFarms = () => {
             return pool.pid
         })
 
+        console.log(account)
+        console.log(pids)
+
         if (account) {
-            const userFarmDetails = await boringHelperContract?.pollPools(account, pids)
-            //console.log('userFarmDetails:', userFarmDetails)
-            const userFarms = userFarmDetails
-                .filter((farm: any) => {
-                    return farm.balance.gt(BigNumber.from(0)) || farm.pending.gt(BigNumber.from(0))
-                })
-                .map((farm: any) => {
-                    //console.log('userFarm:', farm.pid.toNumber(), farm)
+            // const userFarmDetails = await boringHelperContract?.pollPools(account, pids)
 
-                    const pid = farm.pid.toNumber()
-                    const farmDetails = sorted.find((pair: any) => pair.pid === pid)
+            // console.log(userFarmDetails)
 
-                    console.log('farmDetails:', farmDetails)
-                    let deposited
-                    let depositedUSD
-                    if (farmDetails && farmDetails.type === 'KMP') {
-                        deposited = Fraction.from(
-                            farm.balance,
-                            BigNumber.from(10).pow(farmDetails.liquidityPair.asset.decimals)
-                        ).toString()
-                        depositedUSD =
-                            farmDetails.totalAssetStaked && farmDetails.totalAssetStaked > 0
-                                ? (Number(deposited) * Number(farmDetails.tvl)) / farmDetails.totalAssetStaked
-                                : 0
-                    } else {
-                        deposited = Fraction.from(farm.balance, BigNumber.from(10).pow(18)).toString(18)
-                        depositedUSD =
-                            farmDetails.slpBalance && Number(farmDetails.slpBalance / 1e18) > 0
-                                ? (Number(deposited) * Number(farmDetails.tvl)) / (farmDetails.slpBalance / 1e18)
-                                : 0
-                    }
-                    const pending = Fraction.from(farm.pending, BigNumber.from(10).pow(18)).toString(18)
+            // console.log('userFarmDetails:', userFarmDetails)
+            // const userFarms = farms.map((farm: any) => {
+            //     //console.log('userFarm:', farm.pid.toNumber(), farm)
 
-                    return {
-                        ...farmDetails,
-                        type: farmDetails.type, // KMP or SLP
-                        depositedLP: deposited,
-                        depositedUSD: depositedUSD,
-                        pendingSushi: pending
-                    }
-                })
-            setFarms({ farms: sorted, userFarms: userFarms })
+            //     const pid = farm.pid
+            //     const farmDetails = sorted.find((pair: any) => pair.pid === pid)
+
+            //     console.log('farmDetails:', farmDetails)
+            //     let deposited
+            //     let depositedUSD
+            //     if (farmDetails && farmDetails.type === 'KMP') {
+            //         deposited = Fraction.from(
+            //             farm.balance,
+            //             BigNumber.from(10).pow(farmDetails.liquidityPair.asset.decimals)
+            //         ).toString()
+            //         depositedUSD =
+            //             farmDetails.totalAssetStaked && farmDetails.totalAssetStaked > 0
+            //                 ? (Number(deposited) * Number(farmDetails.tvl)) / farmDetails.totalAssetStaked
+            //                 : 0
+            //     } else {
+            //         deposited = Fraction.from(farm.balance, BigNumber.from(10).pow(18)).toString(18)
+            //         depositedUSD =
+            //             farmDetails.slpBalance && Number(farmDetails.slpBalance / 1e18) > 0
+            //                 ? (Number(deposited) * Number(farmDetails.tvl)) / (farmDetails.slpBalance / 1e18)
+            //                 : 0
+            //     }
+            //     const pending = Fraction.from(farm.pending, BigNumber.from(10).pow(18)).toString(18)
+
+            //     return {
+            //         ...farmDetails,
+            //         type: farmDetails.type, // KMP or SLP
+            //         depositedLP: deposited,
+            //         depositedUSD: depositedUSD,
+            //         pendingSushi: pending
+            //     }
+            // })
+            setFarms({ farms: sorted })
             //console.log('userFarms:', userFarms)
         } else {
-            setFarms({ farms: sorted, userFarms: [] })
+            setFarms({ farms: sorted })
         }
     }, [account, boringHelperContract])
 

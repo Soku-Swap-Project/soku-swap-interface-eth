@@ -323,9 +323,7 @@ export default function Swap() {
                     {/* <AutoColumn gap={isExpertMode ? 'md' : 'none'} style={{ paddingBottom: '1rem' }}> */}
                     <AutoColumn gap={isExpertMode ? 'md' : '3px'}>
                         <CurrencyInputPanel
-                            label={
-                                independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'
-                            }
+                            label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (est.)' : 'From'}
                             value={formattedAmounts[Field.INPUT]}
                             showMaxButton={!atMaxAmountInput}
                             currency={currencies[Field.INPUT]}
@@ -402,7 +400,7 @@ export default function Swap() {
                         <CurrencyInputPanel
                             value={formattedAmounts[Field.OUTPUT]}
                             onUserInput={handleTypeOutput}
-                            label={independentField === Field.INPUT && !showWrap && trade ? 'To (estimated)' : 'To'}
+                            label={independentField === Field.INPUT && !showWrap && trade ? 'To (est.)' : 'To'}
                             showMaxButton={false}
                             currency={currencies[Field.OUTPUT]}
                             onCurrencySelect={handleOutputSelect}

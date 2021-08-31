@@ -91,14 +91,15 @@ export default function SwapModalHeader({
                     <RowBetween>
                         <RowFixed>
                             <AlertTriangle size={20} style={{ marginRight: '8px', minWidth: 24 }} />
-                            <TYPE.main color={theme.primary1}> Price Updated</TYPE.main>
+                            <TYPE.main color="#04bbfb"> Price Updated</TYPE.main>
                         </RowFixed>
                         <ButtonPrimary
                             style={{
                                 padding: '.5rem',
                                 width: 'fit-content',
                                 fontSize: '0.825rem',
-                                borderRadius: '12px'
+                                borderRadius: '12px',
+                                background: '#04bbfb'
                             }}
                             onClick={onAcceptChanges}
                         >
@@ -111,7 +112,7 @@ export default function SwapModalHeader({
                 {trade.tradeType === TradeType.EXACT_INPUT ? (
                     <TYPE.italic textAlign="left" style={{ width: '100%' }}>
                         {`Output is estimated. You will receive at least `}
-                        <b>
+                        <b style={{ color: '#04bbfb' }}>
                             {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)}{' '}
                             {trade.outputAmount.currency.getSymbol(chainId)}
                         </b>

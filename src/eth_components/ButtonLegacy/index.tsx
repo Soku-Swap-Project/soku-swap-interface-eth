@@ -15,7 +15,7 @@ const Base = styled(RebassButton)<{
     width: ${({ width }) => (width ? width : '100%')};
     font-weight: 500;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 16px;
     border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
     outline: none;
     border: 1px solid transparent;
@@ -47,18 +47,18 @@ export const ButtonPrimary = styled(Base)`
   overflow:hidden;
   height: 48px;
   font-weight: 900;
-  background: #05195a;
+  background: #04bbfb;
   background-origin: border-box;
   color: white;
   &:focus {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.primary1)};
     /*background: ${({ theme }) => darken(0.05, theme.primary1)};*/
-    background: #05195a;
+    background: #04bbfb;
   }
   &:active {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};
     /*background: ${({ theme }) => darken(0.1, theme.primary1)};*/
-    background: #05195a;
+    background: #04bbfb;
   }
   &:disabled {
     pointer-events: none;
@@ -72,24 +72,24 @@ export const ButtonPrimary = styled(Base)`
   }
   &:hover {
     /*background: ${({ theme }) => darken(0.05, theme.primary1)};*/
-    background: #05195a;
+    opacity: 0.75;
     background-origin: border-box;
     &::after {
       animation: ${sheen} 0.5s forwards;
     }
   }
   
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    bottom: -50%;
-    left: -130%;
-    background: linear-gradient(to bottom, rgba(229, 172, 142, 0), rgba(255,255,255,0.5) 50%, rgba(229, 172, 142, 0));
-    transform: rotateZ(60deg) translate(-5em, 7.5em);
+//   &::after {
+//     content: '';
+//     position: absolute;
+//     top: -50%;
+//     right: -50%;
+//     bottom: -50%;
+//     left: -130%;
+//     background: linear-gradient(to bottom, rgba(229, 172, 142, 0), rgba(255,255,255,0.5) 50%, rgba(229, 172, 142, 0));
+//     transform: rotateZ(60deg) translate(-5em, 7.5em);
 
-  }
+//   }
 `
 
 export const ButtonPrimaryNormal = styled(Base)`
@@ -100,7 +100,8 @@ export const ButtonPrimaryNormal = styled(Base)`
         background-color: ${({ theme }) => darken(0.05, theme.primary1)};
     }
     &:hover {
-        background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+        // background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+        opacity: 0.7
     }
     &:active {
         box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};
@@ -125,7 +126,7 @@ export const ButtonLight = styled(Base)`
     font-size: 16px;
     font-weight: 550;
     height: 48px;
-    border-radius: 25px;
+    border-radius: 16px;
     &:focus {
         box-shadow: 0 0 0 1pt ${({ theme, disabled }) => !disabled && lighten(0.03, theme.primary5)};
         background-color: ${({ theme, disabled }) => !disabled && lighten(0.03, theme.primary5)};

@@ -28,7 +28,7 @@ import { Helmet } from 'react-helmet'
 const PageWrapper = styled(AutoColumn)`
     max-width: 640px;
     width: 100%;
-    padding: 16px;
+    // padding: 16px;
 `
 
 const VoteCard = styled(DataCard)`
@@ -147,7 +147,7 @@ export default function Pool() {
             >
                 <SwapPoolTabs active={'pool'} />
                 <CardNav />
-                <AutoColumn className="liquidity-box" style={{ marginTop: '25px' }} gap="sm" justify="center">
+                <AutoColumn className="liquidity-box" gap="sm" justify="center">
                     <AutoColumn gap="md" style={{ width: '100%' }}>
                         <TitleRow
                             style={{ marginTop: '1rem', marginBottom: '1rem' }}
@@ -165,14 +165,14 @@ export default function Pool() {
                                 Liquidity
                             </TYPE.mediumHeader>
                             <ButtonRow>
-                                <ResponsiveButtonSecondary
+                                {/* <ResponsiveButtonSecondary
                                     className="pool_button"
                                     as={Link}
                                     padding="6px 8px"
                                     to="/create/"
                                 >
                                     Create a pair
-                                </ResponsiveButtonSecondary>
+                                </ResponsiveButtonSecondary> */}
                                 <ResponsiveButtonPrimary
                                     id="join-pool-button"
                                     as={Link}
@@ -240,9 +240,9 @@ export default function Pool() {
                             <Text
                                 textAlign="left"
                                 fontSize={14}
-                                style={{ padding: '.5rem 0 .5rem 0', fontWeight: 'bolder' }}
+                                style={{ padding: '.5rem 0 .5rem 0', fontWeight: 'normal' }}
                             >
-                                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
+                                {hasV1Liquidity ? 'Liquidity found!' : "Don't see a pool you joined?"}{' '}
                                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                                     {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
                                 </StyledInternalLink>
@@ -251,12 +251,9 @@ export default function Pool() {
                                 <Text
                                     textAlign="left"
                                     fontSize={14}
-                                    style={{ padding: '.5rem 0 .5rem 0', fontWeight: 'bolder' }}
+                                    style={{ padding: '.5rem 0 .5rem 0', fontWeight: 'normal' }}
                                 >
-                                    Have Liquidity on Uniswap?{' '}
-                                    <StyledInternalLink id="migrate-pool-link" to={'/migrate/v2'}>
-                                        Migrate Now.
-                                    </StyledInternalLink>
+                                    Or, if you staked your LP tokens in a farm, unstake them to see them here.
                                 </Text>
                             )}
                         </AutoColumn>

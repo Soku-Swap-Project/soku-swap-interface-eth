@@ -44,14 +44,14 @@ export function colors(darkMode: boolean): Colors {
         // text
         text1: darkMode ? '#04bbfb' : '#000000',
         text2: darkMode ? '#04bbfb' : '#565A69',
-        text3: darkMode ? '#04bbfb' : '#888D9B',
+        text3: darkMode ? '#05195a' : '#888D9B',
         text4: darkMode ? '#04bbfb' : '#C3C5CB',
         text5: darkMode ? '#04bbfb' : '#EDEEF2',
 
         // backgrounds / greys
-        bg1: darkMode ? 'red' : '#FFFFFF',
-        bg2: darkMode ? '#E9EAEB' : '#F7F8FA',
-        bg3: darkMode ? '#E9EAEB' : '#EDEEF2',
+        bg1: darkMode ? '#fff' : '#FFFFFF',
+        bg2: darkMode ? '#fff' : '#F7F8FA',
+        bg3: darkMode ? '#fff' : '#EDEEF2',
         bg4: darkMode ? '#3a506f' : '#CED0D9',
         bg5: darkMode ? '#6C7284' : '#888D9B',
 
@@ -65,9 +65,10 @@ export function colors(darkMode: boolean): Colors {
         primary3: darkMode ? '#04bbfb' : '#FF99C9',
         primary4: darkMode ? '#04bbfb' : '#F6DDE8',
         primary5: darkMode ? '#04bbfb' : '#ebebeb',
+        primary6: darkMode ? '#05489c' : '#05489c',
 
         // color text
-        primaryText1: darkMode ? '#05195a' : '#0e0e23',
+        primaryText1: darkMode ? '#04bbfb' : '#0e0e23',
 
         // secondary colors
         secondary1: darkMode ? '#0094ec' : '#ff007a',
@@ -200,23 +201,65 @@ export const FixedGlobalStyle = createGlobalStyle`
 
 .fromBalance {
     display: flex;
-    border: 1px solid red;
+}
+
+.liquidity_header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+.farm_approve_button {
+    background: #04bbfb !important;
+    color: #fff !important;
+    border-radius: 24px !important;
+}
+
+.farm_liquidity_button {
+    background: #05195a !important;
+    border-radius: 24px !important;
+
+}
+
+.farm_liquidity_button:hover, .farm_approve_button:hover {
+    opacity: 0.85;
 }
 
 reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="false"] {
     background: #fff !important
 }
 
+@media (max-width: 800px) {
+    .remove_liquidity_percentage {
+        font-size: 24px !important;
+    }
+
+    .liquidity-box {
+        padding: 30px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+}
+
 .swap-box, .liquidity-box, .bodyBox {
     // border: 1px solid red !important;
-    display: block !important;
+    display: block;
     position: relative !important;
     border: 1px solid white !important;
     border-radius: 25px !important;
     background-color: #fff !important;
     width: 70% !important;
     max-width: 420px !important;
-    padding: 20px !important;
+    padding: 20px;
     color: #05195a !important;
     overflow: visible;
     box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb !important;
@@ -224,8 +267,12 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
     // padding-bottom: 10px !important;
 }
 
-.liquidity-box {
-    padding: 30px !important;
+// .liquidity-box {
+//     padding: 30px !important;
+// }
+
+.css-1yxyz72 {
+    font-weight: 900;
 }
 
 @media (max-width: 650px) {
@@ -289,7 +336,6 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
 }
 
 .wallet_modal_header {
-    border: 1px solid red;
     display: flex !important;
     align-items: center !important;
     margin: 0 !important;
@@ -301,9 +347,8 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
     background-color: transparent !important;
     box-shadow: 0 4px 10px 0 #05195a !important;
     border-radius: 32px !important;
-
+    margin: 0 auto;
 }
-
 
 #token-search-input {
     color: #05195a;
@@ -328,12 +373,15 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
     border: 1px solid red;
 }
 
+button[id='connect-Portis'] {
+    display: none;
+}
+
 
 
 body {
     background: linear-gradient(250deg, #05195a 33.3%, #040f31);
-    min-height: 100vh;
-
+    min-height: 125vh;
   }
 
 
@@ -345,7 +393,6 @@ html,
 body {
   margin: 0;
   padding: 0;
-
 }
 
  a {
@@ -357,8 +404,25 @@ body {
 }
 
 .lightcard_border {
-    border: 2px solid #E9EAEB;
+    border-bottom: 2px solid #E7E3EB;
     border-radius: 16px;
+}
+
+.farm_row {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.farm_liquidity_value {
+    display: flex;
+    align-items: center;
+}
+
+button:hover, [role="button"]:hover {
+    border: none !important;
 }
 
 .add_liquidity_wrapper {
@@ -414,12 +478,17 @@ html {
 }
 
 .alert_box {
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(233, 234, 235);
+    border-bottom: 2px solid rgb(233, 234, 235) !important;
     border-image: initial;
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 16px;
+}
+
+.alert_box p {
+    color: #04bbfb;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 
@@ -430,7 +499,7 @@ html {
     overflow-x: hidden;
     overflow-y: auto;
     background: linear-gradient(250deg, #05195a 20%, #040f31);
-    min-height: 100vh;
+    min-height: 125vh;
     height: auto;
     // max-height: 192vh;
     font-family: 'Poppins', sans-serif;

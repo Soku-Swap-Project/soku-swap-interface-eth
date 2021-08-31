@@ -1,0 +1,64 @@
+.farm_header h1 {
+    font-size: 3.25rem;
+}
+
+.farm_header h3 {
+    font-size: 1.25rem;
+}
+
+.card_border {
+    border-radius: 16px !important;
+}
+
+@media (max-width: 600px) {
+    .farm_header h1 {
+        font-size: 2.5rem;
+    }
+
+    .farm_header h3 {
+        font-size: 0.8rem;
+    }
+
+    .grid-cols-4 {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+
+    .farm_liquidity {
+        display: none !important;
+    }
+
+    .farm_apr {
+        justify-content: center !important;
+        min-width: 150px;
+    }
+
+    .farm_token_container {
+        flex-direction: column;
+    }
+
+    .farm_apr .text-left {
+        text-align: center !important;
+    }
+
+    .farm_container {
+        max-width: 90vw !important;
+    }
+
+    .farm_actions {
+        margin-left: 10px;
+    }
+
+    .farm_actions h2 {
+        display: none;
+    }
+
+    .farm_token {
+        display: block !important;
+        white-space: nowrap;
+        font-size: 12px;
+    }
+}
+
+.farm_input_header {
+    padding: 16px 32px !important;
+}
