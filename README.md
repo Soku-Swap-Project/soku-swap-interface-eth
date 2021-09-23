@@ -1,24 +1,9 @@
-# SokuSwap Interface
+# Soku Swap Exchange
 
-[![Styled With Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c6ef7e73-4a84-410d-83b0-b89326787dff/deploy-status)](https://app.netlify.com/sites/swap-master/deploys)
 
-## An open source interface for SokuSwap
+[SokuSwap](https://app.sokuswap.finance/ethereum) is an automated market maker (“**AMM**”) that allows two tokens to be exchanged on the [Binance Smart Chain](https://www.binance.org/en/smartChain) (BSC) and [Ethereum Network](https://ethereum.org/) (ETH). It is fast, cheap, and allows anyone to participate.
 
--   Website: [sokuswap.org](https://sokuwap.org/)
--   Interface: [app.sokuswap.finance/ethereum](https://app.sokuswap.finance/ethereum)
--   Docs: Coming Soon!
+This repo is responsible for the **exchange** interface of the AMM for SokuSwap
 
-## Development
-
-### Install Dependencies
-
-```bash
-yarn
-```
-
-### Run
-
-```bash
-yarn start
-```
-
+If you want to contribute, please refer to the [contributing guidelines](./CONTRIBUTING.md) of this project.
