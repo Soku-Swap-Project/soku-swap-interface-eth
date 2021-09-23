@@ -4,8 +4,8 @@
 
 ## An open source interface for SokuSwap
 
--   Website: [sokuswap.finance](https://sokuwap.finance/)
--   Interface: Coming Soon!
+-   Website: [sokuswap.org](https://sokuwap.org/)
+-   Interface: [app.sokuswap.finance/ethereum](https://app.sokuswap.finance/ethereum)
 -   Docs: Coming Soon!
 
 ## Development
