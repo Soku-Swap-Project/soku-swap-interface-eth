@@ -27,6 +27,14 @@
             "logoURI": "https://i.ibb.co/1fS2dwd/IMG-20210818-145133-897.png"
         },
         {
+            "address": "0x1BBf25e71EC48B84d773809B4bA55B6F4bE946Fb",
+            "chainId": 1,
+            "name": "Vow",
+            "symbol": "VOW",
+            "decimals": 18,
+            "logoURI": "https://etherscan.io/token/images/vow_32.png"
+        },
+        {
             "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
             "chainId": 1,
             "name": "AAVE",

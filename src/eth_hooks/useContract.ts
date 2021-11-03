@@ -59,15 +59,15 @@ import { useActiveWeb3React } from './index'
 
 const MASTERCHEF_ADDRESS = '0xD78EEcdaf0E4d629041bCE85902bDd95fF202c40'
 
-console.log('MasterChef: ', MASTERCHEF_ADDRESS)
-console.log('Maker: ', MAKER_ADDRESS[3])
-console.log('SUSHI ADDRESS: ', SUSHI_ADDRESS[3])
-console.log('SUSHI: ', SUSHI[3]?.address)
-console.log('WETH: ', WETH[3].address)
-console.log('Factory: ', FACTORY_ADDRESS[3])
-console.log('UNI FACTORY: ', UNI_FACTORY_ADDRESS)
-console.log('BAR: ', BAR_ADDRESS[3])
-console.log('BENTO BOX: ', BENTOBOX_ADDRESS)
+// console.log('MasterChef: ', MASTERCHEF_ADDRESS)
+// console.log('Maker: ', MAKER_ADDRESS[3])
+// console.log('SUSHI ADDRESS: ', SUSHI_ADDRESS[3])
+// console.log('SUSHI: ', SUSHI[3]?.address)
+// console.log('WETH: ', WETH[3].address)
+// console.log('Factory: ', FACTORY_ADDRESS[3])
+// console.log('UNI FACTORY: ', UNI_FACTORY_ADDRESS)
+// console.log('BAR: ', BAR_ADDRESS[3])
+// console.log('BENTO BOX: ', BENTOBOX_ADDRESS)
 
 // returns null on errors
 export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
