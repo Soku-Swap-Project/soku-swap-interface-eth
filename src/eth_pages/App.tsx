@@ -56,7 +56,7 @@ function App(): JSX.Element {
     const bodyRef = useRef<any>(null)
     const toggleWalletModal = useWalletModalToggle()
 
-    let { pathname, search } = useLocation()
+    const { pathname, search } = useLocation()
 
     useEffect(() => {
         if (bodyRef.current) {
@@ -105,19 +105,19 @@ function App(): JSX.Element {
                             <WalletRoute exact strict path="/bento/kashi/lend/:pairAddress" component={LendPair} />
                             <WalletRoute exact strict path="/bento/kashi/borrow/:pairAddress" component={BorrowPair} /> */}
 
-                            <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
+                            {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
                             <Route exact strict path="/farms" component={Yield} />
                             <Route exact strict path="/vesting" component={Vesting} />
                             {chainId === ChainId.MAINNET && (
                                 <Route exact strict path="/migrate/v2" component={MigrateV2} />
-                            )}
+                            )} */}
 
                             {/* Tools */}
-                            <Route exact strict path="/tools" component={Tools} />
-                            <Route exact strict path="/saave" component={Saave} />
+                            {/* <Route exact strict path="/tools" component={Tools} />
+                            <Route exact strict path="/saave" component={Saave} /> */}
 
                             {/* Pages */}
-                            {chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SushiBar} />}
+                            {/* {chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SushiBar} />} */}
                             <Route exact strict path="/" render={() => <Redirect to="/swap" />} />
                             {/* <Route exact path="/sushibar" render={() => <Redirect to="/stake" />} /> */}
                             <Route exact strict path="/swap" component={Swap} />
