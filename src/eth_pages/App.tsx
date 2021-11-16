@@ -1,7 +1,7 @@
 import { ChainId } from '@sushiswap/sdk'
 import React, { Suspense, useEffect, useRef } from 'react'
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom'
-import Header from '../eth_components/Header'
+// import Header from '../eth_components/Header'
 import Polling from '../eth_components/Header/Polling'
 import Popups from '../eth_components/Popups'
 import Web3ReactManager from '../eth_components/Web3ReactManager'
@@ -9,15 +9,15 @@ import ClaimSokuModal from '../eth_components/ClaimSokuModal'
 import PublicRoute from '../hocs/PublicRoute'
 import SokuMenu from '../eth_components/SokuMenu'
 // Feat Kashi
-import WalletRoute from '../hocs/WalletRoute'
+// import WalletRoute from '../hocs/WalletRoute'
 import { useActiveWeb3React } from '../eth_hooks/index'
 import { useWalletModalToggle } from '../eth_state/application/hooks'
 import Connect from '../kashi/pages/Connect'
-import BorrowMarkets from '../kashi/pages/Markets/Borrow'
-import CreateMarkets from '../kashi/pages/Markets/Create'
-import LendMarkets from '../kashi/pages/Markets/Lending'
-import BorrowPair from '../kashi/pages/Pair/Borrow'
-import LendPair from '../kashi/pages/Pair/Lend'
+// import BorrowMarkets from '../kashi/pages/Markets/Borrow'
+// import CreateMarkets from '../kashi/pages/Markets/Create'
+// import LendMarkets from '../kashi/pages/Markets/Lending'
+// import BorrowPair from '../kashi/pages/Pair/Borrow'
+// import LendPair from '../kashi/pages/Pair/Lend'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import AddLiquidity from './AddLiquidity'
 import {
@@ -26,27 +26,27 @@ import {
     RedirectToAddLiquidity
 } from './AddLiquidity/redirects'
 //Feat Bento
-import Bento from './BentoBox'
-import BentoBalances from './BentoBox/Balances'
+// import Bento from './BentoBox'
+// import BentoBalances from './BentoBox/Balances'
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
 import MigrateV2 from './MigrateV2'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
-import Saave from './Saave'
-import SushiBar from './SushiBar'
+// import Saave from './Saave'
+// import SushiBar from './SushiBar'
 import Swap from './Swap'
 import {
     RedirectHashRoutes,
-    OpenClaimAddressModalAndRedirectToSwap,
+    // OpenClaimAddressModalAndRedirectToSwap,
     RedirectPathToSwapOnly,
     RedirectToSwap
 } from './Swap/redirects'
 // Additional Tools
-import Tools from './Tools'
-import Vesting from './Vesting'
-import Yield from './Yield'
+// import Tools from './Tools'
+// import Vesting from './Vesting'
+// import Yield from './Yield'
 import ReactGA from 'react-ga'
 
 import './MobileFooter.css'
@@ -97,7 +97,7 @@ function App(): JSX.Element {
                                 exact
                                 strict
                                 path="/bento/kashi"
-                                render={props => <Redirect to="/bento/kashi/borrow" {...props} />}
+                                render={props => <Redirect to="/bento/kashi/borrow" {.  ..props} />}
                             />
                             <WalletRoute exact strict path="/bento/kashi/lend" component={LendMarkets} />
                             <WalletRoute exact strict path="/bento/kashi/borrow" component={BorrowMarkets} />
@@ -107,7 +107,7 @@ function App(): JSX.Element {
 
                             {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
                             <Route exact strict path="/farms" component={Yield} />
-                            <Route exact strict path="/vesting" component={Vesting} />
+                            <Route exact strict path="/vesting" component={Vesting} /> */}
                             {chainId === ChainId.MAINNET && (
                                 <Route exact strict path="/migrate/v2" component={MigrateV2} />
                             )} */}
