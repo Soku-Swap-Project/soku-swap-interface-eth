@@ -20,6 +20,8 @@ const SokuMenu: React.FC = props => {
     // const cakePriceUsd = priceData ? Number(priceData.prices.Cake) : undefined
     // const profile = useGetLocalProfile()
     // const { onPresentConnectModal } = useWalletModal(login, logout)
+    // const truncatedFirstHalf = account?.substring(0, 5)
+    // const truncatedLastHalf = account?.substring(account.length - 5, account.length)
     // const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
     const toggleWalletModal = useWalletModalToggle()
 
