@@ -22,7 +22,7 @@ import { useStakingInfo } from '../../eth_state/stake/hooks'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../eth_state/user/hooks'
 import { useTokenBalancesWithLoadingIndicator } from '../../eth_state/wallet/hooks'
 import { HideSmall, StyledInternalLink, TYPE } from '../../theme'
-import Alert from '../../eth_components/Alert'
+// import Alert from '../../eth_components/Alert'
 import { Helmet } from 'react-helmet'
 
 const PageWrapper = styled(AutoColumn)`
@@ -177,7 +177,6 @@ export default function Pool() {
                                     id="join-pool-button"
                                     as={Link}
                                     padding="6px 8px"
-                                    borderRadius="10px"
                                     to="/add/"
                                     className="pool_button"
                                 >

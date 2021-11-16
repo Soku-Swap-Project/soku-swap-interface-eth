@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useActiveWeb3React } from '../../eth_hooks'
-
-import { useWeb3React } from '@web3-react/core'
-
+// import { useWeb3React } from '@web3-react/core'
 import ClaimSokuModal from 'eth_components/ClaimSokuModal'
 
 import AccountModal from 'eth_components/AccountModal'
@@ -22,13 +20,10 @@ const SokuMenu: React.FC = props => {
     // const cakePriceUsd = priceData ? Number(priceData.prices.Cake) : undefined
     // const profile = useGetLocalProfile()
     // const { onPresentConnectModal } = useWalletModal(login, logout)
-
-    const truncatedFirstHalf = account?.substring(0, 5)
-    const truncatedLastHalf = account?.substring(account.length - 5, account.length)
-    const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
+    // const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
     const toggleWalletModal = useWalletModalToggle()
 
-    const origin = window.location.origin
+    // const origin = window.location.origin
 
     const openHiddenLinks = () => {
         const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
@@ -54,7 +49,7 @@ const SokuMenu: React.FC = props => {
                         <NavLink className="nav_link" to="/pool" activeClassName="active">
                             <li>Pool</li>
                         </NavLink>
-                        <a className="nav_link" href="https://www.binance.org/en/bridge">
+                        <a className="nav_link" href="https://www.binance.org/en/bridge" rel="noreferrer"  target={'_blank'}>
                             <li>Bridge</li>
                         </a>
                         {/* <NavLink className="nav_link disabled_link" to="/farms" activeClassName="active">

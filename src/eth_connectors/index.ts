@@ -72,7 +72,7 @@ export const walletconnect = new WalletConnectConnector({
     },
     bridge: 'https://bridge.walletconnect.org',
     qrcode: true,
-    pollingInterval: 15000
+    // pollingInterval: 15000
 })
 
 // mainnet only

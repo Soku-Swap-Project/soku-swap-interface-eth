@@ -47,10 +47,10 @@ import { useExpertModeManager, useUserSingleHopOnly, useUserSlippageTolerance } 
 import { LinkStyledButton, TYPE } from '../../theme'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
-import AppBody from '../AppBody'
+// import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
-import swapArrowsAnimationData from '../../eth_assets/animation/swap-arrows.json'
-import Lottie from 'lottie-react'
+// import swapArrowsAnimationData from '../../eth_assets/animation/swap-arrows.json'
+// import Lottie from 'lottie-react'
 import { Helmet } from 'react-helmet'
 
 import './Swap.css'
@@ -92,7 +92,6 @@ export default function Swap() {
 
     // get custom setting values for user
     const [allowedSlippage] = useUserSlippageTolerance()
-
     // swap state
     const { independentField, typedValue, recipient } = useSwapState()
     const {
