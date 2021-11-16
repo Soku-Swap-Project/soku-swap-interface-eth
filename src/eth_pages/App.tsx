@@ -108,7 +108,7 @@ function App(): JSX.Element {
                             {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
                             <Route exact strict path="/farms" component={Yield} />
                             <Route exact strict path="/vesting" component={Vesting} /> */}
-                            {chainId === ChainId.MAINNET && (
+                            {/* {chainId === ChainId.MAINNET && (
                                 <Route exact strict path="/migrate/v2" component={MigrateV2} />
                             )} */}
 

@@ -181,6 +181,6 @@
         "@pancakeswap/uikit": "^0.56.0",
         "antd": "^4.16.0",
         "material-design-icons": "^3.0.1",
-        "yarn": "^1.22.10"
+        "yarn": "^1.22.17"
     }
 }
