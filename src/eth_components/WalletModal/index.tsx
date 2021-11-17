@@ -351,7 +351,7 @@ export default function WalletModal({
                     </div>
                 )}
 
-                <hr style={{ width: '100vw', marginLeft: '-20px', paddingBottom: '20px' }} />
+                <hr style={{ width: 'auto', paddingBottom: '20px' }} />
 
                 <ContentWrapper>
                     {walletView === WALLET_VIEWS.PENDING ? (

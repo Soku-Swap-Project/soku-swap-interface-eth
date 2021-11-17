@@ -144,14 +144,14 @@ function useCombinedTokenMapFromUrls(urls: string[] | undefined): TokenAddressMa
                 .sort(sortByListPriority)
                 .reduce((allTokens, currentUrl) => {
                     const current = lists[currentUrl]?.current
-                    if (!current) return allTokens
-                    try {
-                        const newTokens = Object.assign(listToTokenMap(current))
-                        return combineMaps(allTokens, newTokens)
-                    } catch (error) {
-                        console.error('Could not show token list due to error', error)
-                        return allTokens
-                    }
+                    return allTokens
+                    // try {
+                    //     const newTokens = Object.assign(listToTokenMap(current))
+                    //     return combineMaps(allTokens, newTokens)
+                    // } catch (error) {
+                    //     console.error('Could not show token list due to error', error)
+                    //     return allTokens
+                    // }
                 }, EMPTY_LIST)
         )
     }, [lists, urls])
