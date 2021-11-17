@@ -2,8 +2,8 @@ import './tailwind.css'
 import '@fontsource/dm-sans/index.css'
 import 'react-tabs/style/react-tabs.css'
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
-import { KashiProvider } from 'kashi'
-import React, { StrictMode } from 'react'
+// import { KashiProvider } from 'kashi'
+import React from 'react'
 import { isMobile } from 'react-device-detect'
 import ReactDOM from 'react-dom'
 import ReactGA from 'react-ga'
@@ -36,8 +36,8 @@ if (typeof GOOGLE_ANALYTICS_ID === 'string') {
         customBrowserType: !isMobile
             ? 'desktop'
             : 'web3' in window || 'ethereum' in window
-            ? 'mobileWeb3'
-            : 'mobileRegular'
+                ? 'mobileWeb3'
+                : 'mobileRegular'
     })
 } else {
     ReactGA.initialize('test', { testMode: true, debug: true })
@@ -63,7 +63,7 @@ function Updaters() {
 }
 
 ReactDOM.render(
-    <StrictMode>
+    <>
         <FixedGlobalStyle />
         <Web3ReactProvider getLibrary={getLibrary}>
             <Web3ProviderNetwork getLibrary={getLibrary}>
@@ -82,6 +82,6 @@ ReactDOM.render(
                 </Blocklist>
             </Web3ProviderNetwork>
         </Web3ReactProvider>
-    </StrictMode>,
+    </>,
     document.getElementById('root')
 )
