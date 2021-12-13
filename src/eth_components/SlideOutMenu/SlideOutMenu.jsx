@@ -1,9 +1,10 @@
 /* eslint-disable */
-import React from 'react'
+import React, { useState } from 'react'
 import { css } from '@emotion/css'
 import { NavLink } from 'react-router-dom'
+import useTransak from 'eth_hooks/useTransak'
 
-import '../Menu/Menu.css'
+import '../SokuMenu/Menu.css'
 
 const easeSlow = css`
     transition: all 450ms ease-in-out;
@@ -73,23 +74,31 @@ const menuOverlay = css`
     }
 
     @media (max-width: 800px) {
-        width: 70vw;
+        width: 55vw;
     }
 `
 
 class SlideOutMenu extends React.Component {
     state = {
-        isMenuOpen: false
+        isMenuOpen: false,
+        closed: false
     }
 
     toggleMenu = () => this.setState(({ isMenuOpen }) => ({ isMenuOpen: !isMenuOpen }))
 
     render() {
         const { isMenuOpen } = this.state
+        const { launchTransak } = useTransak()
         return (
             <nav className="mobile_navbar">
                 <div className="mobile_menu_logo">
-                    <img src="https://i.ibb.co/Qfm7690/Soku-Swap-Web-Logo-White.png" alt="SokuSwap Logo" srcset="" />
+                    <NavLink to="/swap">
+                        <img
+                            src="https://i.ibb.co/Qfm7690/Soku-Swap-Web-Logo-White.png"
+                            alt="SokuSwap Logo"
+                            srcset=""
+                        />
+                    </NavLink>
                 </div>
 
                 <div className={`${menuBtn} ${isMenuOpen ? 'closer' : null}`} onClick={this.toggleMenu}>
@@ -105,34 +114,54 @@ class SlideOutMenu extends React.Component {
                     <div>
                         <ul>
                             <div className="mobile_menu_list">
-                                <a className="nav_link" href="/bsc/#/swap">
+                                <NavLink
+                                    className="nav_link"
+                                    onClick={this.toggleMenu}
+                                    activeClassName="active"
+                                    to="/swap"
+                                >
                                     <li>Swap</li>
-                                </a>
-                                <a className="nav_link" href="/bsc/#/limit-order">
+                                </NavLink>
+
+                                {/* <NavLink
+                                    className="nav_link"
+                                    onClick={this.toggleMenu}
+                                    activeClassName="active"
+                                    to="/limit-order"
+                                >
                                     <li>Limit Orders</li>
-                                </a>
-                                <a className="nav_link" href="/bsc/#/pool">
+                                </NavLink> */}
+                                <NavLink
+                                    className="nav_link"
+                                    onClick={this.toggleMenu}
+                                    activeClassName="active"
+                                    to="/pool"
+                                >
                                     <li>Pool</li>
-                                </a>
-                                <a className="nav_link" href="https://www.binance.org/en/bridge">
+                                </NavLink>
+                                <NavLink
+                                    className="nav_link"
+                                    onClick={this.toggleMenu}
+                                    activeClassName="active"
+                                    to="/bridge"
+                                >
                                     <li>Bridge</li>
-                                </a>
-                                <NavLink
-                                    className="nav_link"
-                                    onClick={this.toggleMenu}
-                                    activeClassName="active"
-                                    to="/bsc/farms"
-                                >
+                                </NavLink>
+                                {/* <a className="nav_link" href={`${origin}/bsc/farms/v2`}>
                                     <li>Farms</li>
-                                </NavLink>
-                                <NavLink
-                                    className="nav_link"
-                                    onClick={this.toggleMenu}
-                                    activeClassName="active"
-                                    to="/bsc/staking"
-                                >
+                                </a>
+                                <a className="nav_link" href={`${origin}/bsc/staking`}>
                                     <li>Staking</li>
-                                </NavLink>
+                                </a> */}
+                                <a
+                                    className="nav_link"
+                                    onClick={() => {
+                                        this.toggleMenu()
+                                        launchTransak()
+                                    }}
+                                >
+                                    <li>Deposit</li>
+                                </a>
                             </div>
                         </ul>
                     </div>

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useActiveWeb3React } from '../../eth_hooks'
 // import { useWeb3React } from '@web3-react/core'
 import ClaimSokuModal from 'eth_components/ClaimSokuModal'
+import useTransak from 'eth_hooks/useTransak'
 
 import AccountModal from 'eth_components/AccountModal'
 
@@ -13,16 +14,7 @@ import './Menu.css'
 
 const SokuMenu: React.FC = props => {
     const { account } = useActiveWeb3React()
-    // const { login, logout } = useAuth()
-    // const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
-    // const { isDark, toggleTheme } = useTheme()
-    // const priceData = useGetPriceData()
-    // const cakePriceUsd = priceData ? Number(priceData.prices.Cake) : undefined
-    // const profile = useGetLocalProfile()
-    // const { onPresentConnectModal } = useWalletModal(login, logout)
-    // const truncatedFirstHalf = account?.substring(0, 5)
-    // const truncatedLastHalf = account?.substring(account.length - 5, account.length)
-    // const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
+    const { launchTransak } = useTransak()
     const toggleWalletModal = useWalletModalToggle()
 
     // const origin = window.location.origin
@@ -51,8 +43,11 @@ const SokuMenu: React.FC = props => {
                         <NavLink className="nav_link" to="/pool" activeClassName="active">
                             <li>Pool</li>
                         </NavLink>
-                        <a className="nav_link" href="https://www.binance.org/en/bridge" rel="noreferrer"  target={'_blank'}>
+                        <NavLink className="nav_link" to="/bridge" activeClassName="active">
                             <li>Bridge</li>
+                        </NavLink>
+                        <a className="nav_link" onClick={() => launchTransak()}>
+                            <li>Deposit</li>
                         </a>
                         {/* <NavLink className="nav_link disabled_link" to="/farms" activeClassName="active">
                             <li>Farms</li>

@@ -8,16 +8,11 @@ import Web3ReactManager from '../eth_components/Web3ReactManager'
 import ClaimSokuModal from '../eth_components/ClaimSokuModal'
 import PublicRoute from '../hocs/PublicRoute'
 import SokuMenu from '../eth_components/SokuMenu'
-// Feat Kashi
-// import WalletRoute from '../hocs/WalletRoute'
+import SlideOutMenu from '../eth_components/SlideOutMenu/SlideOutMenu'
 import { useActiveWeb3React } from '../eth_hooks/index'
 import { useWalletModalToggle } from '../eth_state/application/hooks'
 import Connect from '../kashi/pages/Connect'
-// import BorrowMarkets from '../kashi/pages/Markets/Borrow'
-// import CreateMarkets from '../kashi/pages/Markets/Create'
-// import LendMarkets from '../kashi/pages/Markets/Lending'
-// import BorrowPair from '../kashi/pages/Pair/Borrow'
-// import LendPair from '../kashi/pages/Pair/Lend'
+
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import AddLiquidity from './AddLiquidity'
 import {
@@ -25,17 +20,15 @@ import {
     RedirectOldAddLiquidityPathStructure,
     RedirectToAddLiquidity
 } from './AddLiquidity/redirects'
-//Feat Bento
-// import Bento from './BentoBox'
-// import BentoBalances from './BentoBox/Balances'
+
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
 import MigrateV2 from './MigrateV2'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
+import ComingSoon from './ComingSoon'
 import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
-// import Saave from './Saave'
-// import SushiBar from './SushiBar'
+
 import Swap from './Swap'
 import {
     RedirectHashRoutes,
@@ -73,27 +66,14 @@ function App(): JSX.Element {
     const truncatedLastHalf = account?.substring(account.length - 5, account.length)
     const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
 
+    const isMobile = window.innerWidth <= 500
+
     return (
-        // <>
-        //     <div>
-        //         <div
-        //             style={{
-        //                 height: '100vh',
-        //                 display: 'flex',
-        //                 alignItems: 'center',
-        //                 justifyContent: 'center'
-        //             }}
-        //             className="w-screen"
-        //         >
-        //             <Maintenance />
-        //         </div>
-        //     </div>
-        // </>
         <Suspense fallback={null}>
             <Route component={DarkModeQueryParamReader} />
             <div className="flex flex-col items-start ">
                 <div className="flex flex-row flex-nowrap justify-between w-screen ">
-                    <SokuMenu />
+                    {isMobile ? <SlideOutMenu /> : <SokuMenu />}
                 </div>
                 <div
                     ref={bodyRef}
@@ -138,6 +118,7 @@ function App(): JSX.Element {
                             {/* <Route exact path="/sushibar" render={() => <Redirect to="/stake" />} /> */}
                             <Route exact strict path="/swap" component={Swap} />
                             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+                            <Route exact strict path="/bridge" component={ComingSoon} />
                             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
                             <Route exact strict path="/find" component={PoolFinder} />
                             <Route exact strict path="/pool" component={Pool} />
