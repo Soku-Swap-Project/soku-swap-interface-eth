@@ -28,6 +28,7 @@ import PoolFinder from './PoolFinder'
 import ComingSoon from './ComingSoon'
 import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
+import detectEthereumProvider from '@metamask/detect-provider'
 
 import Swap from './Swap'
 import {
@@ -45,12 +46,50 @@ import Maintenance from './Maintenance'
 
 import './MobileFooter.css'
 
+const loadNetwork = async () => {
+    const detectProvider = (await detectEthereumProvider()) as any
+    try {
+        await detectProvider.request({
+            method: 'wallet_switchEthereumChain',
+            params: [
+                {
+                    chainId: '0x1'
+                }
+            ]
+        })
+    } catch (error) {
+        /* eslint-disable dot-notation */
+        if (error['code'] === 4902 || error['data']['originalError'].code === 4902) {
+            await detectProvider.request({
+                method: 'wallet_addEthereumChain',
+                params: [
+                    {
+                        chainId: '0x1',
+                        chainName: 'Ethereum Mainnet',
+                        rpcUrls: ['https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161'],
+                        nativeCurrency: {
+                            name: 'ETH',
+                            symbol: 'ETH',
+                            decimals: 18
+                        },
+                        blockExplorerUrls: ['https://etherscan.io']
+                    }
+                ]
+            })
+        }
+    }
+}
+
 function App(): JSX.Element {
     const { account, chainId } = useActiveWeb3React()
     const bodyRef = useRef<any>(null)
     const toggleWalletModal = useWalletModalToggle()
 
     const { pathname, search } = useLocation()
+
+    useEffect(() => {
+        loadNetwork()
+    }, [])
 
     useEffect(() => {
         if (bodyRef.current) {
