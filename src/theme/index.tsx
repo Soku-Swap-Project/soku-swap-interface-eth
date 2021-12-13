@@ -216,6 +216,10 @@ export const FixedGlobalStyle = createGlobalStyle`
     padding: 12px;
 }
 
+.transak_modal {
+    width: 95% !important;
+}
+
 .farm_approve_button {
     background: #04bbfb !important;
     color: #fff !important;
