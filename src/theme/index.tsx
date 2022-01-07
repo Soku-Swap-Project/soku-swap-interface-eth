@@ -332,6 +332,7 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
     border-radius: 25px !important;
     background: #fff !important;
     width: 100%;
+    padding: 20px;
 }
 
 .wallet_modal_header svg {
