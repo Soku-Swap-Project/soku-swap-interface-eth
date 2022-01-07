@@ -148,6 +148,7 @@ export default function CurrencyInputPanel({
     const { t } = useTranslation()
 
     const [modalOpen, setModalOpen] = useState(false)
+    const [v, setV] = useState('')
     const { account, chainId } = useActiveWeb3React()
     const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
     const theme = useTheme()
@@ -155,6 +156,9 @@ export default function CurrencyInputPanel({
     const handleDismissSearch = useCallback(() => {
         setModalOpen(false)
     }, [setModalOpen])
+
+    const from = document.querySelector('.from_balance')
+    console.log(from?.nodeValue)
 
     return (
         <div id={id} className="rounded flex flex-col bg-white currency_input_panel ">
@@ -175,7 +179,7 @@ export default function CurrencyInputPanel({
                             className="balanceLabel font-medium cursor-pointer text-xs text-low-emphesis"
                         >
                             {!hideBalance && !!currency && selectedCurrencyBalance
-                                ? (customBalanceText ?? 'Balance: ') + selectedCurrencyBalance?.toSignificant(4)
+                                ? (customBalanceText ?? 'Max: ') + selectedCurrencyBalance?.toSignificant(4)
                                 : ' -'}
                         </div>
                     )}
@@ -219,7 +223,7 @@ export default function CurrencyInputPanel({
                                     </Button>
                                 )} */}
                                 <NumericalInput
-                                    className="token-amount-input text-black"
+                                    className="token-amount-input from_balance text-black"
                                     value={value}
                                     onUserInput={val => {
                                         onUserInput(val)

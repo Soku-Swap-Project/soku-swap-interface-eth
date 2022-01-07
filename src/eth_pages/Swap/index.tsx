@@ -347,12 +347,12 @@ export default function Swap() {
                         swapErrorMessage={swapErrorMessage}
                         onDismiss={handleConfirmDismiss}
                     />
-
                     <AutoColumn gap={'md'}>
                         <CurrencyInputPanel
                             label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (est.)' : 'From'}
                             value={formattedAmounts[Field.INPUT]}
                             showMaxButton={false}
+                            onMax={handleMaxInput}
                             currency={currencies[Field.INPUT]}
                             onUserInput={handleTypeInput}
                             onCurrencySelect={handleInputSelect}
@@ -369,31 +369,17 @@ export default function Swap() {
                                     justifyContent: 'center'
                                 }}
                             >
-                                <button
-                                    className="w-auto p-3px -mt-6 -mb-6 z-10"
-                                    onClick={() => {
-                                        setApprovalSubmitted(false) // reset 2 step UI for approvals
-                                        onSwitchTokens()
-                                    }}
-                                >
-                                    <div
-                                        className="w-full p-5"
-                                        onMouseEnter={() => setAnimateSwapArrows(true)}
-                                        onMouseLeave={() => setAnimateSwapArrows(false)}
-                                    >
-                                        <ArrowWrapper clickable>
-                                            <ArrowDown
-                                                size="16"
-                                                onClick={() => {
-                                                    setApprovalSubmitted(false) // reset 2 step UI for approvals
-                                                    onSwitchTokens()
-                                                }}
-                                                color={'#05195a'}
-                                            />
-                                        </ArrowWrapper>
-                                    </div>
-                                </button>
-
+                                <ArrowWrapper clickable>
+                                    <ArrowDown
+                                        size="16"
+                                        onClick={() => {
+                                            setApprovalSubmitted(false) // reset 2 step UI for approvals
+                                            onSwitchTokens()
+                                        }}
+                                        color={'#05195a'}
+                                        style={{ cursor: 'pointer' }}
+                                    />
+                                </ArrowWrapper>
                                 {recipient === null && !showWrap && isExpertMode ? (
                                     <LinkStyledButton id="add-recipient-button" onClick={() => onChangeRecipient('')}>
                                         + Add a send (optional)
@@ -406,6 +392,7 @@ export default function Swap() {
                             onUserInput={handleTypeOutput}
                             label={independentField === Field.INPUT && !showWrap && trade ? 'To (est.)' : 'To'}
                             showMaxButton={false}
+                            onMax={handleMaxInput}
                             currency={currencies[Field.OUTPUT]}
                             onCurrencySelect={handleOutputSelect}
                             otherCurrency={currencies[Field.INPUT]}
