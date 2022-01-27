@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { css } from '@emotion/css'
 import { NavLink } from 'react-router-dom'
 import useTransak from 'eth_hooks/useTransak'
+import Web3Status from '../Web3Status'
 
 import '../SokuMenu/Menu.css'
 
@@ -105,6 +106,10 @@ class SlideOutMenu extends React.Component {
                     <div className={`${btnLine} ${isMenuOpen ? 'closer' : null}`} />
                     <div className={`${btnLine} ${isMenuOpen ? 'closer' : null}`} />
                     <div className={`${btnLine} ${isMenuOpen ? 'closer' : null}`} />
+                </div>
+
+                <div style={{ display: 'none' }}>
+                    <Web3Status />
                 </div>
 
                 <div className={`${menuOverlay} ${isMenuOpen ? 'show' : null}`}>

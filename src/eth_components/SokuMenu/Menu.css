@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .navbar__items {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -14,7 +15,7 @@
 }
 
 .navbar__items li {
-    padding: 0px 15px;
+    padding: 20px 15px;
     font-family: 'Poppins', sans-serif !important;
     font-weight: 600;
     cursor: pointer;
@@ -71,9 +72,18 @@
     width: 100%;
 }
 
+.navbar__options {
+    padding-left: 20px;
+    display: flex;
+}
+
 @media (max-height: 930px) and (max-width: 650px) {
     .navbar__items li {
         font-size: 14px;
+    }
+
+    .navbar__options {
+        padding-left: 0;
     }
 }
 
@@ -111,8 +121,8 @@ nav {
     -ms-flex-align: center !important;
     align-items: center !important;
     text-align: center !important;
-    padding: 20px !important;
-    padding-bottom: 10px !important;
+    padding: 15px 20px !important;
+    /* padding-bottom: 10px !important; */
     border-bottom: 1px solid rgba(255, 255, 255, 0.125) !important;
     -webkit-box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.125) !important;
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.125) !important;
@@ -122,9 +132,10 @@ nav {
 @media (max-height: 930px) and (max-width: 650px) {
     nav {
         -ms-flex-pack: distribute;
-        justify-content: space-around !important;
+        justify-content: space-evenly !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.125);
         padding: 20px !important;
+        margin-bottom: 20px !important;
     }
 }
 
@@ -132,11 +143,6 @@ nav {
     -o-object-fit: contain;
     object-fit: contain;
     height: 50px;
-}
-
-.navbar__options {
-    padding-left: 20px;
-    display: flex;
 }
 
 @media (max-height: 930px) and (max-width: 650px) {
@@ -287,14 +293,18 @@ nav {
 }
 
 .account {
-    color: #fff;
-    pointer-events: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
     padding: 8px 10px;
     -webkit-box-flex: 0.3;
     -ms-flex: 0.3;
     flex: 0.3;
     font-weight: bold;
     font-size: 14px !important;
+}
+
+.account:hover {
+    color: #fff;
 }
 
 .sokuswap__navbar #hidden_navLinks {
@@ -327,27 +337,30 @@ nav {
 .sokuswap__navbar .hidden_navLinks li {
     list-style-type: none;
     display: flex;
-    padding: 20px 25px;
+    padding: 12px 30px;
 }
 
-.sokuswap__navbar .hidden_navLinks li p {
+.sokuswap__navbar .hidden_navLinks li p,
+.social_icon_header p {
     padding-left: 10px;
-    color: rgba(255, 255, 255, 0.87);
+    color: rgba(255, 255, 255, 0.7);
     cursor: pointer !important;
     font-weight: 600;
 }
 
 .hidden_navLink a {
-    color: rgba(255, 255, 255, 0.87) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.hidden_navLink a:hover {
+.hidden_navLink a:hover,
+.sokuswap__navbar .hidden_navLinks li p:hover {
     color: #fff !important;
 }
 
-.disabled_link {
-    cursor: pointer !important;
-    pointer-events: none;
+.disabled_link,
+.disabled_link p,
+.disabled_link span {
+    cursor: not-allowed !important;
 }
 
 .disabled_link p,
