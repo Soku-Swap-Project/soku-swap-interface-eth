@@ -27,6 +27,8 @@ import {
 } from './AddLiquidity/redirects'
 
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
+import WidgetContainer from 'eth_components/OnRamper'
+
 import MigrateV2 from './MigrateV2'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
@@ -172,6 +174,7 @@ function App(): JSX.Element {
                             {/* <Route exact path="/sushibar" render={() => <Redirect to="/stake" />} /> */}
                             <Route exact strict path="/swap" component={Swap} />
                             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+                            <Route exact strict path="/deposit" component={WidgetContainer} />
                             <Route exact strict path="/bridge" component={ComingSoon} />
                             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
                             <Route exact strict path="/find" component={PoolFinder} />
