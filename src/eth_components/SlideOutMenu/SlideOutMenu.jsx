@@ -114,7 +114,7 @@ class SlideOutMenu extends React.Component {
 
                 <div className={`${menuOverlay} ${isMenuOpen ? 'show' : null}`}>
                     <div className="mobile_menu_header">
-                        <h1>Menu</h1>
+                        <h1 style={{ fontSize: '1em' }}>Menu</h1>
                     </div>
                     <div>
                         <ul>
@@ -152,21 +152,25 @@ class SlideOutMenu extends React.Component {
                                 >
                                     <li>Bridge</li>
                                 </NavLink>
+                                <a className="nav_link" href={`${origin}/bsc/#/deposit`}>
+                                    <li>Deposit</li>
+                                </a>
                                 {/* <a className="nav_link" href={`${origin}/bsc/farms/v2`}>
                                     <li>Farms</li>
                                 </a>
                                 <a className="nav_link" href={`${origin}/bsc/staking`}>
                                     <li>Staking</li>
                                 </a> */}
+
+                                {/* <hr />
                                 <a
-                                    className="nav_link"
-                                    onClick={() => {
-                                        this.toggleMenu()
-                                        launchTransak()
-                                    }}
+                                    href="https://sokuswap-2.gitbook.io/sokuswap-gitbook/"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
                                 >
-                                    <li>Deposit</li>
-                                </a>
+                                    <span className="material-icons">school</span>
+                                    <p>Docs</p>
+                                </a> */}
                             </div>
                         </ul>
                     </div>
