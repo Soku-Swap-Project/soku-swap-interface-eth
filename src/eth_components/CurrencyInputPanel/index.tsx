@@ -158,7 +158,7 @@ export default function CurrencyInputPanel({
     }, [setModalOpen])
 
     const from = document.querySelector('.from_balance')
-    console.log(from?.nodeValue)
+    // console.log(from?.nodeValue)
 
     return (
         <div id={id} className="rounded flex flex-col bg-white currency_input_panel ">
