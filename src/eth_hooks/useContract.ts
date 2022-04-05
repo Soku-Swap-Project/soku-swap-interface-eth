@@ -5,7 +5,7 @@ import {
     ChainId,
     FACTORY_ADDRESS,
     MAKER_ADDRESS,
-    // MASTERCHEF_ADDRESS,
+    MASTERCHEF_ADDRESS,
     ROUTER_ADDRESS,
     SUSHI_ADDRESS,
     TIMELOCK_ADDRESS,
@@ -57,7 +57,9 @@ import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../eth_co
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
 
-const MASTERCHEF_ADDRESS = '0xD78EEcdaf0E4d629041bCE85902bDd95fF202c40'
+// const MASTERCHEF_ADDRESS = '0xD78EEcdaf0E4d629041bCE85902bDd95fF202c40'
+
+console.log(MASTERCHEF_ADDRESS)
 
 // console.log('MasterChef: ', MASTERCHEF_ADDRESS)
 // console.log('Maker: ', MAKER_ADDRESS[3])

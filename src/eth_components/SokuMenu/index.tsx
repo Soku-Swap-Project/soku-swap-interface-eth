@@ -46,18 +46,18 @@ const SokuMenu: React.FC = props => {
                         <NavLink className="nav_link" to="/pool" activeClassName="active">
                             <li>Pool</li>
                         </NavLink>
-                        <NavLink className="nav_link" to="/bridge" activeClassName="active">
+                        <a className="nav_link" href={`${origin}/bridge`}>
                             <li>Bridge</li>
-                        </NavLink>
+                        </a>
+                        {/* <a className="nav_link" href={`${origin}/eth/farms`}>
+                            <li>Farms</li>
+                        </a> */}
                         {/* <a className="nav_link" href={`${origin}/bsc/#/deposit`}>
                             <li>Deposit</li>
                         </a> */}
                         <a className="nav_link" onClick={() => launchTransak()}>
                             <li>Deposit</li>
                         </a>
-                        {/* <NavLink className="nav_link disabled_link" to="/farms" activeClassName="active">
-                            <li>Farms</li>
-                        </NavLink> */}
                     </div>
                 </ul>
                 <ul className="connectWallet__options__DESKTOP">

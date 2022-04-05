@@ -32,6 +32,8 @@ const useFarms = () => {
             sushiData.bentobox.kashiStakedInfo() //results[4]
         ])
 
+        console.log(results, 'res')
+
         const pools = results[0]?.data.pools
         const pairAddresses = pools
             .map((pool: any) => {
@@ -44,7 +46,7 @@ const useFarms = () => {
         })
 
         const liquidityPositions = results[1]?.data.liquidityPositions
-        console.log(results)
+        // console.log(results)
         const averageBlockTime = results[2]
         const sushiPrice = results[3]
         const kashiPairs = results[4].filter(result => result !== undefined) // filter out undefined (not in onsen) from all kashiPairs
@@ -106,7 +108,7 @@ const useFarms = () => {
                     const roiPerMonth = roiPerDay * 30
                     const roiPerYear = roiPerMonth * 12
 
-                    console.log(liquidityPosition)
+                    // console.log(liquidityPosition)
 
                     return {
                         ...pool,
@@ -137,8 +139,8 @@ const useFarms = () => {
             return pool.pid
         })
 
-        console.log(account)
-        console.log(pids)
+        // console.log(account)
+        // console.log(pids)
 
         if (account) {
             // const userFarmDetails = await boringHelperContract?.pollPools(account, pids)
