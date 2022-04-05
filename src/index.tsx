@@ -1,6 +1,7 @@
 import './tailwind.css'
 import '@fontsource/dm-sans/index.css'
 import 'react-tabs/style/react-tabs.css'
+
 import { createWeb3ReactRoot, Web3ReactProvider } from '@web3-react/core'
 // import { KashiProvider } from 'kashi'
 import React from 'react'
@@ -36,8 +37,8 @@ if (typeof GOOGLE_ANALYTICS_ID === 'string') {
         customBrowserType: !isMobile
             ? 'desktop'
             : 'web3' in window || 'ethereum' in window
-                ? 'mobileWeb3'
-                : 'mobileRegular'
+            ? 'mobileWeb3'
+            : 'mobileRegular'
     })
 } else {
     ReactGA.initialize('test', { testMode: true, debug: true })

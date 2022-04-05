@@ -1,7 +1,7 @@
 {
     "name": "@sokuswap/interface",
     "description": "SokuSwap Interface",
-    "homepage": "/ethereum",
+    "homepage": ".",
     "private": true,
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [

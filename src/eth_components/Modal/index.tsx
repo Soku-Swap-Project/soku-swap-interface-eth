@@ -146,7 +146,7 @@ export default function Modal({
                             >
                                 <div className="token_search_box rounded p-px">
                                     <div
-                                        className={`flex token_search_box flex-col h-full w-full bg-white rounded p-${padding}`}
+                                        className={`flex token_search_box flex-col h-full w-full bg-white p-${padding}`}
                                     >
                                         {/* prevents the automatic focusing of inputs on mobile by the reach dialog */}
                                         {!initialFocusRef && isMobile ? <div tabIndex={1} /> : null}
