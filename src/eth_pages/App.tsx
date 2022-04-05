@@ -47,7 +47,7 @@ import {
 // Additional Tools
 // import Tools from './Tools'
 // import Vesting from './Vesting'
-// import Yield from './Yield'
+import Yield from './Yield'
 import ReactGA from 'react-ga'
 import Maintenance from './Maintenance'
 
@@ -157,9 +157,9 @@ function App(): JSX.Element {
                                 <WalletRoute exact strict path="/bento/kashi/lend/:pairAddress" component={LendPair} />
                                 <WalletRoute exact strict path="/bento/kashi/borrow/:pairAddress" component={BorrowPair} /> */}
 
-                            {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
-                                <Route exact strict path="/farms" component={Yield} />
-                                <Route exact strict path="/vesting" component={Vesting} /> */}
+                            {/* <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} /> */}
+                            {/* <Route exact strict path="/farms" component={Yield} /> */}
+                            {/* <Route exact strict path="/vesting" component={Vesting} /> */}
                             {/* {chainId === ChainId.MAINNET && (
                                     <Route exact strict path="/migrate/v2" component={MigrateV2} />
                                 )} */}

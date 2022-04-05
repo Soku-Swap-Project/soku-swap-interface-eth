@@ -36,10 +36,6 @@ export default function Yield(): JSX.Element {
     // Sorting Setup
     const { items, requestSort, sortConfig } = useSortableData(flattenSearchResults)
 
-    // console.log('Query: ', query)
-    // console.log('farms: ', farms)
-    // console.log('userFarms: ', userFarms)
-
     useEffect(() => {
         if (items.length > 0) {
             setLoading(false)
@@ -143,7 +139,7 @@ const TokenBalance = ({ farm }: any) => {
             {farm.type === 'SLP' && (
                 <Paper className="bg-white w-full p-0 m-0 farm_row">
                     <div
-                        className="grid grid-cols-4 py-5 px-5 cursor-pointer select-none rounded text-sm"
+                        className="grid grid-cols-4 px-5 cursor-pointer select-none rounded text-sm"
                         onClick={() => setExpand(!expand)}
                     >
                         <div className="flex items-center farm_token_container">
