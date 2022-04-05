@@ -3,7 +3,7 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
     darkMode: false, // or 'media' or 'class'
-    important: true,
+    important: false,
     theme: {
         colors: {
             ...defaultTheme.colors,
@@ -163,9 +163,9 @@ module.exports = {
     },
     plugins: [
         // require('@tailwindcss/typography'),
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/line-clamp'),
-        require('@tailwindcss/aspect-ratio'),
+        // require('@tailwindcss/forms'),
+        // require('@tailwindcss/line-clamp'),
+        // require('@tailwindcss/aspect-ratio'),
 
         plugin(function({ addUtilities }) {
             addUtilities({
