@@ -49,9 +49,9 @@ const SokuMenu: React.FC = props => {
                         <a className="nav_link" href={`${origin}/bridge`}>
                             <li>Bridge</li>
                         </a>
-                        {/* <a className="nav_link" href={`${origin}/eth/farms`}>
+                        <a className="nav_link" href={`${origin}/ethereum/farms`}>
                             <li>Farms</li>
-                        </a> */}
+                        </a>
                         {/* <a className="nav_link" href={`${origin}/bsc/#/deposit`}>
                             <li>Deposit</li>
                         </a> */}
