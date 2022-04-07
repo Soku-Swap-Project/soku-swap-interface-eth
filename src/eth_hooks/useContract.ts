@@ -59,7 +59,7 @@ import { useActiveWeb3React } from './index'
 
 // const MASTERCHEF_ADDRESS = '0xD78EEcdaf0E4d629041bCE85902bDd95fF202c40'
 
-console.log(MASTERCHEF_ADDRESS)
+console.log(ROUTER_ADDRESS, 'router')
 
 // console.log('MasterChef: ', MASTERCHEF_ADDRESS)
 // console.log('Maker: ', MAKER_ADDRESS[3])

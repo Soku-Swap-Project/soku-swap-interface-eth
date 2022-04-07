@@ -20,10 +20,7 @@ export enum ApprovalState {
 }
 
 // returns a variable indicating the state of the approval and a function which approves if necessary or early returns
-export function useApproveCallback(
-    amountToApprove?: CurrencyAmount,
-    spender?: string
-): [ApprovalState, () => Promise<void>] {
+export function useApproveCallback(amountToApprove?: any, spender?: string): [ApprovalState, () => Promise<void>] {
     const { account, chainId } = useActiveWeb3React()
     const token = amountToApprove instanceof TokenAmount ? amountToApprove.token : undefined
     const currentAllowance = useTokenAllowance(token, account ?? undefined, spender)

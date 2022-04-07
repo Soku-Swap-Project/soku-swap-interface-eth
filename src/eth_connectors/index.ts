@@ -10,7 +10,7 @@ import { FortmaticConnector } from './Fortmatic'
 import { NetworkConnector } from './NetworkConnector'
 
 const RPC = {
-    [ChainId.MAINNET]: 'https://eth-mainnet.alchemyapi.io/v2/q1gSNoSMEzJms47Qn93f9-9Xg5clkmEC',
+    [ChainId.MAINNET]: 'https://speedy-nodes-nyc.moralis.io/a80a9a59f7e3ae9405c48919/eth/mainnet',
     [ChainId.ROPSTEN]: 'https://eth-ropsten.alchemyapi.io/v2/cidKix2Xr-snU3f6f6Zjq_rYdalKKHmW',
     [ChainId.RINKEBY]: 'https://eth-rinkeby.alchemyapi.io/v2/XVLwDlhGP6ApBXFz_lfv0aZ6VmurWhYD',
     [ChainId.GÖRLI]: 'https://eth-goerli.alchemyapi.io/v2/Dkk5d02QjttYEoGmhZnJG37rKt8Yl3Im',
@@ -71,7 +71,7 @@ export const walletconnect = new WalletConnectConnector({
         [ChainId.MAINNET]: RPC[ChainId.MAINNET]
     },
     bridge: 'https://bridge.walletconnect.org',
-    qrcode: true,
+    qrcode: true
     // pollingInterval: 15000
 })
 
