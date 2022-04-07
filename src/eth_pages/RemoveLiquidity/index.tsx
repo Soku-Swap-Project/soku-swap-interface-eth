@@ -67,7 +67,6 @@ export default function RemoveLiquidity({
     // burn state
     const { independentField, typedValue } = useBurnState()
     const { pair, parsedAmounts, error } = useDerivedBurnInfo(currencyA ?? undefined, currencyB ?? undefined)
-    console.log(pair)
     const { onUserInput: _onUserInput } = useBurnActionHandlers()
     const isValid = !error
 
@@ -114,6 +113,7 @@ export default function RemoveLiquidity({
     async function onAttemptToApprove() {
         if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies')
         const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
+        console.log(liquidityAmount, 'app liquidityAmount')
         if (!liquidityAmount) throw new Error('missing liquidity amount')
 
         if (isArgentWallet) {
@@ -131,7 +131,7 @@ export default function RemoveLiquidity({
                 { name: 'verifyingContract', type: 'address' }
             ]
             const domain = {
-                name: 'SokuSwap LP Token',
+                name: 'SushiSwap LP Token',
                 version: '1',
                 chainId: chainId,
                 verifyingContract: '0x0'
@@ -160,23 +160,25 @@ export default function RemoveLiquidity({
                 message
             })
 
-            library
-                .send('eth_signTypedData_v4', [account, data])
-                .then(splitSignature)
-                .then(signature => {
-                    setSignatureData({
-                        v: signature.v,
-                        r: signature.r,
-                        s: signature.s,
-                        deadline: deadline.toNumber()
-                    })
-                })
-                .catch(error => {
-                    // for all errors other than 4001 (EIP-1193 user rejected request), fall back to manual approve
-                    if (error?.code !== 4001) {
-                        approveCallback()
-                    }
-                })
+            return approveCallback()
+
+            // library
+            //     .send('eth_sign', [account, data])
+            //     .then(splitSignature)
+            //     .then(signature => {
+            //         setSignatureData({
+            //             v: signature.v,
+            //             r: signature.r,
+            //             s: signature.s,
+            //             deadline: deadline.toNumber()
+            //         })
+            //     })
+            //     .catch(error => {
+            //         // for all errors other than 4001 (EIP-1193 user rejected request), fall back to manual approve
+            //         if (error?.code !== 4001) {
+            //             approveCallback()
+            //         }
+            //     })
         } else {
             return approveCallback()
         }
@@ -218,12 +220,21 @@ export default function RemoveLiquidity({
 
         if (!currencyA || !currencyB) throw new Error('missing tokens')
         const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
+        console.log(liquidityAmount, 'liquidityAmounts')
         if (!liquidityAmount) throw new Error('missing liquidity amount')
 
         const currencyBIsETH = currencyB === ETHER
         const oneCurrencyIsETH = currencyA === ETHER || currencyBIsETH
 
         if (!tokenA || !tokenB) throw new Error('could not wrap')
+
+        // console.log(liquidityAmount.raw.toString(), 'liq')
+        // console.log(amountsMin[currencyBIsETH ? Field.CURRENCY_A : Field.CURRENCY_B].toString(), 'amount1')
+        // console.log(amountsMin[currencyBIsETH ? Field.CURRENCY_B : Field.CURRENCY_A].toString(), 'amount2')
+        // console.log(account, 'acc')
+        // console.log(deadline.toHexString(), 'deadline')
+
+        console.log(signatureData, 'sig')
 
         let methodNames: string[], args: Array<string | string[] | number | boolean>
         // we have approval, use normal remove liquidity
