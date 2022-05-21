@@ -52,6 +52,7 @@ import ReactGA from 'react-ga'
 import Maintenance from './Maintenance'
 
 import './MobileFooter.css'
+import NewVersionModal from 'eth_components/NewVersionModal'
 
 const loadNetwork = async () => {
     const detectProvider = (await detectEthereumProvider()) as any
@@ -313,6 +314,7 @@ function App(): JSX.Element {
                         </li>
                     </ul>
                 </div>
+                <NewVersionModal />
             </div>
         </Suspense>
     )
