@@ -53,6 +53,7 @@ import Maintenance from './Maintenance'
 
 import './MobileFooter.css'
 import NewVersionModal from 'eth_components/NewVersionModal'
+import RedirectToV2 from 'eth_components/RedirectToV2'
 
 const loadNetwork = async () => {
     const detectProvider = (await detectEthereumProvider()) as any
@@ -171,10 +172,11 @@ function App(): JSX.Element {
 
                             {/* Pages */}
                             {/* {chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SushiBar} />} */}
-                            <Route exact strict path="/" render={() => <Redirect to="/swap" />} />
+                            <Route exact strict path="/" render={() => <Redirect to="/pool" />} />
                             {/* <Route exact path="/sushibar" render={() => <Redirect to="/stake" />} /> */}
-                            <Route exact strict path="/swap" component={Swap} />
-                            <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+                            {/* <Route exact strict path="/swap" component={Swap} /> */}
+                            {/* <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} /> */}
+                            <Route path="/swap" component={RedirectToV2} />
                             <Route exact strict path="/deposit" component={WidgetContainer} />
                             <Route exact strict path="/bridge" component={ComingSoon} />
                             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
@@ -225,7 +227,8 @@ function App(): JSX.Element {
                             {/* Redirects for Legacy Hash Router paths */}
                             <Route exact strict path="/" component={RedirectHashRoutes} />
                             {/* Catch all */}
-                            <Route component={RedirectPathToSwapOnly} />
+                            {/* <Route component={RedirectPathToSwapOnly} /> */}
+                            <Redirect to="/pool" />
                         </Switch>
                     </Web3ReactManager>
                 </div>
