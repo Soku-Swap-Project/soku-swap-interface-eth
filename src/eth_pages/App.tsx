@@ -132,6 +132,7 @@ function App(): JSX.Element {
                 <div className="flex flex-row flex-nowrap justify-between w-screen ">
                     {isMobile ? <SlideOutMenu /> : <SokuMenu />}
                 </div>
+                <NewVersionModal />
                 <div
                     ref={bodyRef}
                     className="flex flex-col flex-1 items-center justify-start w-screen h-full overflow-y-auto overflow-x-hidden z-0 pt-8 sm:pt-10 md:pt-8 pb-10"
@@ -314,7 +315,6 @@ function App(): JSX.Element {
                         </li>
                     </ul>
                 </div>
-                <NewVersionModal />
             </div>
         </Suspense>
     )
