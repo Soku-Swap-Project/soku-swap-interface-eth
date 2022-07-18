@@ -172,8 +172,8 @@ function App(): JSX.Element {
                             {/* {chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SushiBar} />} */}
                             <Route exact strict path="/" render={() => <Redirect to="/swap" />} />
                             {/* <Route exact path="/sushibar" render={() => <Redirect to="/stake" />} /> */}
-                            <Route exact strict path="/swap" component={Swap} />
-                            <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+                            {/* <Route exact strict path="/swap" component={Swap} />
+                            <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} /> */}
                             <Route exact strict path="/deposit" component={WidgetContainer} />
                             <Route exact strict path="/bridge" component={ComingSoon} />
                             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />

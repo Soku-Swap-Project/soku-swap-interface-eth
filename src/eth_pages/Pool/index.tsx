@@ -188,7 +188,7 @@ export default function Pool() {
                                     to="/add/"
                                     className="hover_shadow emphasize_swap_button"
                                 >
-                                    <Text fontWeight={500} fontSize={16}>
+                                    <Text fontWeight={500} color="#05195a" fontSize={16}>
                                         Add Liquidity
                                     </Text>
                                 </ResponsiveButtonPrimary>

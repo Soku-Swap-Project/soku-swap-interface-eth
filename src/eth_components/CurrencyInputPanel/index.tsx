@@ -163,7 +163,7 @@ export default function CurrencyInputPanel({
     return (
         <div
             id={id}
-            className="rounded flex flex-col bg-white currency_input_panel hover_shadow"
+            className="rounded flex flex-col currency_input_panel hover_shadow"
             style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', background: 'rgb(236, 241, 248)' }}
         >
             <div
@@ -281,9 +281,9 @@ export default function CurrencyInputPanel({
                                                   )
                                                 : currency?.getSymbol(chainId)) || (
                                                 <div className="bg-transparent flex items-center text-black text-xs font-bold">
-                                                    {t('selectToken') == 'Select a currency'
+                                                    {t('selectToken') == 'Select a Token'
                                                         ? t('selectToken')
-                                                        : t('Select a currency')}
+                                                        : t('Select a Token')}
                                                 </div>
                                             )}
                                         </div>

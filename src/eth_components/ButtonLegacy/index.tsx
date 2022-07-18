@@ -252,6 +252,7 @@ export const ButtonDarkBlue = styled(Base)`
     background-color: #05195a;
     color: #fff;
     height: 52px;
+    font-weight: 700;
     border-radius: 16px;
 
     &:focus {
