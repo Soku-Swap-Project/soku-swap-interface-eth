@@ -201,7 +201,7 @@ export default function Pool() {
 
                         {!account ? (
                             <Card padding="40px">
-                                <TYPE.body color={'#BDC2C4'} textAlign="center">
+                                <TYPE.body color={'#BDC2C4'} style={{ padding: '14px' }} textAlign="center">
                                     Connect to a wallet to view your liquidity.
                                 </TYPE.body>
                             </Card>

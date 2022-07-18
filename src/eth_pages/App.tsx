@@ -170,7 +170,7 @@ function App(): JSX.Element {
 
                             {/* Pages */}
                             {/* {chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SushiBar} />} */}
-                            <Route exact strict path="/" render={() => <Redirect to="/swap" />} />
+                            {/* <Route exact strict path="/" render={() => <Redirect to="/swap" />} /> */}
                             {/* <Route exact path="/sushibar" render={() => <Redirect to="/stake" />} /> */}
                             {/* <Route exact strict path="/swap" component={Swap} />
                             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} /> */}
@@ -200,7 +200,7 @@ function App(): JSX.Element {
                             <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
 
                             {/* Redirects for app routes */}
-                            <Route
+                            {/* <Route
                                 exact
                                 strict
                                 path="/token/:address"
@@ -209,7 +209,7 @@ function App(): JSX.Element {
                                         params: { address }
                                     }
                                 }) => <Redirect to={`/swap/${address}`} />}
-                            />
+                            /> */}
                             <Route
                                 exact
                                 strict
