@@ -42,7 +42,7 @@ export function colors(darkMode: boolean): Colors {
         black,
 
         // text
-        text1: darkMode ? '#04bbfb' : '#000000',
+        text1: darkMode ? '#05195a' : '#000000',
         text2: darkMode ? '#04bbfb' : '#565A69',
         text3: darkMode ? '#05195a' : '#888D9B',
         text4: darkMode ? '#04bbfb' : '#C3C5CB',
@@ -65,7 +65,7 @@ export function colors(darkMode: boolean): Colors {
         primary3: darkMode ? '#04bbfb' : '#FF99C9',
         primary4: darkMode ? '#04bbfb' : '#F6DDE8',
         primary5: darkMode ? '#04bbfb' : '#ebebeb',
-        primary6: darkMode ? '#05489c' : '#05489c',
+        primary6: darkMode ? '#7f7f7f' : '#7f7f7f',
 
         // color text
         primaryText1: darkMode ? '#04bbfb' : '#0e0e23',
@@ -142,6 +142,9 @@ export const TYPE = {
     },
     black(props: TextProps) {
         return <TextWrapper fontWeight={500} color={'text1'} {...props} />
+    },
+    lightBlue(props: TextProps) {
+        return <TextWrapper fontWeight={500} color={'#04bbfb'} {...props} />
     },
     white(props: TextProps) {
         return <TextWrapper fontWeight={500} color={'white'} {...props} />
@@ -324,6 +327,18 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
     // padding-bottom: 10px !important;
 }
 
+.global-box {
+    display: block;
+    position: relative;
+    border-radius: 25px;
+    width: 42rem;
+    max-width: 420px;
+    padding: 36px;
+    color: rgb(5, 25, 90);
+    overflow: visible;
+    box-sizing: content-box;
+}
+
 // .liquidity-box {
 //     padding: 30px !important;
 // }
@@ -333,7 +348,7 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
 }
 
 @media (max-width: 650px) {
-    .swap-box, .bodyBox {
+    .swap-box, .bodyBox, .global-box {
         width: 18rem !important;
     }
 }
@@ -381,12 +396,12 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
     border-radius: 20px !important;
 }
 
-.token_search_box {
-    border-radius: 25px !important;
-    background: #fff !important;
-    width: 100%;
-    padding: 20px;
-}
+// .token_search_box {
+//     border-radius: 25px !important;
+//     background: #fff !important;
+//     width: 100%;
+//     padding: 20px;
+// }
 
 .wallet_modal_header svg {
     width: 16px;
@@ -401,12 +416,12 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
 }
 
 
-div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
-    background-color: transparent !important;
-    box-shadow: 0 4px 10px 0 #05195a !important;
-    border-radius: 32px !important;
-    margin: 0 auto;
-}
+// div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
+//     background-color: transparent !important;
+//     box-shadow: 0 4px 10px 0 #05195a !important;
+//     border-radius: 32px !important;
+//     margin: 0 auto;
+// }
 
 #token-search-input {
     color: #05195a;
@@ -416,16 +431,10 @@ div[aria-modal="true"][role="dialog"][tabindex="-1"][aria-label="dialog"] {
     border: 1px solid blue !important;
 }
 
-.token_item:hover {
-    background: #ebebeb !important;
-}
-
-// .currency_select_token {
-//     border: 1px solid red !important;
-//     object-fit: contain !important;
-//     width: 25px !important;
-//     height: 25px !important;
+// .token_item:hover {
+//     background: #ebebeb !important;
 // }
+
 
 .border_check {
     border: 1px solid red;
@@ -437,21 +446,31 @@ button[id='connect-Portis'] {
 
 
 
-body {
-    background: linear-gradient(250deg, #05195a 33.3%, #040f31);
-    min-height: 125vh;
+  html,
+  body {
+    font-family:'Poppins', 'sans-serif';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #e0e6f0;
+    color: #05195a;
   }
 
+  body {
+    position: relative;
+    margin: 0;
+    min-height: 100vh;
 
-  * {
-    font-family: "Poppins", sans-serif;
+    img {
+      height: auto;
+      max-width: 100%;
+    }
   }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+  .logo_shadow {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.2));
+  }
+
 
  a {
    color: ${colors(false).blue1}; 
@@ -549,45 +568,30 @@ html {
     line-height: 1.5;
 }
 
-
-  #root {
-    display: flex;
-    flex-flow: column;
-    align-items: flex-start;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: linear-gradient(250deg, #05195a 20%, #040f31);
-    min-height: 125vh;
-    height: auto;
-    // max-height: 192vh;
-    font-family: 'Poppins', sans-serif;
-    // background-image: url(https://i.ibb.co/DK7D78c/Soku-Mobile-Lower-Logo.png);
-    // background-repeat: no-repeat;
-    // background-position: bottom 0 right 10px;
-    // background-size: 30% !important;
+  html,
+  body {
+    font-family:'Poppins', 'sans-serif';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #e0e6f0;
+    color: #05195a;
   }
 
-//   @media (max-width: 650px) and (max-height: 930px) {
-//       #root {
-//         background-position: bottom 67px right 10px;
-//         background-size: 50% !important;
-//       }
+  body {
+    position: relative;
+    margin: 0;
+    min-height: 100vh;
 
-//   }
-
-//   @media (min-width: 600px) and (max-width: 900px) {
-//       #root {
-//         background-position: bottom 67px right 10px;
-//         background-size: 50% !important;
-//       }
-
-//   }
-
-  @media (min-height: 1100px) {
-    //   #root {
-    //     background-position: bottom right 10px !important;
-    //     background-size: 35% !important;
-    //   }
-
+    img {
+      height: auto;
+      max-width: 100%;
+    }
   }
+
+  .logo_shadow {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.2));
+  }
+
+
 `

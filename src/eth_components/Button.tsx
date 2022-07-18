@@ -55,7 +55,7 @@ function Button({
         <button
             className={`${(VARIANT[variant], 'orange')} ${
                 SIZE[size]
-            } rounded focus:outline-none focus:ring ${className}`}
+            } rounded focus:outline-none focus:ring ${className} emphasize_swap_button hover_shadow`}
             {...rest}
         >
             {children}

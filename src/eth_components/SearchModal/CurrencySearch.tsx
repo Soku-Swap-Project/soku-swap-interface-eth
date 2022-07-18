@@ -28,6 +28,12 @@ const ContentWrapper = styled(Column)`
     width: 100%;
     flex: 1 1;
     position: relative;
+    min-height: 80vh;
+    max-width: 32rem;
+    width: 32rem;
+    ${({ theme }) => theme.mediaWidth.upToSmall`
+    width: 20rem;
+  `};
 `
 
 const Footer = styled.div`
@@ -162,8 +168,8 @@ export function CurrencySearch({
         <ContentWrapper>
             <PaddedColumn gap="16px">
                 <RowBetween>
-                    <Text fontWeight={500} fontSize={16}>
-                        Select a token
+                    <Text fontWeight={700} fontSize={16}>
+                        Select a Token
                     </Text>
                     <CloseIcon style={{ width: '20px', stroke: '#05195a' }} onClick={onDismiss} />
                 </RowBetween>
@@ -177,51 +183,51 @@ export function CurrencySearch({
                         ref={inputRef as RefObject<HTMLInputElement>}
                         onChange={handleInput}
                         onKeyDown={handleEnter}
+                        style={{ marginBottom: '16px', borderRadius: '14px', border: 'none' }}
+                        className="hover_shadow"
                     />
                 </Row>
-                {showCommonBases && (
+                {/* {showCommonBases && (
                     <CommonBases
                         chainId={chainId}
                         onSelect={handleCurrencySelect}
                         selectedCurrency={selectedCurrency}
                     />
-                )}
+                )} */}
 
-                <RowBetween>
+                {/* <RowBetween>
                     <Text className="modal_text token_name" fontSize="14px">
                         Token name
                     </Text>
-                </RowBetween>
+                </RowBetween> */}
             </PaddedColumn>
             {searchToken && !searchTokenIsAdded ? (
                 <Column style={{ padding: '20px 0', height: '100%' }}>
                     <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
                 </Column>
             ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
-                <div style={{ flex: '1' }}>
-                    <AutoSizer disableWidth>
-                        {({ height }) => (
-                            <CurrencyList
-                                height={height}
-                                showETH={showETH}
-                                currencies={
-                                    filteredInactiveTokens
-                                        ? filteredSortedTokens.concat(filteredInactiveTokens)
-                                        : filteredSortedTokens
-                                }
-                                breakIndex={
-                                    inactiveTokens && filteredSortedTokens ? filteredSortedTokens.length : undefined
-                                }
-                                onCurrencySelect={handleCurrencySelect}
-                                otherCurrency={otherSelectedCurrency}
-                                selectedCurrency={selectedCurrency}
-                                fixedListRef={fixedList}
-                                showImportView={showImportView}
-                                setImportToken={setImportToken}
-                            />
-                        )}
-                    </AutoSizer>
-                </div>
+                <AutoSizer disableWidth>
+                    {({ height }) => (
+                        <CurrencyList
+                            height={height}
+                            showETH={showETH}
+                            currencies={
+                                filteredInactiveTokens
+                                    ? filteredSortedTokens.concat(filteredInactiveTokens)
+                                    : filteredSortedTokens
+                            }
+                            breakIndex={
+                                inactiveTokens && filteredSortedTokens ? filteredSortedTokens.length : undefined
+                            }
+                            onCurrencySelect={handleCurrencySelect}
+                            otherCurrency={otherSelectedCurrency}
+                            selectedCurrency={selectedCurrency}
+                            fixedListRef={fixedList}
+                            showImportView={showImportView}
+                            setImportToken={setImportToken}
+                        />
+                    )}
+                </AutoSizer>
             ) : (
                 <Column style={{ padding: '20px', height: '100%' }}>
                     <TYPE.main color={theme.text3} textAlign="center" mb="20px">

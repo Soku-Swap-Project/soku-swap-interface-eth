@@ -51,7 +51,7 @@ import Yield from './Yield'
 import ReactGA from 'react-ga'
 import Maintenance from './Maintenance'
 
-import './MobileFooter.css'
+import '../styles/index.css'
 
 const loadNetwork = async () => {
     const detectProvider = (await detectEthereumProvider()) as any
@@ -228,7 +228,7 @@ function App(): JSX.Element {
                         </Switch>
                     </Web3ReactManager>
                 </div>
-                <div className="connectWallet__options__MOBILE">
+                {/* <div className="connectWallet__options__MOBILE">
                     <ul>
                         {account ? (
                             <li className="account__footer">
@@ -312,7 +312,7 @@ function App(): JSX.Element {
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> */}
             </div>
         </Suspense>
     )

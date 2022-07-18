@@ -44,6 +44,7 @@ import { wrappedCurrency } from '../../utils/wrappedCurrency'
 import AppBody from '../AppBody'
 import { ClickableText, MaxButton, Wrapper } from '../Pool/styleds'
 import { Helmet } from 'react-helmet'
+import MobileHeader from 'eth_components/MobileHeader'
 
 export default function RemoveLiquidity({
     history,
@@ -393,7 +394,7 @@ export default function RemoveLiquidity({
                     </RowFixed>
                 </RowBetween>
 
-                <TYPE.italic fontSize={12} color={'#05489c'} textAlign="left" padding={'12px 0 0 0'}>
+                <TYPE.italic fontSize={12} color={'#7f7f7f'} textAlign="left" padding={'12px 0 0 0'}>
                     {`Output is estimated. If the price changes by more than ${allowedSlippage /
                         100}% your transaction will revert.`}
                 </TYPE.italic>
@@ -405,7 +406,7 @@ export default function RemoveLiquidity({
         return (
             <div>
                 <RowBetween style={{ padding: '0.5rem' }}>
-                    <Text color={'#05489c'} fontWeight={500} fontSize={16}>
+                    <Text color={'#7f7f7f'} fontWeight={500} fontSize={16}>
                         {'UNI ' + currencyA?.getSymbol(chainId) + '/' + currencyB?.getSymbol(chainId)} Burned
                     </Text>
                     <RowFixed>
@@ -418,7 +419,7 @@ export default function RemoveLiquidity({
                 {pair && (
                     <>
                         <RowBetween style={{ padding: '0.5rem' }}>
-                            <Text color={'#05489c'} fontWeight={500} fontSize={16}>
+                            <Text color={'#7f7f7f'} fontWeight={500} fontSize={16}>
                                 Price
                             </Text>
                             <Text fontWeight={500} fontSize={16} color={'#05195a'}>
@@ -436,6 +437,7 @@ export default function RemoveLiquidity({
                     </>
                 )}
                 <ButtonLight
+                    className="emphasize_swap_button hover_shadow"
                     disabled={!(approval === ApprovalState.APPROVED || signatureData !== null)}
                     onClick={onRemove}
                 >
@@ -501,32 +503,35 @@ export default function RemoveLiquidity({
         liquidityPercentChangeCallback
     )
 
+    const isMobile = window.innerWidth <= 1200
+
     return (
         <>
             <Helmet>
                 <title>SokuSwap | Remove Liquidity</title>
             </Helmet>
-            <CardNav />
-            <div className="bg-white w-full rounded liquidity-box" style={{ maxWidth: '420px' }}>
+            {isMobile && <MobileHeader page={'Liquidity Pools'} />}
+            <div
+                className="bg-white w-full rounded global-box emphasized_swap_layout_no_hover"
+                style={{ maxWidth: '420px' }}
+            >
                 <AddRemoveTabs creating={false} adding={false} />
                 <Wrapper>
-                    <div className="remove_liquidity_confirmation">
-                        <TransactionConfirmationModal
-                            isOpen={showConfirm}
-                            onDismiss={handleDismissConfirmation}
-                            attemptingTxn={attemptingTxn}
-                            hash={txHash ? txHash : ''}
-                            content={() => (
-                                <ConfirmationModalContent
-                                    title={'You will receive'}
-                                    onDismiss={handleDismissConfirmation}
-                                    topContent={modalHeader}
-                                    bottomContent={modalBottom}
-                                />
-                            )}
-                            pendingText={pendingText}
-                        />
-                    </div>
+                    <TransactionConfirmationModal
+                        isOpen={showConfirm}
+                        onDismiss={handleDismissConfirmation}
+                        attemptingTxn={attemptingTxn}
+                        hash={txHash ? txHash : ''}
+                        content={() => (
+                            <ConfirmationModalContent
+                                title={'You will receive'}
+                                onDismiss={handleDismissConfirmation}
+                                topContent={modalHeader}
+                                bottomContent={modalBottom}
+                            />
+                        )}
+                        pendingText={pendingText}
+                    />
 
                     <AutoColumn gap="sm">
                         <div
@@ -537,7 +542,10 @@ export default function RemoveLiquidity({
                                 minWidth: '300px'
                             }}
                         >
-                            <LightCard>
+                            <LightCard
+                                style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', padding: '14px' }}
+                                className="hover_shadow"
+                            >
                                 <AutoColumn>
                                     <RowBetween>
                                         <Text fontWeight={500}>Amount</Text>
@@ -568,6 +576,7 @@ export default function RemoveLiquidity({
                                             />
                                             <RowBetween>
                                                 <MaxButton
+                                                    className="emphasize_swap_button hover_shadow"
                                                     onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
                                                     width="100%"
                                                     style={{ color: '#fff', fontSize: '16px', fontWeight: 'bold' }}
@@ -575,6 +584,7 @@ export default function RemoveLiquidity({
                                                     25%
                                                 </MaxButton>
                                                 <MaxButton
+                                                    className="emphasize_swap_button hover_shadow"
                                                     onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
                                                     width="100%"
                                                     style={{ color: '#fff', fontSize: '16px', fontWeight: 'bold' }}
@@ -582,6 +592,7 @@ export default function RemoveLiquidity({
                                                     50%
                                                 </MaxButton>
                                                 <MaxButton
+                                                    className="emphasize_swap_button hover_shadow"
                                                     onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
                                                     width="100%"
                                                     style={{ color: '#fff', fontSize: '16px', fontWeight: 'bold' }}
@@ -589,6 +600,7 @@ export default function RemoveLiquidity({
                                                     75%
                                                 </MaxButton>
                                                 <MaxButton
+                                                    className="emphasize_swap_button hover_shadow"
                                                     onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                                                     width="100%"
                                                     style={{ color: '#fff', fontSize: '16px', fontWeight: 'bold' }}
@@ -612,7 +624,10 @@ export default function RemoveLiquidity({
                                         borderRadius: '16px'
                                     }}
                                 >
-                                    <LightCard>
+                                    <LightCard
+                                        style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', padding: '14px' }}
+                                        className="hover_shadow"
+                                    >
                                         <AutoColumn>
                                             <RowBetween>
                                                 <Text fontSize={24} fontWeight={500}>
@@ -654,6 +669,7 @@ export default function RemoveLiquidity({
                                                 <RowBetween style={{ justifyContent: 'flex-end' }}>
                                                     {oneCurrencyIsETH ? (
                                                         <StyledInternalLink
+                                                            className="hover_shadow_icon"
                                                             to={`/remove/${
                                                                 currencyA === ETHER
                                                                     ? WETH[chainId].address
@@ -755,10 +771,13 @@ export default function RemoveLiquidity({
                         )}
                         <div style={{ position: 'relative' }}>
                             {!account ? (
-                                <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+                                <ButtonLight className="emphasize_swap_button hover_shadow" onClick={toggleWalletModal}>
+                                    Connect Wallet
+                                </ButtonLight>
                             ) : (
                                 <RowBetween>
                                     <ButtonConfirmed
+                                        className="emphasize_swap_button hover_shadow"
                                         onClick={onAttemptToApprove}
                                         disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
                                         mr="0.5rem"
@@ -774,6 +793,7 @@ export default function RemoveLiquidity({
                                         )}
                                     </ButtonConfirmed>
                                     <ButtonError
+                                        className="emphasize_swap_button hover_shadow"
                                         onClick={() => {
                                             setShowConfirm(true)
                                         }}

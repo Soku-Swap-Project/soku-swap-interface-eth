@@ -22,8 +22,10 @@ import { useStakingInfo } from '../../eth_state/stake/hooks'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../eth_state/user/hooks'
 import { useTokenBalancesWithLoadingIndicator } from '../../eth_state/wallet/hooks'
 import { HideSmall, StyledInternalLink, TYPE } from '../../theme'
+import MobileHeader from '../../eth_components/MobileHeader'
 // import Alert from '../../eth_components/Alert'
 import { Helmet } from 'react-helmet'
+import { Flex } from '@pancakeswap-libs/uikit'
 
 const PageWrapper = styled(AutoColumn)`
     max-width: 640px;
@@ -57,6 +59,10 @@ const ButtonRow = styled(RowFixed)`
 
 const ResponsiveButtonPrimary = styled(ButtonPrimaryNormal)`
     width: fit-content;
+    background: #ecf1f8;
+    height: 48px;
+    padding: 0px 24px;
+    font-weight: bold;
     ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
@@ -132,6 +138,8 @@ export default function Pool() {
         )
     })
 
+    const isMobile = window.innerWidth <= 1200
+
     return (
         <>
             <Helmet>
@@ -146,9 +154,9 @@ export default function Pool() {
                 }}
             >
                 <SwapPoolTabs active={'pool'} />
-                <CardNav />
-                <AutoColumn className="liquidity-box" gap="sm" justify="center">
-                    <AutoColumn gap="md" style={{ width: '100%' }}>
+                {isMobile && <MobileHeader page={'Liquidity Pools'} />}
+                <Flex className="emphasized_swap_layout_no_hover global-box" justifyContent="center">
+                    <AutoColumn>
                         <TitleRow
                             style={{ marginTop: '1rem', marginBottom: '1rem' }}
                             padding={'0'}
@@ -174,11 +182,11 @@ export default function Pool() {
                                     Create a pair
                                 </ResponsiveButtonSecondary> */}
                                 <ResponsiveButtonPrimary
-                                    id="join-pool-button"
+                                    // id="join-pool-button"
                                     as={Link}
                                     padding="6px 8px"
                                     to="/add/"
-                                    className="pool_button"
+                                    className="hover_shadow emphasize_swap_button"
                                 >
                                     <Text fontWeight={500} fontSize={16}>
                                         Add Liquidity
@@ -242,7 +250,11 @@ export default function Pool() {
                                 style={{ padding: '.5rem 0 .5rem 0', fontWeight: 'normal' }}
                             >
                                 {hasV1Liquidity ? 'Liquidity found!' : "Don't see a pool you joined?"}{' '}
-                                <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
+                                <StyledInternalLink
+                                    className="hover_shadow_icon"
+                                    id="import-pool-link"
+                                    to={hasV1Liquidity ? '/migrate/v1' : '/find'}
+                                >
                                     {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
                                 </StyledInternalLink>
                             </Text>
@@ -257,7 +269,7 @@ export default function Pool() {
                             )}
                         </AutoColumn>
                     </AutoColumn>
-                </AutoColumn>
+                </Flex>
             </PageWrapper>
         </>
     )

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import useTransak from 'eth_hooks/useTransak'
 import Web3Status from '../Web3Status'
 
-import '../SokuMenu/Menu.css'
+// import '../SokuMenu/Menu.css'
 
 const easeSlow = css`
     transition: all 450ms ease-in-out;

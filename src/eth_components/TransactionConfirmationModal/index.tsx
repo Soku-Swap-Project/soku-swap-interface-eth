@@ -22,7 +22,7 @@ const Section = styled(AutoColumn)`
 `
 
 const BottomSection = styled(Section)`
-    background-color: ${({ theme }) => theme.bg2};
+    // background-color: ${({ theme }) => theme.bg2};
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 `
@@ -47,11 +47,11 @@ function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () 
                         Waiting For Confirmation
                     </Text>
                     <AutoColumn gap="12px" justify={'center'}>
-                        <Text fontWeight={600} fontSize={14} color="" textAlign="center">
+                        <Text fontWeight={600} fontSize={14} color="#04bbfb" textAlign="center">
                             {pendingText}
                         </Text>
                     </AutoColumn>
-                    <Text fontSize={12} color="#565A69" textAlign="center">
+                    <Text fontSize={12} textAlign="center">
                         Confirm this transaction in your wallet
                     </Text>
                 </AutoColumn>
@@ -72,7 +72,7 @@ function TransactionSubmittedContent({
     const theme = useContext(ThemeContext)
 
     return (
-        <Wrapper>
+        <Wrapper className="network_modal">
             <Section>
                 <RowBetween>
                     <div />
@@ -86,13 +86,20 @@ function TransactionSubmittedContent({
                         Transaction Submitted
                     </Text>
                     {chainId && hash && (
-                        <ExternalLink href={getExplorerLink(chainId, hash, 'transaction')}>
+                        <ExternalLink
+                            className="hover_shadow_icon"
+                            href={getExplorerLink(chainId, hash, 'transaction')}
+                        >
                             <Text fontWeight={500} fontSize={14} color={theme.primary1}>
-                                View on explorer
+                                View on Etherscan
                             </Text>
                         </ExternalLink>
                     )}
-                    <ButtonPrimary onClick={onDismiss} style={{ margin: '20px 0 0 0' }}>
+                    <ButtonPrimary
+                        className="emphasize_swap_button hover_shadow"
+                        onClick={onDismiss}
+                        style={{ margin: '20px 0 0 0' }}
+                    >
                         <Text fontWeight={500} fontSize={20}>
                             Close
                         </Text>

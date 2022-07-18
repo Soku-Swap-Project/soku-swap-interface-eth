@@ -32,9 +32,9 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
     height: 34px;
     font-size: 16px;
     font-weight: 500;
-    background-color: #fff;
-    color: #000;
-    border-radius: 12px;
+    // background-color: #fff;
+    color: #05195a;
+    border-radius: 14px;
     outline: none;
     cursor: pointer;
     user-select: none;
@@ -161,7 +161,11 @@ export default function CurrencyInputPanel({
     // console.log(from?.nodeValue)
 
     return (
-        <div id={id} className="rounded flex flex-col bg-white currency_input_panel ">
+        <div
+            id={id}
+            className="rounded flex flex-col bg-white currency_input_panel hover_shadow"
+            style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', background: 'rgb(236, 241, 248)' }}
+        >
             <div
                 className="space-y-0 sm:flex-row justify-between currency_input_container"
                 // hideInput={hideInput}
@@ -234,7 +238,7 @@ export default function CurrencyInputPanel({
                     </div>
                     <CurrencySelect
                         selected={!!currency}
-                        className="open-currency-select-button"
+                        className="network_modal_button"
                         onClick={() => {
                             if (!disableCurrencySelect) {
                                 setModalOpen(true)

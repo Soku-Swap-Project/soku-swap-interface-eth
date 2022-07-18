@@ -15,7 +15,7 @@
 }
 
 .account_modal {
-    color: rgba(255, 255, 255, 0.8);
+    /* color: rgba(255, 255, 255, 0.8); */
     cursor: pointer;
     padding: 8px 10px;
     -webkit-box-flex: 0.3;
@@ -25,9 +25,9 @@
     font-size: 14px !important;
 }
 
-.account_modal:hover {
+/* .account_modal:hover {
     color: #fff;
-}
+} */
 
 .account__modal_header {
     display: -webkit-box !important;

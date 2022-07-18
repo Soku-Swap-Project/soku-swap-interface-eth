@@ -23,8 +23,10 @@ export const GreyCard = styled(Card)`
 `
 
 export const WhiteCard = styled(Card)`
-    background-color: #fff;
-    max-width: 350px;
+    // background-color: #fff;
+    //    max-width: 350px;
+    min-width: 20rem;
+    margin-top: 1rem;
     border-radius: 35px;
 `
 

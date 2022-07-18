@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@sushiswap/sdk'
+import { Currency, CurrencyAmount, currencyEquals, ETHER, JSBI, Token } from '@sushiswap/sdk'
 import { LightGreyCard } from 'eth_components/Card'
 import QuestionHelper from 'eth_components/QuestionHelper'
 import useTheme from 'eth_hooks/useTheme'
@@ -55,8 +55,15 @@ const FixedContentRow = styled.div`
     align-items: center;
 `
 
-function Balance({ balance }: { balance: CurrencyAmount }) {
-    return <StyledBalanceText title={balance.toExact()}>{balance.toSignificant(4)}</StyledBalanceText>
+const ZERO = JSBI.BigInt(0)
+
+function Balance({ balance }: { balance: CurrencyAmount | undefined }) {
+    return (
+        <StyledBalanceText title={balance?.toExact()}>
+            {' '}
+            {balance?.greaterThan(ZERO) ? balance?.toSignificant(9) : '0.00'}
+        </StyledBalanceText>
+    )
 }
 
 const TagContainer = styled.div`
@@ -117,18 +124,20 @@ function CurrencyRow({
     const customAdded = useIsUserAddedToken(currency)
     const balance = useCurrencyBalance(account ?? undefined, currency)
 
+    const hasBalance = balance !== undefined
+
     // only show add or remove buttons if not on selected list
     return (
         <MenuItem
             style={style}
-            className={`token-item-${key} token_item`}
+            className={`token-item-${key} token_item currency_selector`}
             onClick={() => (isSelected ? null : onSelect())}
             disabled={isSelected}
             selected={otherSelected}
         >
             <CurrencyLogo currency={currency} size={'24px'} />
             <Column>
-                <Text title={currency.getName(chainId)} fontWeight={500}>
+                <Text title={currency.getName(chainId)} fontWeight={700}>
                     {currency.getSymbol(chainId)}
                 </Text>
                 {/* <TYPE.darkGray style={{ border: '1px solid red' }} ml="0px" fontSize={'12px'} fontWeight={300}>
@@ -137,7 +146,7 @@ function CurrencyRow({
             </Column>
             <TokenTags currency={currency} />
             <RowFixed style={{ justifySelf: 'flex-end' }}>
-                {balance ? <Balance balance={balance} /> : account ? <Loader /> : null}
+                {hasBalance ? <Balance balance={balance} /> : account ? <Loader /> : null}
             </RowFixed>
         </MenuItem>
     )

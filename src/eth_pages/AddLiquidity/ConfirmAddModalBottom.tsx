@@ -69,7 +69,11 @@ export function ConfirmAddModalBottom({
                     {noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%
                 </TYPE.body>
             </RowBetween>
-            <ButtonLight style={{ margin: '20px 0 0 0', borderRadius: '16px' }} onClick={onAdd}>
+            <ButtonLight
+                className="emphasize_swap_button hover_shadow"
+                style={{ margin: '20px 0 0 0', borderRadius: '16px' }}
+                onClick={onAdd}
+            >
                 <Text fontWeight={600} fontSize={16} color="#fff">
                     {noLiquidity ? 'Create Pool & Supply' : 'Confirm Supply'}
                 </Text>

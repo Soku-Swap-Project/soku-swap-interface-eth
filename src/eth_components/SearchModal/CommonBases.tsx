@@ -9,8 +9,8 @@ import QuestionHelper from '../QuestionHelper'
 import { AutoRow } from '../Row'
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
-    border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.bg3)};
-    border-radius: 10px;
+    // border: 1px solid ${({ theme, disable }) => (disable ? 'transparent' : theme.bg3)};
+    border-radius: 9999px;
     display: flex;
     padding: 6px;
 
@@ -36,10 +36,10 @@ export default function CommonBases({
     return (
         <AutoColumn gap="md">
             <AutoRow>
-                <Text fontWeight={500} fontSize={14}>
+                <Text color="#7f7f7f" fontWeight={700} fontSize={14}>
                     Common bases
                 </Text>
-                <QuestionHelper text="These tokens are commonly paired with other tokens." />
+                {/* <QuestionHelper text="These tokens are commonly paired with other tokens." /> */}
             </AutoRow>
             <AutoRow gap="4px">
                 <BaseWrapper
@@ -49,9 +49,11 @@ export default function CommonBases({
                         }
                     }}
                     disable={selectedCurrency === ETHER}
+                    style={{ background: '#05195a', color: '#fff' }}
+                    className="network_modal_button"
                 >
                     <CurrencyLogo currency={ETHER} style={{ marginRight: 8 }} />
-                    <Text fontWeight={500} fontSize={16}>
+                    <Text color="white" fontWeight={700} fontSize={16}>
                         {Currency.getNativeCurrencySymbol(chainId)}
                     </Text>
                 </BaseWrapper>
@@ -62,9 +64,11 @@ export default function CommonBases({
                             onClick={() => !selected && onSelect(token)}
                             disable={selected}
                             key={token.address}
+                            style={{ background: '#05195a', color: '#fff' }}
+                            className="network_modal_button"
                         >
                             <CurrencyLogo currency={token} style={{ marginRight: 8 }} />
-                            <Text fontWeight={500} fontSize={16}>
+                            <Text color="white" fontWeight={700} fontSize={16}>
                                 {token.getSymbol(chainId)}
                             </Text>
                         </BaseWrapper>

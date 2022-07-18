@@ -13,7 +13,6 @@ const QuestionWrapper = styled.div`
     outline: none;
     cursor: default;
     border-radius: 36px;
-    background-color: #fff;
     color: #04bbfb !important;
 
     :hover,
@@ -35,7 +34,6 @@ const LightQuestionWrapper = styled.div`
     border-radius: 36px;
     width: 24px;
     height: 24px;
-    background-color: rgba(255, 255, 255, 0.1);
     color: ${({ theme }) => theme.white};
 
     :hover,
@@ -55,7 +53,7 @@ export default function QuestionHelper({ text }: { text: any }) {
     const close = useCallback(() => setShow(false), [setShow])
 
     return (
-        <span style={{ marginLeft: 4 }}>
+        <span className="hover_shadow_icon" style={{ marginLeft: 4 }}>
             <Tooltip text={text} show={show}>
                 <QuestionWrapper onClick={open} onMouseEnter={open} onMouseLeave={close}>
                     <Question size={16} />
@@ -72,7 +70,7 @@ export function LightQuestionHelper({ text }: { text: string }) {
     const close = useCallback(() => setShow(false), [setShow])
 
     return (
-        <span style={{ marginLeft: 4 }}>
+        <span className="hover_shadow_icon" style={{ marginLeft: 4 }}>
             <Tooltip text={text} show={show}>
                 <LightQuestionWrapper onClick={open} onMouseEnter={open} onMouseLeave={close}>
                     <QuestionMark>?</QuestionMark>
