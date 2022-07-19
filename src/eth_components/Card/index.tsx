@@ -28,6 +28,7 @@ export const WhiteCard = styled(Card)`
     min-width: 20rem;
     margin-top: 1rem;
     border-radius: 35px;
+    padding: 20px;
 `
 
 export const LightGreyCard = styled(Card)`

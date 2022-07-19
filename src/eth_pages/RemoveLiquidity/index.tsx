@@ -540,7 +540,11 @@ export default function RemoveLiquidity({
                             }}
                         >
                             <LightCard
-                                style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', padding: '14px' }}
+                                style={{
+                                    boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px',
+                                    padding: '14px',
+                                    borderRadius: '14px'
+                                }}
                                 className="hover_shadow"
                             >
                                 <AutoColumn>
@@ -622,7 +626,11 @@ export default function RemoveLiquidity({
                                     }}
                                 >
                                     <LightCard
-                                        style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', padding: '14px' }}
+                                        style={{
+                                            boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px',
+                                            padding: '14px',
+                                            borderRadius: '14px'
+                                        }}
                                         className="hover_shadow"
                                     >
                                         <AutoColumn>
