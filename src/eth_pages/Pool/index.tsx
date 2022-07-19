@@ -40,6 +40,7 @@ const VoteCard = styled(DataCard)`
 `
 
 const TitleRow = styled(RowBetween)`
+    padding: 14px !important;
     ${({ theme }) => theme.mediaWidth.upToSmall`
     flex-wrap: wrap;
     gap: 12px;
@@ -158,7 +159,13 @@ export default function Pool() {
                 <Flex className="emphasized_swap_layout_no_hover global-box" justifyContent="center">
                     <AutoColumn>
                         <TitleRow
-                            style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                            style={{
+                                marginTop: '1rem',
+                                marginBottom: '1rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between'
+                            }}
                             padding={'0'}
                             className="liquidity_header"
                         >
@@ -172,8 +179,7 @@ export default function Pool() {
                             >
                                 Liquidity
                             </TYPE.mediumHeader>
-                            <ButtonRow>
-                                {/* <ResponsiveButtonSecondary
+                            {/* <ResponsiveButtonSecondary
                                     className="pool_button"
                                     as={Link}
                                     padding="6px 8px"
@@ -181,18 +187,17 @@ export default function Pool() {
                                 >
                                     Create a pair
                                 </ResponsiveButtonSecondary> */}
-                                <ResponsiveButtonPrimary
-                                    // id="join-pool-button"
-                                    as={Link}
-                                    padding="6px 8px"
-                                    to="/add/"
-                                    className="hover_shadow emphasize_swap_button"
-                                >
-                                    <Text fontWeight={500} color="#05195a" fontSize={16}>
-                                        Add Liquidity
-                                    </Text>
-                                </ResponsiveButtonPrimary>
-                            </ButtonRow>
+                            <ResponsiveButtonPrimary
+                                // id="join-pool-button"
+                                as={Link}
+                                padding="6px 8px"
+                                to="/add/"
+                                className="hover_shadow emphasize_swap_button"
+                            >
+                                <Text fontWeight={500} color="#05195a" fontSize={16}>
+                                    Add Liquidity
+                                </Text>
+                            </ResponsiveButtonPrimary>
                         </TitleRow>
                         <RowBetween style={{ justifyContent: 'space-between', padding: '0px 35px' }} padding="0 8px">
                             <Text color="#04bbfb">Your Liquidity</Text>
