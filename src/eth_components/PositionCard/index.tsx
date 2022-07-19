@@ -319,7 +319,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                                     as={Link}
                                     to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                                     width="48%"
-                                    style={{ fontWeight: 'bold' }}
+                                    style={{ fontWeight: 'bold', background: '#04bbfb' }}
                                 >
                                     Add
                                 </ButtonPrimaryNormal>
@@ -330,7 +330,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                                     as={Link}
                                     width="48%"
                                     to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
-                                    style={{ fontWeight: 'bold' }}
+                                    style={{ fontWeight: 'bold', background: '#04bbfb' }}
                                 >
                                     Remove
                                 </ButtonPrimaryNormal>
