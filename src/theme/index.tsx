@@ -279,12 +279,12 @@ export const FixedGlobalStyle = createGlobalStyle`
 .farm_approve_button {
     background: #04bbfb !important;
     color: #fff !important;
-    border-radius: 24px !important;
+    border-radius: 7px !important;
 }
 
 .farm_liquidity_button {
     background: #05195a !important;
-    border-radius: 24px !important;
+    border-radius: 7px !important;
 
 }
 
@@ -314,15 +314,15 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
     // border: 1px solid red !important;
     display: block;
     position: relative !important;
-    border: 1px solid white !important;
-    border-radius: 25px !important;
+    // border: 1px solid white !important;
+    border-radius: 16px !important;
     background-color: #fff !important;
     width: 70% !important;
     max-width: 420px !important;
     padding: 20px;
     color: #05195a !important;
     overflow: visible;
-    box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb !important;
+    // box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb !important;
     box-sizing: content-box !important;
     // padding-bottom: 10px !important;
 }
@@ -330,10 +330,10 @@ reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="fals
 .global-box {
     display: block;
     position: relative;
-    border-radius: 25px;
+    border-radius: 16px;
     width: 42rem;
     max-width: 420px;
-    padding: 36px;
+    padding: 20px;
     color: rgb(5, 25, 90);
     overflow: visible;
     box-sizing: content-box;
@@ -468,7 +468,7 @@ button[id='connect-Portis'] {
   }
 
   .logo_shadow {
-    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.2));
+  filter: drop-shadow(1px 8px 7px 1px rgb(0 0 0 / 0.2)) !important;
   }
 
 
@@ -509,13 +509,13 @@ button:hover, [role="button"]:hover {
     display: block;
     position: relative;
     border: 1px solid white;
-    border-radius: 25px !important;
+    border-radius: 16px !important;
     background-color: #fff;
     width: 42rem;
     max-width: 420px;
     padding: 20px;
     color: #05195a;
-    box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb;
+    // box-shadow: 0.75px 0.75px 20px 0.1px #04bbfb;
     box-sizing: content-box;
 }
 

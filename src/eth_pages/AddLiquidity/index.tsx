@@ -220,12 +220,7 @@ export default function AddLiquidity({
     const modalHeader = () => {
         return noLiquidity ? (
             <AutoColumn gap="20px">
-                <LightCard
-                    className="hover_shadow"
-                    style={{ boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px', padding: '14px' }}
-                    mt="20px"
-                    borderRadius="20px"
-                >
+                <LightCard className="hover_shadow" style={{ padding: '14px' }} mt="20px" borderRadius="20px">
                     <RowFlat
                         style={{
                             display: 'flex',
@@ -342,7 +337,7 @@ export default function AddLiquidity({
                 <title>SokuSwap | ETH | Add Liquidity</title>
             </Helmet>
             {isMobile && <MobileHeader page={'Liquidity Pools'} />}
-            <div className="emphasized_swap_layout_no_hover global-box">
+            <div className="emphasized_swap_layout global-box">
                 <AddRemoveTabs creating={isCreate} adding={true} />
                 <Wrapper>
                     <TransactionConfirmationModal
@@ -492,7 +487,7 @@ export default function AddLiquidity({
                                     }
                                     backgroundColor="#04bbfb"
                                 >
-                                    <Text fontSize={20} fontWeight={500}>
+                                    <Text fontSize={16} fontWeight={700}>
                                         {error ?? 'Supply'}
                                     </Text>
                                 </ButtonError>

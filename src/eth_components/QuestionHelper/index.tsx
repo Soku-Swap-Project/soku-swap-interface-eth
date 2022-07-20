@@ -12,7 +12,7 @@ const QuestionWrapper = styled.div`
     background: none;
     outline: none;
     cursor: default;
-    border-radius: 36px;
+    border-radius: 16px;
     color: #04bbfb !important;
 
     :hover,
@@ -31,7 +31,7 @@ const LightQuestionWrapper = styled.div`
     background: none;
     outline: none;
     cursor: default;
-    border-radius: 36px;
+    border-radius: 16px;
     width: 24px;
     height: 24px;
     color: ${({ theme }) => theme.white};

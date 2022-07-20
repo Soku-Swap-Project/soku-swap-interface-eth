@@ -88,7 +88,7 @@ export default function PoolFinder() {
             <Helmet>
                 <title>SokuSwap | Find Pool</title>
             </Helmet>
-            <AppBody className="emphasized_swap_layout_no_hover global-box">
+            <AppBody className="emphasized_swap_layout global-box">
                 <FindPoolTabs />
                 <AutoColumn style={{ padding: '1rem' }} gap="md">
                     {/* <BlueCard>
@@ -114,7 +114,7 @@ export default function PoolFinder() {
                                 </Text>
                             </Row>
                         ) : (
-                            <Text fontWeight={600} fontSize={16} marginLeft={'12px'} paddingRight={'8px'}>
+                            <Text fontWeight={700} fontSize={16} marginLeft={'12px'} paddingRight={'8px'}>
                                 Select a Token
                             </Text>
                         )}
@@ -139,7 +139,7 @@ export default function PoolFinder() {
                                 </Text>
                             </Row>
                         ) : (
-                            <Text fontWeight={600} fontSize={16} marginLeft={'12px'} paddingRight={'8px'}>
+                            <Text fontWeight={700} fontSize={16} marginLeft={'12px'} paddingRight={'8px'}>
                                 Select a Token
                             </Text>
                         )}
@@ -157,9 +157,9 @@ export default function PoolFinder() {
                             <Text textAlign="center" fontWeight={500}>
                                 Pool Found!
                             </Text>
-                            <StyledInternalLink to={`/pool/ethereum`}>
+                            {/* <StyledInternalLink to={`/pool/ethereum`}>
                                 <Text textAlign="center">Manage this pool.</Text>
-                            </StyledInternalLink>
+                            </StyledInternalLink> */}
                         </ColumnCenter>
                     )}
 

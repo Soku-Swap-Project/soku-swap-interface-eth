@@ -183,8 +183,8 @@ export function CurrencySearch({
                         ref={inputRef as RefObject<HTMLInputElement>}
                         onChange={handleInput}
                         onKeyDown={handleEnter}
-                        style={{ marginBottom: '16px', borderRadius: '14px', border: 'none' }}
-                        className="hover_shadow"
+                        style={{ marginBottom: '16px', borderRadius: '7px', border: 'none' }}
+                        className="hover_transparent"
                     />
                 </Row>
                 {/* {showCommonBases && (

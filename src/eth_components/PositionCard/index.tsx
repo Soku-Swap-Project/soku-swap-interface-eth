@@ -38,7 +38,8 @@ const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
   position: relative;
 //   overflow: hidden;
   padding: 20px;
-  border-radius: 30px;
+  border-radius: 7px;
+  cursor: pointer;
 `
 
 interface PositionCardProps {
@@ -107,7 +108,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                             </RowFixed>
                             <RowFixed>
                                 <Text fontWeight={500} fontSize={14} color={'#05195a'}>
-                                    {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
+                                    &nbsp; {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
                                 </Text>
                             </RowFixed>
                         </FixedHeightRow>
@@ -203,7 +204,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
     return (
         <StyledPositionCard
             style={{ marginTop: '10px', marginBottom: '10px' }}
-            className="shadow hover_shadow"
+            className="shadow hover_transparent"
             bgColor={backgroundColor}
         >
             <AutoColumn gap="12px">

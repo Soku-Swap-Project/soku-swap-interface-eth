@@ -56,6 +56,7 @@
 .currencyLogoText {
     font-family: 'Poppins', 'sans-serif';
     font-size: 16px;
+    color: #05195a;
     font-weight: bold;
     white-space: nowrap;
 }

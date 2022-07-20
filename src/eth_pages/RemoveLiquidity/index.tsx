@@ -511,7 +511,7 @@ export default function RemoveLiquidity({
                 <title>SokuSwap | Remove Liquidity</title>
             </Helmet>
             {isMobile && <MobileHeader page={'Liquidity Pools'} />}
-            <div className="w-full rounded global-box emphasized_swap_layout_no_hover" style={{ maxWidth: '420px' }}>
+            <div className="w-full rounded global-box emphasized_swap_layout" style={{ maxWidth: '420px' }}>
                 <AddRemoveTabs creating={false} adding={false} />
                 <Wrapper>
                     <TransactionConfirmationModal
@@ -541,7 +541,6 @@ export default function RemoveLiquidity({
                         >
                             <LightCard
                                 style={{
-                                    boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px',
                                     padding: '14px',
                                     borderRadius: '14px'
                                 }}
@@ -627,7 +626,6 @@ export default function RemoveLiquidity({
                                 >
                                     <LightCard
                                         style={{
-                                            boxShadow: 'rgba(33, 33, 33, 0.2) 0px 0px 16px',
                                             padding: '14px',
                                             borderRadius: '14px'
                                         }}

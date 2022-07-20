@@ -6,7 +6,9 @@ const TooltipContainer = styled.div`
     width: 228px;
     padding: 0.6rem 1rem;
     line-height: 150%;
+    background: #ecf1f8;
     font-weight: 400;
+    border: none;
 `
 
 interface TooltipProps extends Omit<PopoverProps, 'content'> {

@@ -57,6 +57,7 @@ function Button({
                 SIZE[size]
             } rounded focus:outline-none focus:ring ${className} emphasize_swap_button hover_shadow`}
             {...rest}
+            style={{ fontWeight: 700 }}
         >
             {children}
         </button>

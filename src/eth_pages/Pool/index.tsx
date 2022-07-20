@@ -32,7 +32,6 @@ const PageWrapper = styled(AutoColumn)`
     width: 100%;
     // padding: 16px;
 `
-
 const VoteCard = styled(DataCard)`
   background: ${({ theme }) => transparentize(0.5, theme.bg1)};
   /* border: 1px solid ${({ theme }) => theme.text4}; */
@@ -156,7 +155,7 @@ export default function Pool() {
             >
                 <SwapPoolTabs active={'pool'} />
                 {isMobile && <MobileHeader page={'Liquidity Pools'} />}
-                <Flex className="emphasized_swap_layout_no_hover global-box" justifyContent="center">
+                <Flex className="emphasized_swap_layout global-box" justifyContent="center">
                     <AutoColumn>
                         <TitleRow
                             style={{
@@ -192,7 +191,7 @@ export default function Pool() {
                                 as={Link}
                                 padding="6px 8px"
                                 to="/add/"
-                                className="hover_shadow emphasize_swap_button"
+                                className="hover_transparent emphasize_swap_button"
                             >
                                 <Text fontWeight={500} color="#05195a" fontSize={16}>
                                     Add Liquidity
