@@ -533,8 +533,7 @@ export default function RemoveLiquidity({
                     <AutoColumn gap="sm">
                         <div
                             style={{
-                                border: '1px solid #ebebeb',
-                                borderRadius: '16px',
+                                borderRadius: '14px',
                                 padding: '0px',
                                 minWidth: '300px'
                             }}
@@ -620,8 +619,7 @@ export default function RemoveLiquidity({
                                 </ColumnCenter>
                                 <div
                                     style={{
-                                        border: '1px solid #ebebeb',
-                                        borderRadius: '16px'
+                                        borderRadius: '14px'
                                     }}
                                 >
                                     <LightCard

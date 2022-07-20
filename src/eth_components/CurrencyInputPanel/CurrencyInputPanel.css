@@ -62,12 +62,10 @@
 }
 
 .currency_input_panel {
-    border-radius: 16px;
-    background-color: #fff;
-    border: 1px solid #ebebeb;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0.75rem 0.75rem 0.75rem 1rem
+    border-radius: 14px;
+    /* width: 100%; */
+    /* margin: 0 auto; */
+    padding: 1rem;
 }
 
 .currency_input_container {

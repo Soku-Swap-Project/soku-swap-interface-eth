@@ -204,7 +204,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
     return (
         <StyledPositionCard
             style={{ marginTop: '10px', marginBottom: '10px' }}
-            className="shadow hover_transparent"
+            className="hover_transparent"
             bgColor={backgroundColor}
         >
             <AutoColumn gap="12px">
