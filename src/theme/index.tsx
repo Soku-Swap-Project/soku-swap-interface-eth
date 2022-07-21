@@ -293,7 +293,8 @@ export const FixedGlobalStyle = createGlobalStyle`
 }
 
 reach-portal div[data-popper-reference-hidden="false"][data-popper-escaped="false"] {
-    background: #fff !important
+    background: none !important
+    border: none !important;
 }
 
 @media (max-width: 800px) {

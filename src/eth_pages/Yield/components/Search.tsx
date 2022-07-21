@@ -11,7 +11,7 @@ export default function Search({ term, search }: any) {
                 value={term}
                 placeholder="Search by name, symbol, address"
             />
-            <div className="absolute inset-y-0 right-0 pr-6 flex items-center pointer-events-none">
+            {/* <div className="absolute inset-y-0 right-0 pr-6 flex items-center pointer-events-none">
                 <span
                     style={{
                         right: '0',
@@ -25,7 +25,7 @@ export default function Search({ term, search }: any) {
                 >
                     search
                 </span>
-            </div>
+            </div> */}
         </div>
     )
 }

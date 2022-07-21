@@ -35,6 +35,14 @@
             "logoURI": "https://bscscan.com/token/images/sokuswap_32.png"
         },
         {
+            "address": "0xDe8239e84c4f31875EA7A22dBdb232c28ac77bE4",
+            "chainId": 1,
+            "name": "Hobi",
+            "symbol": "HOBI",
+            "decimals": 18,
+            "logoURI": "https://i.ibb.co/j5sWKRL/hobi.png"
+        },
+        {
             "address": "0xcf8335727b776d190f9d15a54e6b9b9348439eee",
             "chainId": 1,
             "name": "Whackd",
