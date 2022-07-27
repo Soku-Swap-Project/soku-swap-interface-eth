@@ -32,13 +32,14 @@ export const HoverCard = styled(Card)`
 const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
   border: 1px solid #f0f0f0;
 //   border: none
-  background: #fff;
+  background: #ECF1F8;
   /* background: ${({ theme, bgColor }) =>
       `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.bg3} 100%) `}; */
   position: relative;
-  overflow: hidden;
+//   overflow: hidden;
   padding: 20px;
-  border-radius: 30px;
+  border-radius: 7px;
+  cursor: pointer;
 `
 
 interface PositionCardProps {
@@ -79,14 +80,14 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
     return (
         <>
             {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
-                <WhiteCard>
+                <WhiteCard className="emphasized_swap_layout">
                     <AutoColumn gap="12px">
                         <FixedHeightRow>
                             <RowFixed>
                                 <Text
                                     fontWeight={600}
                                     fontSize={14}
-                                    color={'#05489c'}
+                                    color={'#7f7f7f'}
                                     style={{ textTransform: 'uppercase' }}
                                 >
                                     LP Tokens in your Wallet
@@ -107,7 +108,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                             </RowFixed>
                             <RowFixed>
                                 <Text fontWeight={500} fontSize={14} color={'#05195a'}>
-                                    {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
+                                    &nbsp; {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
                                 </Text>
                             </RowFixed>
                         </FixedHeightRow>
@@ -201,7 +202,11 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
     const backgroundColor = useColor(pair?.token0)
 
     return (
-        <StyledPositionCard bgColor={backgroundColor}>
+        <StyledPositionCard
+            style={{ marginTop: '10px', marginBottom: '10px' }}
+            className="hover_transparent"
+            bgColor={backgroundColor}
+        >
             <AutoColumn gap="12px">
                 <FixedHeightRow onClick={() => setShowMore(!showMore)}>
                     <AutoRow gap="8px">
@@ -309,22 +314,24 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                         {userDefaultPoolBalance && JSBI.greaterThan(userDefaultPoolBalance.raw, BIG_INT_ZERO) && (
                             <RowBetween marginTop="10px">
                                 <ButtonPrimaryNormal
+                                    className="emphasize_swap_button hover_shadow"
                                     padding="14px"
                                     borderRadius="16px"
                                     as={Link}
                                     to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
                                     width="48%"
-                                    style={{ fontWeight: 'bold' }}
+                                    style={{ fontWeight: 'bold', background: '#04bbfb' }}
                                 >
                                     Add
                                 </ButtonPrimaryNormal>
                                 <ButtonPrimaryNormal
+                                    className="emphasize_swap_button hover_shadow"
                                     padding="14px"
                                     borderRadius="16px"
                                     as={Link}
                                     width="48%"
                                     to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
-                                    style={{ fontWeight: 'bold' }}
+                                    style={{ fontWeight: 'bold', background: '#04bbfb' }}
                                 >
                                     Remove
                                 </ButtonPrimaryNormal>
@@ -332,6 +339,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
                         )}
                         {stakedBalance && JSBI.greaterThan(stakedBalance.raw, BIG_INT_ZERO) && (
                             <ButtonPrimary
+                                className="emphasize_swap_button hover_shadow"
                                 padding="14px"
                                 borderRadius="16px"
                                 as={Link}

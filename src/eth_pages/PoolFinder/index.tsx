@@ -21,6 +21,7 @@ import { currencyId } from '../../utils/currencyId'
 import AppBody from '../AppBody'
 import { Dots } from '../Pool/styleds'
 import { Helmet } from 'react-helmet'
+import MobileHeader from 'eth_components/MobileHeader'
 
 enum Fields {
     TOKEN0 = 0,
@@ -79,13 +80,15 @@ export default function PoolFinder() {
         </LightCard>
     )
 
+    const isMobile = window.innerWidth <= 1200
+
     return (
         <>
-            <CardNav />
+            {isMobile && <MobileHeader page={'Liquidity Pools'} />}
             <Helmet>
                 <title>SokuSwap | Find Pool</title>
             </Helmet>
-            <AppBody>
+            <AppBody className="emphasized_swap_layout global-box">
                 <FindPoolTabs />
                 <AutoColumn style={{ padding: '1rem' }} gap="md">
                     {/* <BlueCard>
@@ -97,6 +100,7 @@ export default function PoolFinder() {
                         </AutoColumn>
                     </BlueCard> */}
                     <ButtonDropdownLight
+                        className="emphasize_swap_button hover_shadow"
                         onClick={() => {
                             setShowSearch(true)
                             setActiveField(Fields.TOKEN0)
@@ -110,17 +114,18 @@ export default function PoolFinder() {
                                 </Text>
                             </Row>
                         ) : (
-                            <Text fontWeight={600} fontSize={16} marginLeft={'12px'} paddingRight={'8px'}>
+                            <Text fontWeight={700} fontSize={16} marginLeft={'12px'} paddingRight={'8px'}>
                                 Select a Token
                             </Text>
                         )}
                     </ButtonDropdownLight>
 
                     <ColumnCenter>
-                        <Plus size="16" color="#05489c" />
+                        <Plus size="16" color="#7f7f7f" />
                     </ColumnCenter>
 
                     <ButtonDropdownLight
+                        className="emphasize_swap_button hover_shadow"
                         onClick={() => {
                             setShowSearch(true)
                             setActiveField(Fields.TOKEN1)
@@ -134,7 +139,7 @@ export default function PoolFinder() {
                                 </Text>
                             </Row>
                         ) : (
-                            <Text fontWeight={600} fontSize={16} marginLeft={'12px'} paddingRight={'8px'}>
+                            <Text fontWeight={700} fontSize={16} marginLeft={'12px'} paddingRight={'8px'}>
                                 Select a Token
                             </Text>
                         )}
@@ -152,9 +157,9 @@ export default function PoolFinder() {
                             <Text textAlign="center" fontWeight={500}>
                                 Pool Found!
                             </Text>
-                            <StyledInternalLink to={`/pool/ethereum`}>
+                            {/* <StyledInternalLink to={`/pool/ethereum`}>
                                 <Text textAlign="center">Manage this pool.</Text>
-                            </StyledInternalLink>
+                            </StyledInternalLink> */}
                         </ColumnCenter>
                     )}
 

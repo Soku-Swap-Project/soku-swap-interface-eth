@@ -42,6 +42,7 @@ import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { PoolPriceBar } from './PoolPriceBar'
 import Alert from '../../eth_components/Alert'
 import { Helmet } from 'react-helmet'
+import MobileHeader from 'eth_components/MobileHeader'
 
 export default function AddLiquidity({
     match: {
@@ -219,7 +220,7 @@ export default function AddLiquidity({
     const modalHeader = () => {
         return noLiquidity ? (
             <AutoColumn gap="20px">
-                <LightCard mt="20px" borderRadius="20px">
+                <LightCard className="hover_shadow" style={{ padding: '14px' }} mt="20px" borderRadius="20px">
                     <RowFlat
                         style={{
                             display: 'flex',
@@ -326,6 +327,7 @@ export default function AddLiquidity({
 
     const isCreate = history.location.pathname.includes('/create')
     const isAdd = history.location.pathname.includes('/add')
+    const isMobile = window.innerWidth <= 1200
 
     const addIsUnsupported = useIsTransactionUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B)
 
@@ -334,8 +336,8 @@ export default function AddLiquidity({
             <Helmet>
                 <title>SokuSwap | ETH | Add Liquidity</title>
             </Helmet>
-            <CardNav />
-            <div className="add_liquidity_wrapper bg-white rounded">
+            {isMobile && <MobileHeader page={'Liquidity Pools'} />}
+            <div className="emphasized_swap_layout global-box">
                 <AddRemoveTabs creating={isCreate} adding={true} />
                 <Wrapper>
                     <TransactionConfirmationModal
@@ -399,7 +401,7 @@ export default function AddLiquidity({
                                                 fontWeight={600}
                                                 fontSize={12}
                                                 style={{ textTransform: 'uppercase' }}
-                                                color="#05489c"
+                                                color="#7f7f7f"
                                             >
                                                 {noLiquidity ? 'Initial prices' : 'Prices'} and pool share
                                             </TYPE.subHeader>
@@ -423,7 +425,9 @@ export default function AddLiquidity({
                                 <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
                             </ButtonPrimary>
                         ) : !account ? (
-                            <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
+                            <ButtonLight className="emphasize_swap_button hover_shadow" onClick={toggleWalletModal}>
+                                Connect Wallet
+                            </ButtonLight>
                         ) : (
                             <AutoColumn gap={'md'}>
                                 {(approvalA === ApprovalState.NOT_APPROVED ||
@@ -434,6 +438,7 @@ export default function AddLiquidity({
                                         <RowBetween>
                                             {approvalA !== ApprovalState.APPROVED && (
                                                 <ButtonPrimary
+                                                    className="emphasize_swap_button hover_shadow"
                                                     onClick={approveACallback}
                                                     disabled={approvalA === ApprovalState.PENDING}
                                                     width={approvalB !== ApprovalState.APPROVED ? '48%' : '100%'}
@@ -449,6 +454,7 @@ export default function AddLiquidity({
                                             )}
                                             {approvalB !== ApprovalState.APPROVED && (
                                                 <ButtonPrimary
+                                                    className="emphasize_swap_button hover_shadow"
                                                     onClick={approveBCallback}
                                                     disabled={approvalB === ApprovalState.PENDING}
                                                     width={approvalA !== ApprovalState.APPROVED ? '48%' : '100%'}
@@ -465,6 +471,7 @@ export default function AddLiquidity({
                                         </RowBetween>
                                     )}
                                 <ButtonError
+                                    className="emphasize_swap_button hover_shadow"
                                     onClick={() => {
                                         expertMode ? onAdd() : setShowConfirm(true)
                                     }}
@@ -480,7 +487,7 @@ export default function AddLiquidity({
                                     }
                                     backgroundColor="#04bbfb"
                                 >
-                                    <Text fontSize={20} fontWeight={500}>
+                                    <Text fontSize={16} fontWeight={700}>
                                         {error ?? 'Supply'}
                                     </Text>
                                 </ButtonError>

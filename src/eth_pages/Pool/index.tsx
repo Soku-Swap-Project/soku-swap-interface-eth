@@ -22,15 +22,16 @@ import { useStakingInfo } from '../../eth_state/stake/hooks'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../eth_state/user/hooks'
 import { useTokenBalancesWithLoadingIndicator } from '../../eth_state/wallet/hooks'
 import { HideSmall, StyledInternalLink, TYPE } from '../../theme'
+import MobileHeader from '../../eth_components/MobileHeader'
 // import Alert from '../../eth_components/Alert'
 import { Helmet } from 'react-helmet'
+import { Flex } from '@pancakeswap-libs/uikit'
 
 const PageWrapper = styled(AutoColumn)`
     max-width: 640px;
     width: 100%;
     // padding: 16px;
 `
-
 const VoteCard = styled(DataCard)`
   background: ${({ theme }) => transparentize(0.5, theme.bg1)};
   /* border: 1px solid ${({ theme }) => theme.text4}; */
@@ -38,6 +39,7 @@ const VoteCard = styled(DataCard)`
 `
 
 const TitleRow = styled(RowBetween)`
+    padding: 14px !important;
     ${({ theme }) => theme.mediaWidth.upToSmall`
     flex-wrap: wrap;
     gap: 12px;
@@ -57,6 +59,10 @@ const ButtonRow = styled(RowFixed)`
 
 const ResponsiveButtonPrimary = styled(ButtonPrimaryNormal)`
     width: fit-content;
+    background: #ecf1f8;
+    height: 48px;
+    padding: 0px 24px;
+    font-weight: bold;
     ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
@@ -132,6 +138,8 @@ export default function Pool() {
         )
     })
 
+    const isMobile = window.innerWidth <= 1200
+
     return (
         <>
             <Helmet>
@@ -146,11 +154,17 @@ export default function Pool() {
                 }}
             >
                 <SwapPoolTabs active={'pool'} />
-                <CardNav />
-                <AutoColumn className="liquidity-box" gap="sm" justify="center">
-                    <AutoColumn gap="md" style={{ width: '100%' }}>
+                {isMobile && <MobileHeader page={'Liquidity Pools'} />}
+                <Flex className="emphasized_swap_layout global-box" justifyContent="center">
+                    <AutoColumn>
                         <TitleRow
-                            style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                            style={{
+                                marginTop: '1rem',
+                                marginBottom: '1rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between'
+                            }}
                             padding={'0'}
                             className="liquidity_header"
                         >
@@ -164,8 +178,7 @@ export default function Pool() {
                             >
                                 Liquidity
                             </TYPE.mediumHeader>
-                            <ButtonRow>
-                                {/* <ResponsiveButtonSecondary
+                            {/* <ResponsiveButtonSecondary
                                     className="pool_button"
                                     as={Link}
                                     padding="6px 8px"
@@ -173,18 +186,17 @@ export default function Pool() {
                                 >
                                     Create a pair
                                 </ResponsiveButtonSecondary> */}
-                                <ResponsiveButtonPrimary
-                                    id="join-pool-button"
-                                    as={Link}
-                                    padding="6px 8px"
-                                    to="/add/"
-                                    className="pool_button"
-                                >
-                                    <Text fontWeight={500} fontSize={16}>
-                                        Add Liquidity
-                                    </Text>
-                                </ResponsiveButtonPrimary>
-                            </ButtonRow>
+                            <ResponsiveButtonPrimary
+                                // id="join-pool-button"
+                                as={Link}
+                                padding="6px 8px"
+                                to="/add/"
+                                className="hover_transparent emphasize_swap_button"
+                            >
+                                <Text fontWeight={500} color="#05195a" fontSize={16}>
+                                    Add Liquidity
+                                </Text>
+                            </ResponsiveButtonPrimary>
                         </TitleRow>
                         <RowBetween style={{ justifyContent: 'space-between', padding: '0px 35px' }} padding="0 8px">
                             <Text color="#04bbfb">Your Liquidity</Text>
@@ -193,7 +205,7 @@ export default function Pool() {
 
                         {!account ? (
                             <Card padding="40px">
-                                <TYPE.body color={'#BDC2C4'} textAlign="center">
+                                <TYPE.body color={'#BDC2C4'} style={{ padding: '14px' }} textAlign="center">
                                     Connect to a wallet to view your liquidity.
                                 </TYPE.body>
                             </Card>
@@ -242,7 +254,11 @@ export default function Pool() {
                                 style={{ padding: '.5rem 0 .5rem 0', fontWeight: 'normal' }}
                             >
                                 {hasV1Liquidity ? 'Liquidity found!' : "Don't see a pool you joined?"}{' '}
-                                <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
+                                <StyledInternalLink
+                                    className="hover_shadow_icon"
+                                    id="import-pool-link"
+                                    to={hasV1Liquidity ? '/migrate/v1' : '/find'}
+                                >
                                     {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
                                 </StyledInternalLink>
                             </Text>
@@ -257,7 +273,7 @@ export default function Pool() {
                             )}
                         </AutoColumn>
                     </AutoColumn>
-                </AutoColumn>
+                </Flex>
             </PageWrapper>
         </>
     )

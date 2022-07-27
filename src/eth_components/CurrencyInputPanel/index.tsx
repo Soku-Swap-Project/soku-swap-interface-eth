@@ -32,9 +32,9 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
     height: 34px;
     font-size: 16px;
     font-weight: 500;
-    background-color: #fff;
-    color: #000;
-    border-radius: 12px;
+    // background-color: #fff;
+    color: #05195a;
+    border-radius: 14px;
     outline: none;
     cursor: pointer;
     user-select: none;
@@ -161,7 +161,11 @@ export default function CurrencyInputPanel({
     // console.log(from?.nodeValue)
 
     return (
-        <div id={id} className="rounded flex flex-col bg-white currency_input_panel ">
+        <div
+            id={id}
+            className="rounded flex flex-col currency_input_panel hover_shadow"
+            style={{ background: 'rgb(236, 241, 248)' }}
+        >
             <div
                 className="space-y-0 sm:flex-row justify-between currency_input_container"
                 // hideInput={hideInput}
@@ -234,7 +238,7 @@ export default function CurrencyInputPanel({
                     </div>
                     <CurrencySelect
                         selected={!!currency}
-                        className="open-currency-select-button"
+                        className="network_modal_button"
                         onClick={() => {
                             if (!disableCurrencySelect) {
                                 setModalOpen(true)
@@ -276,10 +280,10 @@ export default function CurrencyInputPanel({
                                                       currency.symbol.length
                                                   )
                                                 : currency?.getSymbol(chainId)) || (
-                                                <div className="bg-transparent flex items-center text-black text-xs font-bold">
-                                                    {t('selectToken') == 'Select a currency'
+                                                <div className="bg-transparent flex items-center font-bold">
+                                                    {t('selectToken') == 'Select a Token'
                                                         ? t('selectToken')
-                                                        : t('Select a currency')}
+                                                        : t('Select a Token')}
                                                 </div>
                                             )}
                                         </div>

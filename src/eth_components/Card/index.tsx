@@ -4,9 +4,9 @@ import { Box } from 'rebass/styled-components'
 import styled from 'styled-components'
 
 const Card = styled.div<any>`
-    width: 100%;
-    border-radius: 16px;
-    padding: 1.25rem;
+    // width: 100%;
+    // border-radius: 16px;
+    // padding: 1.25rem;
     padding: ${({ padding }) => padding};
     border: ${({ border }) => border};
     border-radius: ${({ borderRadius }) => borderRadius};
@@ -23,9 +23,12 @@ export const GreyCard = styled(Card)`
 `
 
 export const WhiteCard = styled(Card)`
-    background-color: #fff;
-    max-width: 350px;
+    // background-color: #fff;
+    //    max-width: 350px;
+    // min-width: 20rem;
+    margin-top: 1rem;
     border-radius: 35px;
+    padding: 20px;
 `
 
 export const LightGreyCard = styled(Card)`

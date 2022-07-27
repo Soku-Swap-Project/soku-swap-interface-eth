@@ -331,7 +331,7 @@ export default function Swap() {
                 onConfirm={handleConfirmTokenWarning}
             />
             <SwapPoolTabs active={'swap'} />
-            <div className="bg-white shadow-swap-blue-glow swap-box w-full max-w-xl rounded">
+            <div className="shadow-swap-blue-glow swap-box w-full max-w-xl rounded">
                 <SwapHeader />
                 <Wrapper id="swap-page">
                     <ConfirmSwapModal

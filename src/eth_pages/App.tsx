@@ -51,7 +51,7 @@ import Yield from './Yield'
 import ReactGA from 'react-ga'
 import Maintenance from './Maintenance'
 
-import './MobileFooter.css'
+import '../styles/index.css'
 
 const loadNetwork = async () => {
     const detectProvider = (await detectEthereumProvider()) as any
@@ -170,10 +170,10 @@ function App(): JSX.Element {
 
                             {/* Pages */}
                             {/* {chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SushiBar} />} */}
-                            <Route exact strict path="/" render={() => <Redirect to="/swap" />} />
+                            {/* <Route exact strict path="/" render={() => <Redirect to="/swap" />} /> */}
                             {/* <Route exact path="/sushibar" render={() => <Redirect to="/stake" />} /> */}
-                            <Route exact strict path="/swap" component={Swap} />
-                            <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+                            {/* <Route exact strict path="/swap" component={Swap} />
+                            <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} /> */}
                             <Route exact strict path="/deposit" component={WidgetContainer} />
                             <Route exact strict path="/bridge" component={ComingSoon} />
                             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
@@ -200,7 +200,7 @@ function App(): JSX.Element {
                             <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
 
                             {/* Redirects for app routes */}
-                            <Route
+                            {/* <Route
                                 exact
                                 strict
                                 path="/token/:address"
@@ -209,7 +209,7 @@ function App(): JSX.Element {
                                         params: { address }
                                     }
                                 }) => <Redirect to={`/swap/${address}`} />}
-                            />
+                            /> */}
                             <Route
                                 exact
                                 strict
@@ -228,7 +228,7 @@ function App(): JSX.Element {
                         </Switch>
                     </Web3ReactManager>
                 </div>
-                <div className="connectWallet__options__MOBILE">
+                {/* <div className="connectWallet__options__MOBILE">
                     <ul>
                         {account ? (
                             <li className="account__footer">
@@ -312,7 +312,7 @@ function App(): JSX.Element {
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> */}
             </div>
         </Suspense>
     )

@@ -8,7 +8,7 @@ module.exports = {
         colors: {
             ...defaultTheme.colors,
             red: '#FF3838',
-            blue: '#27B0E6',
+            blue: '#05195a',
             pink: '#FA52A0',
             purple: '#A755DD',
             green: '#7CFF6B',

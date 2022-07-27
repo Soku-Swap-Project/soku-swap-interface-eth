@@ -32,17 +32,21 @@ const StyledDialogContent = styled(({ minHeight, maxHeight, maxWidth, mobile, is
     'aria-label': 'dialog'
 })`
     // overflow-y: ${({ mobile }) => (mobile ? 'scroll' : 'hidden')};
-    border-radios: 100px;
+    border-radius: 32px;
     &[data-reach-dialog-content] {
         margin: 0 0 2rem 0;
-        background-color: ${({ theme }) => theme.bg1};
+        background: transparent !important;
+        // background-color: ${({ theme }) => theme.bg1};
         box-shadow: 0 4px 8px 0 ${({ theme }) => transparentize(0.95, theme.shadow1)};
-        padding: 0px;
+        padding: 20px;
         width: 50vw;
         // overflow-y: ${({ mobile }) => (mobile ? 'scroll' : 'hidden')};
         // overflow-x: hidden;
 
         align-self: 'center';
+
+        justify-content: center;
+        align-items: center;
 
         // max-width: 420px;
         ${({ maxWidth }) =>
@@ -128,13 +132,14 @@ export default function Modal({
                             style={props}
                             onDismiss={onDismiss}
                             initialFocusRef={initialFocusRef}
+                            className="network_modal_container"
                         >
                             <StyledDialogContent
                                 {...(isMobile
                                     ? {
                                           ...bind(),
                                           style: {
-                                              transform: y.interpolate(y => `translateY(${y > 0 ? y : 0}px)`)
+                                              transform: y.interpolate(y => `translateY(${(y as any) > 0 ? y : 0}px)`)
                                           }
                                       }
                                     : {})}
@@ -144,9 +149,10 @@ export default function Modal({
                                 maxWidth={maxWidth}
                                 mobile={isMobile}
                             >
-                                <div className="token_search_box rounded p-px">
+                                <div>
                                     <div
-                                        className={`flex token_search_box flex-col h-full w-full bg-white p-${padding}`}
+                                        style={{ borderRadius: '14px' }}
+                                        className={`flex network_modal flex-col h-full w-full p-${padding}`}
                                     >
                                         {/* prevents the automatic focusing of inputs on mobile by the reach dialog */}
                                         {!initialFocusRef && isMobile ? <div tabIndex={1} /> : null}

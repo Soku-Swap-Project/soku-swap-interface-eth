@@ -26,28 +26,28 @@ export function PoolPriceBar({
         <AutoColumn gap="md">
             <AutoRow justify="space-around" gap="4px">
                 <AutoColumn justify="center">
-                    <TYPE.black>{price?.toSignificant(6) ?? '-'}</TYPE.black>
-                    <Text fontWeight={500} fontSize={14} color={'#05489c'} pt={1}>
+                    <TYPE.lightBlue>{price?.toSignificant(6) ?? '-'}</TYPE.lightBlue>
+                    <Text fontWeight={500} fontSize={14} color={'#7f7f7f'} pt={1}>
                         {currencies[Field.CURRENCY_B]?.getSymbol(chainId)} per{' '}
                         {currencies[Field.CURRENCY_A]?.getSymbol(chainId)}
                     </Text>
                 </AutoColumn>
                 <AutoColumn justify="center">
-                    <TYPE.black>{price?.invert()?.toSignificant(6) ?? '-'}</TYPE.black>
-                    <Text fontWeight={500} fontSize={14} color={'#05489c'} pt={1}>
+                    <TYPE.lightBlue>{price?.invert()?.toSignificant(6) ?? '-'}</TYPE.lightBlue>
+                    <Text fontWeight={500} fontSize={14} color={'#7f7f7f'} pt={1}>
                         {currencies[Field.CURRENCY_A]?.getSymbol(chainId)} per{' '}
                         {currencies[Field.CURRENCY_B]?.getSymbol(chainId)}
                     </Text>
                 </AutoColumn>
                 <AutoColumn justify="center">
-                    <TYPE.black>
+                    <TYPE.lightBlue>
                         {noLiquidity && price
                             ? '100'
                             : (poolTokenPercentage?.lessThan(ONE_BIPS) ? '<0.01' : poolTokenPercentage?.toFixed(2)) ??
                               '0'}
                         %
-                    </TYPE.black>
-                    <Text fontWeight={500} fontSize={14} color={'#05489c'} pt={1}>
+                    </TYPE.lightBlue>
+                    <Text fontWeight={500} fontSize={14} color={'#7f7f7f'} pt={1}>
                         Share of Pool
                     </Text>
                 </AutoColumn>

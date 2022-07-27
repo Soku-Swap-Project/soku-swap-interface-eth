@@ -45,7 +45,7 @@ const Option = styled(FancyButton)<{ active: boolean }>`
         cursor: pointer;
     }
     background-color: ${({ active, theme }) => active && theme.primary6};
-    color: ${({ active }) => (active && 'white') || '#05489c'};
+    color: ${({ active }) => (active && 'white') || '#7f7f7f'};
     font-family: 'Roboto Mono', monospace !important;
     font-size: 16px !important;
     font-weight: 600;
@@ -64,7 +64,7 @@ const Input = styled.input`
     &::-webkit-inner-spin-button {
         -webkit-appearance: none;
     }
-    color: #05489c;
+    color: #7f7f7f;
     text-align: left;
 `
 
@@ -169,7 +169,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
         <AutoColumn gap="md">
             <AutoColumn gap="sm">
                 <RowFixed>
-                    <TYPE.black fontWeight={600} fontSize={16} color={'#05489c'}>
+                    <TYPE.black fontWeight={600} fontSize={16} color={'#7f7f7f'}>
                         Slippage tolerance
                     </TYPE.black>
                     <QuestionHelper text="Your transaction will revert if the price changes unfavorably by more than this percentage." />
@@ -227,7 +227,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
                                 onChange={e => parseCustomSlippage(e.target.value)}
                                 color={!slippageInputIsValid ? 'red' : ''}
                             />
-                            <h1 style={{ color: '#05489c' }}>%</h1>
+                            <h1 style={{ color: '#7f7f7f' }}>%</h1>
                         </RowBetween>
                     </OptionCustom>
                 </RowBetween>
@@ -250,7 +250,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
 
             <AutoColumn gap="sm">
                 <RowFixed>
-                    <TYPE.black fontWeight={600} fontSize={16} color={'#05489c'}>
+                    <TYPE.black fontWeight={600} fontSize={16} color={'#7f7f7f'}>
                         Transaction deadline
                     </TYPE.black>
                     <QuestionHelper text="Your transaction will revert if it is pending for more than this long." />
@@ -267,7 +267,7 @@ export default function SlippageTabs({ rawSlippage, setRawSlippage, deadline, se
                             onChange={e => parseCustomDeadline(e.target.value)}
                         />
                     </OptionCustom>
-                    <TYPE.body style={{ paddingLeft: '8px' }} fontSize={16} color={'#05489c'}>
+                    <TYPE.body style={{ paddingLeft: '8px' }} fontSize={16} color={'#7f7f7f'}>
                         minutes
                     </TYPE.body>
                 </RowFixed>
