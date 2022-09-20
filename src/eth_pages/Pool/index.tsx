@@ -1,4 +1,5 @@
-import { ChainId, JSBI, Pair } from '@sushiswap/sdk'
+import { ChainId, JSBI, Pair, Token, WETH } from '@sushiswap/sdk'
+import { Pair as UniswapPair } from '@uniswap/sdk'
 import { transparentize } from 'polished'
 import React, { useContext, useMemo } from 'react'
 import { Link } from 'react-router-dom'
@@ -26,6 +27,7 @@ import MobileHeader from '../../eth_components/MobileHeader'
 // import Alert from '../../eth_components/Alert'
 import { Helmet } from 'react-helmet'
 import { Flex } from '@pancakeswap-libs/uikit'
+import { SupportedChainId } from 'config/networks'
 
 const PageWrapper = styled(AutoColumn)`
     max-width: 640px;
@@ -89,19 +91,34 @@ export default function Pool() {
     const theme = useContext(ThemeContext)
     const { account, chainId } = useActiveWeb3React()
 
+    const HOBI = new Token(ChainId.MAINNET, '0xDe8239e84c4f31875EA7A22dBdb232c28ac77bE4', 18, 'HOBI', 'Hobi')
+    const HOBI_PAIR: [Token, Token] = [HOBI, WETH[ChainId.MAINNET]]
+
     // fetch the user's balances of all tracked V2 LP tokens
     const trackedTokenPairs = useTrackedTokenPairs()
+    const updatedTokenPairs = [...trackedTokenPairs, HOBI_PAIR]
     const tokenPairsWithLiquidityTokens = useMemo(
-        () => trackedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
-        [trackedTokenPairs]
+        () => updatedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
+        [updatedTokenPairs]
     )
 
     const liquidityTokens = useMemo(() => tokenPairsWithLiquidityTokens.map(tpwlt => tpwlt.liquidityToken), [
         tokenPairsWithLiquidityTokens
     ])
+
+    const hobiLP = new Token(
+        chainId as ChainId,
+        '0x0Ba20E39D062d4e7a2BCEf61dFA4371b97ce1980',
+        18,
+        'UNI-V2',
+        'Uniswap V2'
+    )
+
+    const updatedLiqTokens = [...liquidityTokens, hobiLP]
+
     const [v2PairsBalances, fetchingV2PairBalances] = useTokenBalancesWithLoadingIndicator(
         account ?? undefined,
-        liquidityTokens
+        updatedLiqTokens
     )
 
     // fetch the reserves for all V2 pools in which the user has a balance
@@ -114,12 +131,13 @@ export default function Pool() {
     )
 
     const v2Pairs = usePairs(liquidityTokensWithBalances.map(({ tokens }) => tokens))
+    console.log(v2Pairs, 'v2Pairs')
     const v2IsLoading =
         fetchingV2PairBalances ||
         v2Pairs?.length < liquidityTokensWithBalances.length ||
         v2Pairs?.some(V2Pair => !V2Pair)
 
-    const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
+    const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is any => Boolean(v2Pair))
 
     const hasV1Liquidity = useUserHasLiquidityInAllTokens()
 

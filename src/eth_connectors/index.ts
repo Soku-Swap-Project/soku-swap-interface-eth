@@ -10,7 +10,7 @@ import { FortmaticConnector } from './Fortmatic'
 import { NetworkConnector } from './NetworkConnector'
 
 const RPC = {
-    [ChainId.MAINNET]: 'https://speedy-nodes-nyc.moralis.io/a80a9a59f7e3ae9405c48919/eth/mainnet',
+    [ChainId.MAINNET]: 'https://eth-rpc.gateway.pokt.network',
     [ChainId.ROPSTEN]: 'https://eth-ropsten.alchemyapi.io/v2/cidKix2Xr-snU3f6f6Zjq_rYdalKKHmW',
     [ChainId.RINKEBY]: 'https://eth-rinkeby.alchemyapi.io/v2/XVLwDlhGP6ApBXFz_lfv0aZ6VmurWhYD',
     [ChainId.GÖRLI]: 'https://eth-goerli.alchemyapi.io/v2/Dkk5d02QjttYEoGmhZnJG37rKt8Yl3Im',

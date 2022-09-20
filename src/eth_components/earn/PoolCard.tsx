@@ -96,7 +96,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
             WETH,
             JSBI.divide(
                 JSBI.multiply(
-                    JSBI.multiply(stakingInfo.totalStakedAmount.raw, stakingTokenPair.reserveOf(WETH).raw),
+                    JSBI.multiply(stakingInfo.totalStakedAmount.raw, stakingTokenPair.reserveOf(WETH as any).raw),
                     JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the WETH they entitle owner to
                 ),
                 totalSupplyOfStakingToken.raw

@@ -489,16 +489,26 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
     return new Contract(address, ABI, getProviderOrSigner(library, account) as any)
 }
 
-export function getRouterAddress(chainId?: ChainId) {
+export function getRouterAddress(chainId?: ChainId, useUniswapRouter?: boolean) {
     if (!chainId) {
         throw Error(`Undefined 'chainId' parameter '${chainId}'.`)
     }
-    return ROUTER_ADDRESS[chainId]
+    return useUniswapRouter ? '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D' : ROUTER_ADDRESS[chainId]
 }
 
 // account is optional
-export function getRouterContract(chainId: number, library: Web3Provider, account?: string): Contract {
-    return getContract(getRouterAddress(chainId), IUniswapV2Router02ABI, library, account)
+export function getRouterContract(
+    chainId: number,
+    library: Web3Provider,
+    account?: string,
+    useUniswapRouter?: boolean
+): Contract {
+    return getContract(
+        useUniswapRouter ? '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D' : ROUTER_ADDRESS[chainId as ChainId],
+        IUniswapV2Router02ABI,
+        library,
+        account
+    )
 }
 
 export function escapeRegExp(string: string): string {

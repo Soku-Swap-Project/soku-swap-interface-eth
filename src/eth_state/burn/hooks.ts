@@ -1,4 +1,5 @@
-import { Currency, CurrencyAmount, JSBI, Pair, Percent, TokenAmount } from '@sushiswap/sdk'
+import { Currency, CurrencyAmount, JSBI, Pair, Percent, Token, TokenAmount } from '@sushiswap/sdk'
+import { Pair as UniswapPair } from '@uniswap/sdk'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePair } from '../../eth_data/Reserves'
@@ -18,7 +19,7 @@ export function useDerivedBurnInfo(
     currencyA: Currency | undefined,
     currencyB: Currency | undefined
 ): {
-    pair?: Pair | null
+    pair?: Pair | UniswapPair | null
     parsedAmounts: {
         [Field.LIQUIDITY_PERCENT]: Percent
         [Field.LIQUIDITY]?: TokenAmount
@@ -35,7 +36,7 @@ export function useDerivedBurnInfo(
     const [, pair] = usePair(currencyA, currencyB)
 
     // balances
-    const relevantTokenBalances = useTokenBalances(account ?? undefined, [pair?.liquidityToken])
+    const relevantTokenBalances = useTokenBalances(account ?? undefined, [pair?.liquidityToken as Token])
     const userLiquidity: undefined | TokenAmount = relevantTokenBalances?.[pair?.liquidityToken?.address ?? '']
 
     const [tokenA, tokenB] = [wrappedCurrency(currencyA, chainId), wrappedCurrency(currencyB, chainId)]
@@ -46,7 +47,7 @@ export function useDerivedBurnInfo(
     }
 
     // liquidity values
-    const totalSupply = useTotalSupply(pair?.liquidityToken)
+    const totalSupply = useTotalSupply(pair?.liquidityToken as Token)
     const liquidityValueA =
         pair &&
         totalSupply &&
@@ -54,7 +55,10 @@ export function useDerivedBurnInfo(
         tokenA &&
         // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
         JSBI.greaterThanOrEqual(totalSupply.raw, userLiquidity.raw)
-            ? new TokenAmount(tokenA, pair.getLiquidityValue(tokenA, totalSupply, userLiquidity, false).raw)
+            ? new TokenAmount(
+                  tokenA,
+                  pair.getLiquidityValue(tokenA as any, totalSupply as any, userLiquidity as any, false).raw
+              )
             : undefined
     const liquidityValueB =
         pair &&
@@ -63,7 +67,10 @@ export function useDerivedBurnInfo(
         tokenB &&
         // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
         JSBI.greaterThanOrEqual(totalSupply.raw, userLiquidity.raw)
-            ? new TokenAmount(tokenB, pair.getLiquidityValue(tokenB, totalSupply, userLiquidity, false).raw)
+            ? new TokenAmount(
+                  tokenB,
+                  pair.getLiquidityValue(tokenB as any, totalSupply as any, userLiquidity as any, false).raw
+              )
             : undefined
     const liquidityValues: { [Field.CURRENCY_A]?: TokenAmount; [Field.CURRENCY_B]?: TokenAmount } = {
         [Field.CURRENCY_A]: liquidityValueA,
@@ -78,7 +85,7 @@ export function useDerivedBurnInfo(
     // user specified a specific amount of liquidity tokens
     else if (independentField === Field.LIQUIDITY) {
         if (pair?.liquidityToken) {
-            const independentAmount = tryParseAmount(typedValue, pair.liquidityToken)
+            const independentAmount = tryParseAmount(typedValue, pair.liquidityToken as Token)
             if (independentAmount && userLiquidity && !independentAmount.greaterThan(userLiquidity)) {
                 percentToRemove = new Percent(independentAmount.raw, userLiquidity.raw)
             }

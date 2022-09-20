@@ -1,9 +1,10 @@
-import { ChainId, Pair, Token } from '@sushiswap/sdk'
+import { ChainId, Pair, Token, WETH } from '@sushiswap/sdk'
+import { Pair as UniswapPair } from '@uniswap/sdk'
 import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import ReactGA from 'react-ga'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../eth_constants'
+import { BASES_TO_TRACK_LIQUIDITY_FOR, HOBI, PINNED_PAIRS } from '../../eth_constants'
 import { useActiveWeb3React } from '../../eth_hooks'
 import { useAllTokens } from '../../eth_hooks/Tokens'
 import { AppDispatch, AppState } from '../index'
@@ -165,18 +166,18 @@ export function useUserAddedTokens(): Token[] {
     }, [serializedTokensMap, chainId])
 }
 
-function serializePair(pair: Pair): SerializedPair {
+function serializePair(pair: Pair | UniswapPair): SerializedPair {
     return {
-        token0: serializeToken(pair.token0),
-        token1: serializeToken(pair.token1)
+        token0: serializeToken(pair.token0 as Token),
+        token1: serializeToken(pair.token1 as Token)
     }
 }
 
-export function usePairAdder(): (pair: Pair) => void {
+export function usePairAdder(): (pair: Pair | UniswapPair) => void {
     const dispatch = useDispatch<AppDispatch>()
 
     return useCallback(
-        (pair: Pair) => {
+        (pair: Pair | UniswapPair) => {
             dispatch(addSerializedPair({ serializedPair: serializePair(pair) }))
         },
         [dispatch]
@@ -198,7 +199,15 @@ export function useURLWarningToggle(): () => void {
  * @param tokenB the other token
  */
 export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
-    return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB), 18, 'UNI-V2', 'Uniswap V2')
+    return new Token(
+        tokenA.chainId,
+        tokenA.symbol === 'HOBI'
+            ? UniswapPair.getAddress(tokenA as any, tokenB as any)
+            : Pair.getAddress(tokenA, tokenB),
+        18,
+        'UNI-V2',
+        'Uniswap V2'
+    )
 }
 
 /**
@@ -210,6 +219,8 @@ export function useTrackedTokenPairs(): [Token, Token][] {
 
     // pinned pairs
     const pinnedPairs = useMemo(() => (chainId ? PINNED_PAIRS[chainId] ?? [] : []), [chainId])
+
+    const HobiPair: [Token, Token] = [HOBI, WETH[ChainId.MAINNET]]
 
     // pairs for every token against every base
     const generatedPairs: [Token, Token][] = useMemo(
@@ -235,6 +246,8 @@ export function useTrackedTokenPairs(): [Token, Token][] {
                 : [],
         [tokens, chainId]
     )
+
+    generatedPairs.push(HobiPair)
 
     // pairs saved by users
     const savedSerializedPairs = useSelector<AppState, AppState['user']['pairs']>(({ user: { pairs } }) => pairs)

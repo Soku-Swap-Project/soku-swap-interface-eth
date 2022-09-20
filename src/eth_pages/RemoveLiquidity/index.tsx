@@ -60,6 +60,8 @@ export default function RemoveLiquidity({
         chainId
     ])
 
+    const useUniswapRouter = currencyA?.symbol === 'HOBI' || currencyB?.symbol === 'HOBI'
+
     const theme = useContext(ThemeContext)
 
     // toggle wallet when disconnected
@@ -107,14 +109,16 @@ export default function RemoveLiquidity({
     const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(
         null
     )
-    const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], getRouterAddress(chainId))
+    const [approval, approveCallback] = useApproveCallback(
+        parsedAmounts[Field.LIQUIDITY],
+        getRouterAddress(chainId, useUniswapRouter)
+    )
 
     const isArgentWallet = useIsArgentWallet()
 
     async function onAttemptToApprove() {
         if (!pairContract || !pair || !library || !deadline) throw new Error('missing dependencies')
         const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
-        console.log(liquidityAmount, 'app liquidityAmount')
         if (!liquidityAmount) throw new Error('missing liquidity amount')
 
         if (isArgentWallet) {
@@ -146,7 +150,7 @@ export default function RemoveLiquidity({
             ]
             const message = {
                 owner: account,
-                spender: getRouterAddress(chainId),
+                spender: getRouterAddress(chainId, useUniswapRouter),
                 value: liquidityAmount.raw.toString(),
                 nonce: nonce.toHexString(),
                 deadline: deadline.toNumber()
@@ -212,7 +216,7 @@ export default function RemoveLiquidity({
         if (!currencyAmountA || !currencyAmountB) {
             throw new Error('missing currency amounts')
         }
-        const router = getRouterContract(chainId, library, account)
+        const router = getRouterContract(chainId, library, account, useUniswapRouter)
 
         const amountsMin = {
             [Field.CURRENCY_A]: calculateSlippageAmount(currencyAmountA, allowedSlippage)[0],
@@ -424,14 +428,16 @@ export default function RemoveLiquidity({
                             </Text>
                             <Text fontWeight={500} fontSize={16} color={'#05195a'}>
                                 1 {currencyA?.getSymbol(chainId)} ={' '}
-                                {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'} {currencyB?.getSymbol(chainId)}
+                                {tokenA ? pair.priceOf(tokenA as any).toSignificant(6) : '-'}{' '}
+                                {currencyB?.getSymbol(chainId)}
                             </Text>
                         </RowBetween>
                         <RowBetween style={{ padding: '0.5rem' }}>
                             <div />
                             <Text fontWeight={500} fontSize={16} color={'#05195a'}>
                                 1 {currencyB?.getSymbol(chainId)} ={' '}
-                                {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'} {currencyA?.getSymbol(chainId)}
+                                {tokenB ? pair.priceOf(tokenB as any).toSignificant(6) : '-'}{' '}
+                                {currencyA?.getSymbol(chainId)}
                             </Text>
                         </RowBetween>
                     </>
@@ -716,8 +722,8 @@ export default function RemoveLiquidity({
                                     }}
                                     showMaxButton={!atMaxAmount}
                                     disableCurrencySelect
-                                    currency={pair?.liquidityToken}
-                                    pair={pair}
+                                    currency={pair?.liquidityToken as any}
+                                    pair={pair as any}
                                     id="liquidity-amount"
                                 />
                                 <ColumnCenter>
@@ -756,7 +762,7 @@ export default function RemoveLiquidity({
                                     Price:
                                     <div>
                                         1 {currencyA?.getSymbol(chainId)} ={' '}
-                                        {tokenA ? pair.priceOf(tokenA).toSignificant(6) : '-'}{' '}
+                                        {tokenA ? pair.priceOf(tokenA as any).toSignificant(6) : '-'}{' '}
                                         {currencyB?.getSymbol(chainId)}
                                     </div>
                                 </RowBetween>
@@ -764,7 +770,7 @@ export default function RemoveLiquidity({
                                     <div />
                                     <div>
                                         1 {currencyB?.getSymbol(chainId)} ={' '}
-                                        {tokenB ? pair.priceOf(tokenB).toSignificant(6) : '-'}{' '}
+                                        {tokenB ? pair.priceOf(tokenB as any).toSignificant(6) : '-'}{' '}
                                         {currencyA?.getSymbol(chainId)}
                                     </div>
                                 </RowBetween>

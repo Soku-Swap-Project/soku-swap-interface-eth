@@ -1,4 +1,5 @@
-import { JSBI, Pair, Percent, TokenAmount } from '@sushiswap/sdk'
+import { Currency, JSBI, Pair, Percent, Token, TokenAmount } from '@sushiswap/sdk'
+import { Pair as UniswapPair } from '@uniswap/sdk'
 import { darken, transparentize } from 'polished'
 import React, { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'react-feather'
@@ -43,7 +44,7 @@ const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
 `
 
 interface PositionCardProps {
-    pair: Pair
+    pair: Pair | UniswapPair
     showUnwrapped?: boolean
     border?: string
     stakedBalance?: TokenAmount // optional balance to indicate that liquidity is deposited in mining pool
@@ -52,18 +53,18 @@ interface PositionCardProps {
 export function MinimalPositionCard({ pair, showUnwrapped = false, border }: PositionCardProps) {
     const { account, chainId } = useActiveWeb3React()
 
-    const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0)
-    const currency1 = showUnwrapped ? pair.token1 : unwrappedToken(pair.token1)
+    const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0 as Token)
+    const currency1 = showUnwrapped ? pair.token1 : unwrappedToken(pair.token1 as Token)
 
     const [showMore, setShowMore] = useState(false)
 
-    const userPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
-    const totalPoolTokens = useTotalSupply(pair.liquidityToken)
+    const userPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken as Token)
+    const totalPoolTokens = useTotalSupply(pair.liquidityToken as Token)
 
-    const poolTokenPercentage =
-        !!userPoolBalance && !!totalPoolTokens && JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
-            ? new Percent(userPoolBalance.raw, totalPoolTokens.raw)
-            : undefined
+    // const poolTokenPercentage =
+    //     !!userPoolBalance && !!totalPoolTokens && JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
+    //         ? new Percent(userPoolBalance.raw, totalPoolTokens.raw)
+    //         : undefined
 
     const [token0Deposited, token1Deposited] =
         !!pair &&
@@ -72,8 +73,8 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
         // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
         JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
             ? [
-                  pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-                  pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
+                  pair.getLiquidityValue(pair.token0 as any, totalPoolTokens as any, userPoolBalance as any, false),
+                  pair.getLiquidityValue(pair.token1 as any, totalPoolTokens as any, userPoolBalance as any, false)
               ]
             : [undefined, undefined]
 
@@ -97,13 +98,13 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                         <FixedHeightRow onClick={() => setShowMore(!showMore)}>
                             <RowFixed>
                                 <DoubleCurrencyLogo
-                                    currency0={currency0}
-                                    currency1={currency1}
+                                    currency0={currency0 as any}
+                                    currency1={currency1 as any}
                                     margin={true}
                                     size={20}
                                 />
                                 <Text fontWeight={500} fontSize={14} color={'#05195a'}>
-                                    {currency0.getSymbol(chainId)}/{currency1.getSymbol(chainId)}
+                                    {currency0.symbol}/{currency1?.symbol}
                                 </Text>
                             </RowFixed>
                             <RowFixed>
@@ -123,7 +124,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                             </FixedHeightRow> */}
                             <FixedHeightRow>
                                 <Text fontSize={14} color={'#05195a'} fontWeight={500}>
-                                    {currency0.getSymbol(chainId)}:
+                                    {currency0.symbol}:
                                 </Text>
                                 {token0Deposited ? (
                                     <RowFixed>
@@ -137,7 +138,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                             </FixedHeightRow>
                             <FixedHeightRow>
                                 <Text fontSize={14} color={'#05195a'} fontWeight={500}>
-                                    {currency1.getSymbol(chainId)}:
+                                    {currency1.symbol}:
                                 </Text>
                                 {token1Deposited ? (
                                     <RowFixed>
@@ -171,13 +172,15 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
 export default function FullPositionCard({ pair, border, stakedBalance }: PositionCardProps) {
     const { account, chainId } = useActiveWeb3React()
 
-    const currency0 = unwrappedToken(pair.token0)
-    const currency1 = unwrappedToken(pair.token1)
+    const currency0 = unwrappedToken(pair.token0 as Token)
+    const currency1 = unwrappedToken(pair.token1 as Token)
 
     const [showMore, setShowMore] = useState(false)
 
-    const userDefaultPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
-    const totalPoolTokens = useTotalSupply(pair.liquidityToken)
+    // console.log(pair, 'pair')
+
+    const userDefaultPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken as Token)
+    const totalPoolTokens = useTotalSupply(pair.liquidityToken as Token)
 
     // if staked balance balance provided, add to standard liquidity amount
     const userPoolBalance = stakedBalance ? userDefaultPoolBalance?.add(stakedBalance) : userDefaultPoolBalance
@@ -194,12 +197,12 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
         // this condition is a short-circuit in the case where useTokenBalance updates sooner than useTotalSupply
         JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
             ? [
-                  pair.getLiquidityValue(pair.token0, totalPoolTokens, userPoolBalance, false),
-                  pair.getLiquidityValue(pair.token1, totalPoolTokens, userPoolBalance, false)
+                  pair.getLiquidityValue(pair.token0 as any, totalPoolTokens as any, userPoolBalance as any, false),
+                  pair.getLiquidityValue(pair.token1 as any, totalPoolTokens as any, userPoolBalance as any, false)
               ]
             : [undefined, undefined]
 
-    const backgroundColor = useColor(pair?.token0)
+    const backgroundColor = useColor(pair?.token0 as Token)
 
     return (
         <StyledPositionCard

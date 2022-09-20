@@ -1,4 +1,5 @@
 import { Currency, CurrencyAmount, ETHER, JSBI, Pair, Percent, Price, TokenAmount } from '@sushiswap/sdk'
+import { Pair as UniswapPair } from '@uniswap/sdk'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { PairState, usePair } from '../../eth_data/Reserves'
@@ -49,13 +50,13 @@ export function useDerivedMintInfo(
 ): {
     dependentField: Field
     currencies: { [field in Field]?: Currency }
-    pair?: Pair | null
+    pair?: Pair | UniswapPair | null
     pairState: PairState
     currencyBalances: { [field in Field]?: CurrencyAmount }
     parsedAmounts: { [field in Field]?: CurrencyAmount }
-    price?: Price
+    price?: Price | any
     noLiquidity?: boolean
-    liquidityMinted?: TokenAmount
+    liquidityMinted?: TokenAmount | any
     poolTokenPercentage?: Percent
     error?: string
 } {
@@ -76,7 +77,7 @@ export function useDerivedMintInfo(
 
     // pair
     const [pairState, pair] = usePair(currencies[Field.CURRENCY_A], currencies[Field.CURRENCY_B])
-    const totalSupply = useTotalSupply(pair?.liquidityToken)
+    const totalSupply = useTotalSupply(pair?.liquidityToken as any)
 
     const noLiquidity: boolean =
         pairState === PairState.NOT_EXISTS || Boolean(totalSupply && JSBI.equal(totalSupply.raw, ZERO))
@@ -93,7 +94,7 @@ export function useDerivedMintInfo(
 
     // amounts
     const independentAmount: CurrencyAmount | undefined = tryParseAmount(typedValue, currencies[independentField])
-    const dependentAmount: CurrencyAmount | undefined = useMemo(() => {
+    const dependentAmount: CurrencyAmount | any = useMemo(() => {
         if (noLiquidity) {
             if (otherTypedValue && currencies[dependentField]) {
                 return tryParseAmount(otherTypedValue, currencies[dependentField])
@@ -107,8 +108,8 @@ export function useDerivedMintInfo(
                 const dependentCurrency = dependentField === Field.CURRENCY_B ? currencyB : currencyA
                 const dependentTokenAmount =
                     dependentField === Field.CURRENCY_B
-                        ? pair.priceOf(tokenA).quote(wrappedIndependentAmount)
-                        : pair.priceOf(tokenB).quote(wrappedIndependentAmount)
+                        ? pair.priceOf(tokenA as any).quote(wrappedIndependentAmount)
+                        : pair.priceOf(tokenB as any).quote(wrappedIndependentAmount)
                 return dependentCurrency === ETHER
                     ? CurrencyAmount.ether(dependentTokenAmount.raw)
                     : dependentTokenAmount
@@ -128,7 +129,7 @@ export function useDerivedMintInfo(
         currencyB,
         pair
     ])
-    const parsedAmounts: { [field in Field]: CurrencyAmount | undefined } = {
+    const parsedAmounts: { [field in Field]: CurrencyAmount | any } = {
         [Field.CURRENCY_A]: independentField === Field.CURRENCY_A ? independentAmount : dependentAmount,
         [Field.CURRENCY_B]: independentField === Field.CURRENCY_A ? dependentAmount : independentAmount
     }
@@ -147,7 +148,7 @@ export function useDerivedMintInfo(
             return undefined
         } else {
             const wrappedCurrencyA = wrappedCurrency(currencyA, chainId)
-            return pair && wrappedCurrencyA ? pair.priceOf(wrappedCurrencyA) : undefined
+            return pair && wrappedCurrencyA ? pair.priceOf(wrappedCurrencyA as any) : undefined
         }
     }, [chainId, currencyA, noLiquidity, pair, parsedAmounts])
 
@@ -159,7 +160,7 @@ export function useDerivedMintInfo(
             wrappedCurrencyAmount(currencyBAmount, chainId)
         ]
         if (pair && totalSupply && tokenAmountA && tokenAmountB) {
-            return pair.getLiquidityMinted(totalSupply, tokenAmountA, tokenAmountB)
+            return pair.getLiquidityMinted(totalSupply as any, tokenAmountA as any, tokenAmountB as any)
         } else {
             return undefined
         }
@@ -167,7 +168,7 @@ export function useDerivedMintInfo(
 
     const poolTokenPercentage = useMemo(() => {
         if (liquidityMinted && totalSupply) {
-            return new Percent(liquidityMinted.raw, totalSupply.add(liquidityMinted).raw)
+            return new Percent(liquidityMinted.raw, totalSupply.add(liquidityMinted as any).raw)
         } else {
             return undefined
         }
@@ -195,6 +196,8 @@ export function useDerivedMintInfo(
     if (currencyBAmount && currencyBalances?.[Field.CURRENCY_B]?.lessThan(currencyBAmount)) {
         error = 'Insufficient ' + currencies[Field.CURRENCY_B]?.getSymbol(chainId) + ' balance'
     }
+
+    console.log(currencyBAmount, currencyBalances)
 
     return {
         dependentField,

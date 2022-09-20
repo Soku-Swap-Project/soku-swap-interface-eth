@@ -16,7 +16,12 @@ import {
 import { useMemo } from 'react'
 import { useActiveWeb3React } from '../eth_hooks'
 import { useAllTokens } from '../eth_hooks/Tokens'
-import { useV1FactoryContract } from '../eth_hooks/useContract'
+import {
+    useRouterContract,
+    useUniV2FactoryContract,
+    useV1FactoryContract,
+    useV2UniFactoryContract
+} from '../eth_hooks/useContract'
 import { Version } from '../eth_hooks/useToggledVersion'
 import { NEVER_RELOAD, useSingleCallResult, useSingleContractMultipleData } from '../eth_state/multicall/hooks'
 import { useETHBalances, useTokenBalance, useTokenBalances } from '../eth_state/wallet/hooks'
@@ -55,6 +60,7 @@ function useMockV1Pair(inputCurrency?: Currency): MockV1Pair | undefined {
 export function useAllTokenV1Exchanges(): { [exchangeAddress: string]: Token } {
     const allTokens = useAllTokens()
     const factory = useV1FactoryContract()
+    const test = useRouterContract()
     const args = useMemo(() => Object.keys(allTokens).map(tokenAddress => [tokenAddress]), [allTokens])
 
     const data = useSingleContractMultipleData(factory, 'getExchange', args, NEVER_RELOAD)
@@ -80,7 +86,7 @@ export function useUserHasLiquidityInAllTokens(): boolean | undefined {
     const v1ExchangeLiquidityTokens = useMemo(
         () =>
             chainId
-                ? Object.keys(exchanges).map(address => new Token(chainId, address, 18, 'UNI-V1', 'Uniswap V1'))
+                ? Object.keys(exchanges).map(address => new Token(chainId, address, 18, 'UNI-V2', 'Uniswap V2'))
                 : [],
         [chainId, exchanges]
     )

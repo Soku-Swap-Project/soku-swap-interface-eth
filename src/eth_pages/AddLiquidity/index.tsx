@@ -56,6 +56,8 @@ export default function AddLiquidity({
     const currencyA = useCurrency(currencyIdA)
     const currencyB = useCurrency(currencyIdB)
 
+    const useUniswapRouter = currencyA?.symbol === 'HOBI' || currencyB?.symbol === 'HOBI'
+
     const oneCurrencyIsWETH = Boolean(
         chainId &&
             ((currencyA && currencyEquals(currencyA, WETH[chainId])) ||
@@ -123,14 +125,20 @@ export default function AddLiquidity({
     )
 
     // check whether the user has approved the router on the tokens
-    const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], getRouterAddress(chainId))
-    const [approvalB, approveBCallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_B], getRouterAddress(chainId))
+    const [approvalA, approveACallback] = useApproveCallback(
+        parsedAmounts[Field.CURRENCY_A],
+        getRouterAddress(chainId, useUniswapRouter)
+    )
+    const [approvalB, approveBCallback] = useApproveCallback(
+        parsedAmounts[Field.CURRENCY_B],
+        getRouterAddress(chainId, useUniswapRouter)
+    )
 
     const addTransaction = useTransactionAdder()
 
     async function onAdd() {
         if (!chainId || !library || !account) return
-        const router = getRouterContract(chainId, library, account)
+        const router = getRouterContract(chainId, library, account, useUniswapRouter)
 
         const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
         if (!parsedAmountA || !parsedAmountB || !currencyA || !currencyB || !deadline) {

@@ -1,4 +1,5 @@
 import { Currency, Pair } from '@sushiswap/sdk'
+import { Pair as UniswapPair } from '@uniswap/sdk'
 import { darken } from 'polished'
 import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -114,7 +115,7 @@ interface CurrencyInputPanelProps {
     currency?: Currency | null
     disableCurrencySelect?: boolean
     hideBalance?: boolean
-    pair?: Pair | null
+    pair?: Pair | UniswapPair | null
     hideInput?: boolean
     otherCurrency?: Currency | null
     id: string
@@ -248,8 +249,8 @@ export default function CurrencyInputPanel({
                         <div className="flex-1 flex-col currencyLogoContainer">
                             {pair ? (
                                 <DoubleCurrencyLogo
-                                    currency0={pair.token0}
-                                    currency1={pair.token1}
+                                    currency0={pair.token0 as any}
+                                    currency1={pair.token1 as any}
                                     size={18}
                                     margin={true}
                                 />

@@ -78,6 +78,11 @@ export function useV1FactoryContract(): Contract | null {
     return useContract(chainId && V1_FACTORY_ADDRESSES[chainId], V1_FACTORY_ABI, false)
 }
 
+export function useV2UniFactoryContract(): Contract | null {
+    const { chainId } = useActiveWeb3React()
+    return useContract('0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f', V1_FACTORY_ABI, false)
+}
+
 export function useV2MigratorContract(): Contract | null {
     return useContract(MIGRATOR_ADDRESS, MIGRATOR_ABI, true)
 }
@@ -172,12 +177,12 @@ export function useMasterChefContract(withSignerIfPossible?: boolean): Contract 
 
 export function useFactoryContract(): Contract | null {
     const { chainId } = useActiveWeb3React()
-    return useContract(chainId && FACTORY_ADDRESS[chainId], FACTORY_ABI, false)
+    return useContract('0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f', FACTORY_ABI, false)
 }
 
 export function useRouterContract(): Contract | null {
     const { chainId } = useActiveWeb3React()
-    return useContract(chainId && ROUTER_ADDRESS[chainId], ROUTER_ABI, false)
+    return useContract('0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', ROUTER_ABI, false)
 }
 
 export function useSushiBarContract(withSignerIfPossible?: boolean): Contract | null {

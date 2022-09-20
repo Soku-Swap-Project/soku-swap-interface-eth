@@ -22,13 +22,7 @@ export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
 // SOKU
 export const SUSHI: ChainTokenMap = {
-    [ChainId.MAINNET]: new Token(
-        ChainId.MAINNET,
-        '0x287e57bc655c7b019e4ce5f225f5a6832fef99ae',
-        18,
-        'Soku',
-        'Soku Token'
-    ),
+    [ChainId.MAINNET]: new Token(ChainId.MAINNET, '0xDe8239e84c4f31875EA7A22dBdb232c28ac77bE4', 18, 'HOBI', 'HOBI'),
     [ChainId.ROPSTEN]: new Token(
         ChainId.ROPSTEN,
         '0x287e57bc655c7b019e4ce5f225f5a6832fef99ae',
@@ -197,6 +191,8 @@ export const XSUSHI_CALL = new Token(
 
 export const XSUSHI = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SushiBar')
 
+export const HOBI = new Token(ChainId.MAINNET, '0xDe8239e84c4f31875EA7A22dBdb232c28ac77bE4', 18, 'HOBI', 'Hobi')
+
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
  * tokens.
@@ -227,7 +223,7 @@ export const SUGGESTED_BASES: ChainTokenList = {
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
     ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
+    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC, HOBI],
     [ChainId.FANTOM]: [...WRAPPED_NATIVE_ONLY[ChainId.FANTOM], FANTOM.DAI, FANTOM.USDC, FANTOM.WBTC, FANTOM.WETH],
     [ChainId.BSC]: [...WRAPPED_NATIVE_ONLY[ChainId.BSC], BSC.DAI, BSC.USD, BSC.USDC, BSC.USDT, BSC.BTCB]
 }

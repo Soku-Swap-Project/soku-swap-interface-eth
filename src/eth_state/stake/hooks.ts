@@ -1,4 +1,5 @@
 import { ChainId, CurrencyAmount, JSBI, Pair, Token, TokenAmount, WETH } from '@sushiswap/sdk'
+import { Pair as UniswapPair } from '@uniswap/sdk'
 import useCurrentBlockTimestamp from 'eth_hooks/useCurrentBlockTimestamp'
 import { useMemo } from 'react'
 import { DAI, SUSHI, USDC, USDT, WBTC } from '../../eth_constants'
@@ -67,7 +68,7 @@ export interface StakingInfo {
 }
 
 // gets the staking info from the network for the active chain id
-export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
+export function useStakingInfo(pairToFilterBy?: Pair | UniswapPair | null): StakingInfo[] {
     const { chainId, account } = useActiveWeb3React()
 
     // detect if staking is ended
@@ -81,8 +82,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
                           ? true
                           : pairToFilterBy === null
                           ? false
-                          : pairToFilterBy.involvesToken(stakingRewardInfo.tokens[0]) &&
-                            pairToFilterBy.involvesToken(stakingRewardInfo.tokens[1])
+                          : pairToFilterBy.involvesToken(stakingRewardInfo.tokens[0] as any) &&
+                            pairToFilterBy.involvesToken(stakingRewardInfo.tokens[1] as any)
                   ) ?? []
                 : [],
         [chainId, pairToFilterBy]

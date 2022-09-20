@@ -1,4 +1,4 @@
-import { Currency, ETHER, JSBI, TokenAmount } from '@sushiswap/sdk'
+import { Currency, ETHER, JSBI, Token, TokenAmount } from '@sushiswap/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Plus } from 'react-feather'
 import { Text } from 'rebass'
@@ -54,7 +54,7 @@ export default function PoolFinder() {
                 JSBI.equal(pair.reserve1.raw, JSBI.BigInt(0))
         )
 
-    const position: TokenAmount | undefined = useTokenBalance(account ?? undefined, pair?.liquidityToken)
+    const position: TokenAmount | undefined = useTokenBalance(account ?? undefined, pair?.liquidityToken as Token)
     const hasPosition = Boolean(position && JSBI.greaterThan(position.raw, JSBI.BigInt(0)))
 
     const handleCurrencySelect = useCallback(

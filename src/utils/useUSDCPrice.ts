@@ -32,7 +32,7 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
         // handle weth/eth
         if (wrapped.equals(WETH[chainId])) {
             if (usdcPair) {
-                const price = usdcPair.priceOf(WETH[chainId])
+                const price = usdcPair.priceOf(WETH[chainId] as any)
                 return new Price(currency, USDC, price.denominator, price.numerator)
             } else {
                 return undefined
@@ -43,10 +43,10 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
             return new Price(USDC, USDC, '1', '1')
         }
 
-        const ethPairETHAmount = ethPair?.reserveOf(WETH[chainId])
-        const ethPairETHUSDCValue: JSBI =
+        const ethPairETHAmount = ethPair?.reserveOf(WETH[chainId] as any)
+        const ethPairETHUSDCValue: any =
             ethPairETHAmount && usdcEthPair
-                ? usdcEthPair.priceOf(WETH[chainId]).quote(ethPairETHAmount).raw
+                ? usdcEthPair.priceOf(WETH[chainId] as any).quote(ethPairETHAmount as any).raw
                 : JSBI.BigInt(0)
 
         // all other tokens
@@ -54,16 +54,19 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
         if (
             usdcPairState === PairState.EXISTS &&
             usdcPair &&
-            usdcPair.reserveOf(USDC).greaterThan(ethPairETHUSDCValue)
+            usdcPair.reserveOf(USDC as any).greaterThan(ethPairETHUSDCValue)
         ) {
-            const price = usdcPair.priceOf(wrapped)
+            const price = usdcPair.priceOf(wrapped as any)
             return new Price(currency, USDC, price.denominator, price.numerator)
         }
         if (ethPairState === PairState.EXISTS && ethPair && usdcEthPairState === PairState.EXISTS && usdcEthPair) {
-            if (usdcEthPair.reserveOf(USDC).greaterThan('0') && ethPair.reserveOf(WETH[chainId]).greaterThan('0')) {
-                const ethUsdcPrice = usdcEthPair.priceOf(USDC)
-                const currencyEthPrice = ethPair.priceOf(WETH[chainId])
-                const usdcPrice = ethUsdcPrice.multiply(currencyEthPrice).invert()
+            if (
+                usdcEthPair.reserveOf(USDC as any).greaterThan('0') &&
+                ethPair.reserveOf(WETH[chainId] as any).greaterThan('0')
+            ) {
+                const ethUsdcPrice = usdcEthPair.priceOf(USDC as any)
+                const currencyEthPrice = ethPair.priceOf(WETH[chainId] as any)
+                const usdcPrice = ethUsdcPrice.multiply(currencyEthPrice as any).invert()
                 return new Price(currency, USDC, usdcPrice.denominator, usdcPrice.numerator)
             }
         }

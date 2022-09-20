@@ -43,6 +43,14 @@
             "logoURI": "https://i.ibb.co/j5sWKRL/hobi.png"
         },
         {
+            "address": "0xeD641273b0c9dd7Bc89f0CD4c3BD58770B662d63",
+            "chainId": 1,
+            "name": "Sodatsu",
+            "symbol": "SODATSU",
+            "decimals": 18,
+            "logoURI": "https://i.ibb.co/rs4pkSv/SODATSU-Token-Logo.png"
+        },
+        {
             "address": "0xcf8335727b776d190f9d15a54e6b9b9348439eee",
             "chainId": 1,
             "name": "Whackd",
