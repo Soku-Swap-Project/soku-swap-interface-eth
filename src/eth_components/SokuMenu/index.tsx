@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import TelegramIcon from '@mui/icons-material/Telegram'
 import TwitterIcon from '@mui/icons-material/Twitter'
@@ -15,6 +15,8 @@ import AccountModal from 'eth_components/AccountModal'
 import { useWalletModalToggle } from 'eth_state/application/hooks'
 import Web3Status from '../Web3Status'
 import { NETWORK_LABEL_SHORT, NETWORK_ICON } from 'config/networks'
+import SwitchNetworkModal from 'eth_components/SwitchNetworkModal'
+import { borderRadius } from 'polished'
 
 // import './Menu.css'
 
@@ -23,7 +25,11 @@ const SokuMenu: React.FC = props => {
     const { launchTransak } = useTransak()
     const toggleWalletModal = useWalletModalToggle()
 
-    // const origin = window.location.origin
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const toggleNetworkModal = () => {
+        setIsModalOpen(!isModalOpen)
+    }
 
     const openHiddenLinks = () => {
         const hiddenLinks = document.getElementsByClassName('hidden_navLinks')
@@ -93,11 +99,15 @@ const SokuMenu: React.FC = props => {
                                         <ul className="connectWallet__options__DESKTOP">
                                             {chainId && (
                                                 <div
+                                                    onClick={toggleNetworkModal}
+                                                    className="hover_transparent"
                                                     style={{
+                                                        cursor: 'pointer',
                                                         display: 'flex',
                                                         padding: '10px',
                                                         fontWeight: 'bold',
-                                                        alignItems: 'center'
+                                                        alignItems: 'center',
+                                                        borderRadius: '7px'
                                                     }}
                                                 >
                                                     <img
@@ -114,6 +124,10 @@ const SokuMenu: React.FC = props => {
                                                     {NETWORK_LABEL_SHORT[chainId as number]}
                                                 </div>
                                             )}
+                                            <SwitchNetworkModal
+                                                isModalOpen={isModalOpen}
+                                                toggleNetworkModal={toggleNetworkModal}
+                                            />
                                             {account ? (
                                                 <AccountModal />
                                             ) : (
@@ -125,7 +139,7 @@ const SokuMenu: React.FC = props => {
                                                             fontWeight: 'bold',
                                                             whiteSpace: 'nowrap'
                                                         }}
-                                                        onClick={toggleWalletModal}
+                                                        onClick={() => toggleWalletModal()}
                                                     >
                                                         Connect Wallet
                                                     </button>

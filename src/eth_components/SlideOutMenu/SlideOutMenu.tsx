@@ -11,6 +11,7 @@ import AccountModal from 'eth_components/AccountModal'
 import { useWalletModalToggle } from 'eth_state/application/hooks'
 import { useActiveWeb3React } from 'eth_hooks'
 import { NETWORK_ICON, NETWORK_LABEL_SHORT } from 'config/networks'
+import SwitchNetworkModal from 'eth_components/SwitchNetworkModal'
 
 // import '../Menu/Menu.css'
 
@@ -104,6 +105,12 @@ const SlideOutMenu: FC = () => {
     const isTradeActive = window.location.pathname === '/cross-swap' || window.location.pathname === '/swap'
     const origin = window.location.origin
 
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const toggleNetworkModal = () => {
+        setIsModalOpen(!isModalOpen)
+    }
+
     return (
         <nav className="mobile_navbar">
             <div>
@@ -147,6 +154,7 @@ const SlideOutMenu: FC = () => {
                                         color: '#05195a',
                                         justifyContent: 'center'
                                     }}
+                                    onClick={toggleNetworkModal}
                                 >
                                     <img
                                         src={NETWORK_ICON[chainId as number]}
@@ -158,6 +166,7 @@ const SlideOutMenu: FC = () => {
                                     {NETWORK_LABEL_SHORT[chainId as number]}
                                 </div>
                             )}
+                            <SwitchNetworkModal isModalOpen={isModalOpen} toggleNetworkModal={toggleNetworkModal} />
                         </div>
                         <div className="mobile_menu_list">
                             <a className="nav_link hover_shadow" href="https://swap.app.sokuswap.finance">

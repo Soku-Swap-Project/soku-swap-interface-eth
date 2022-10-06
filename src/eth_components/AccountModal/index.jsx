@@ -25,7 +25,9 @@ export default function AccountModal() {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false)
     // const { login, logout } = useAuth()
-    const { account, chainId } = useActiveWeb3React()
+    const { account, chainId, connector, deactivate } = useActiveWeb3React()
+
+    // console.log(connector.deactivate, 'connector')
 
     const truncatedFirstHalf = account?.substring(0, 5)
     const truncatedLastHalf = account?.substring(account.length - 5, account.length)
@@ -41,10 +43,10 @@ export default function AccountModal() {
         setOpen(false)
     }
 
-    // const logoutAccount = () => {
-    //     localStorage.removeItem('redux_localstorage_simple_user')
-    //     return deactivate
-    // }
+    const logoutAccount = () => {
+        deactivate()
+        localStorage.removeItem('connectorId')
+    }
 
     const body = (
         <div className="flex flex-col gap-6 network_modal">
@@ -79,10 +81,10 @@ export default function AccountModal() {
                     <h2 className="pr-2">View on Etherscan</h2>
                     <OpenInNewIcon />
                 </a>
-                {/* <button className="account_logout" onClick={logoutAccount()}>
+                <button className="account_logout" onClick={logoutAccount}>
                     <h2>Log Out</h2>
                     <span className="material-icons ">logout</span>
-                </button> */}
+                </button>
             </div>
         </div>
     )
