@@ -197,7 +197,7 @@ export function useDerivedMintInfo(
         error = 'Insufficient ' + currencies[Field.CURRENCY_B]?.getSymbol(chainId) + ' balance'
     }
 
-    console.log(currencyBAmount, currencyBalances)
+    // console.log(currencyBAmount, currencyBalances)
 
     return {
         dependentField,

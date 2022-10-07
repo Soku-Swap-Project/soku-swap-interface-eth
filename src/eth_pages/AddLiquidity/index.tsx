@@ -56,7 +56,7 @@ export default function AddLiquidity({
     const currencyA = useCurrency(currencyIdA)
     const currencyB = useCurrency(currencyIdB)
 
-    const useUniswapRouter = currencyA?.symbol === 'HOBI' || currencyB?.symbol === 'HOBI'
+    const useUniswapRouter = false // currencyA?.symbol === 'HOBI' || currencyB?.symbol === 'HOBI'
 
     const oneCurrencyIsWETH = Boolean(
         chainId &&

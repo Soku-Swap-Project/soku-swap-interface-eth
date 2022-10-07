@@ -96,7 +96,7 @@ export default function Pool() {
 
     // fetch the user's balances of all tracked V2 LP tokens
     const trackedTokenPairs = useTrackedTokenPairs()
-    const updatedTokenPairs = [...trackedTokenPairs, HOBI_PAIR]
+    const updatedTokenPairs = [...trackedTokenPairs] // add HOBI_PAIR
     const tokenPairsWithLiquidityTokens = useMemo(
         () => updatedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
         [updatedTokenPairs]
@@ -114,7 +114,7 @@ export default function Pool() {
         'Uniswap V2'
     )
 
-    const updatedLiqTokens = [...liquidityTokens, hobiLP]
+    const updatedLiqTokens = [...liquidityTokens] // add hobiLP
 
     const [v2PairsBalances, fetchingV2PairBalances] = useTokenBalancesWithLoadingIndicator(
         account ?? undefined,

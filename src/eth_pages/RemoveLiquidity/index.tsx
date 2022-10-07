@@ -60,7 +60,7 @@ export default function RemoveLiquidity({
         chainId
     ])
 
-    const useUniswapRouter = currencyA?.symbol === 'HOBI' || currencyB?.symbol === 'HOBI'
+    const useUniswapRouter = false // currencyA?.symbol === 'HOBI' || currencyB?.symbol === 'HOBI'
 
     const theme = useContext(ThemeContext)
 
