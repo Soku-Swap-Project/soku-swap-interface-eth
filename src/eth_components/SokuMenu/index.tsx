@@ -17,6 +17,7 @@ import Web3Status from '../Web3Status'
 import { NETWORK_LABEL_SHORT, NETWORK_ICON } from 'config/networks'
 import SwitchNetworkModal from 'eth_components/SwitchNetworkModal'
 import { borderRadius } from 'polished'
+import WalletModal from 'eth_components/WalletModal'
 
 // import './Menu.css'
 
@@ -128,6 +129,7 @@ const SokuMenu: React.FC = props => {
                                                 isModalOpen={isModalOpen}
                                                 toggleNetworkModal={toggleNetworkModal}
                                             />
+                                            <WalletModal />
                                             {account ? (
                                                 <AccountModal />
                                             ) : (

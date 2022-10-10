@@ -1,16 +1,23 @@
-import React from 'react'
+// import './AccountModal.css'
+
+import Modal from '@material-ui/core/Modal'
 import { makeStyles } from '@material-ui/core/styles'
-import { useWeb3React } from '@web3-react/core'
-import CloseIcon from '@mui/icons-material/Close'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import LogoutIcon from '@mui/icons-material/Logout'
-import Modal from '@material-ui/core/Modal'
-import { getExplorerLink } from '../../utils'
-import { useActiveWeb3React } from '../../eth_hooks'
-
-import './AccountModal.css'
+import React, { FC } from 'react'
+import { useActiveWeb3React } from 'eth_hooks'
+import { getExplorerLink } from 'utils'
+import { ChainId } from '@sushiswap/sdk'
 
 /* eslint-disable */
+
+interface AccountModalProps {
+    toggleWalletModal: () => void
+    pendingTransactions?: string[]
+    confirmedTransactions?: string[]
+    ENSName?: string
+    openOptions: () => void
+}
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -22,19 +29,18 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function AccountModal() {
+const AccountInfo: FC<AccountModalProps> = ({ toggleWalletModal, openOptions, ENSName }) => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false)
     // const { login, logout } = useAuth()
-    const { account, chainId, connector, deactivate } = useActiveWeb3React()
+    const { account, chainId, deactivate, connector } = useActiveWeb3React()
+    const isMobile = window.innerWidth <= 1200
 
-    // console.log(connector.deactivate, 'connector')
+    const StaticModal = Modal as any
 
     const truncatedFirstHalf = account?.substring(0, 5)
     const truncatedLastHalf = account?.substring(account.length - 5, account.length)
     const truncatedAddress = `${truncatedFirstHalf}...${truncatedLastHalf}`
-
-    const isMobile = window.innerWidth <= 1200
 
     const handleOpen = () => {
         setOpen(true)
@@ -44,24 +50,12 @@ export default function AccountModal() {
         setOpen(false)
     }
 
-    const logoutAccount = () => {
-        deactivate()
-        localStorage.removeItem('connectorId')
-    }
-
     const body = (
-        <div className="flex flex-col gap-6 network_modal">
-            <div className="modal_header">
-                <h1 className="text-blue font-bold" style={{ fontWeight: 700 }}>
-                    Account Details
-                </h1>
-                <CloseIcon
-                    className="hover_shadow_icon"
-                    style={{ color: '#05195a', cursor: 'pointer' }}
-                    onClick={handleClose}
-                />
+        <div style={{ padding: '0px' }}>
+            <div className="modal_header" style={{ padding: '10px' }}>
+                <h1 className="text-blue font-bold">Account Details</h1>
             </div>
-            <hr />
+            <hr style={{ border: '1px solid #cccccc', height: '1px' }} />
             <div className="account__modal_details">
                 <div className="wallet_info">
                     <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Wallet: {truncatedAddress}</p>
@@ -72,14 +66,19 @@ export default function AccountModal() {
                         style={{ height: '20px', marginLeft: '5px' }}
                     />
                 </div>
-
                 <a
                     target="_blank"
-                    className="view_on_scan hover_shadow emphasize_swap_button"
-                    style={{ color: '#fff', background: '#05195a', padding: '12px 24px', borderRadius: '14px' }}
-                    href={getExplorerLink(chainId, account, 'address')}
+                    className="view_on_scan hover_shadow"
+                    style={{
+                        color: '#fff',
+                        background: '#05195a',
+                        padding: '12px 24px',
+                        borderRadius: '7px',
+                        fontSize: '14px'
+                    }}
+                    href={getExplorerLink(chainId as ChainId, account as string, 'address')}
                 >
-                    <h2 className="pr-2">View on Etherscan</h2>
+                    <h2 className="pr-2">View on Explorer</h2>
                     <OpenInNewIcon />
                 </a>
                 {((isMobile &&
@@ -95,9 +94,9 @@ export default function AccountModal() {
                             fontSize: '14px'
                         }}
                         className="account_logout view_on_scan hover_shadow"
-                        onClick={deactivate}
+                        onClick={openOptions}
                     >
-                        <h2 style={{ paddingRight: '8px' }}>Sign Out</h2>
+                        <h2 className="pr-2">Sign Out</h2>
                         <LogoutIcon />
                     </button>
                 )}
@@ -107,24 +106,27 @@ export default function AccountModal() {
 
     return (
         <>
-            <li
-                type="button"
-                className={isMobile ? 'account_modal_mobile' : 'account_modal' + ' hover_transparent p-3'}
-                onClick={handleOpen}
-            >
-                <span>Account:</span>
-                {truncatedAddress}
-            </li>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                className="network_modal_container"
-                role="none"
-            >
-                {body}
-            </Modal>
+            {body}
+            {/* <li
+        className={isMobile ? 'account_modal_mobile' : 'account_modal' + ' hover_transparent p-3'}
+        onClick={handleOpen}
+      >
+        <span>Account:</span>
+        {truncatedAddress}
+      </li> */}
+            {/* <>
+        <StaticModal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          className="network_modal_container"
+        >
+          {body}
+        </StaticModal>
+      </> */}
         </>
     )
 }
+
+export default AccountInfo

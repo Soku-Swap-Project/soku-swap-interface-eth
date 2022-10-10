@@ -1,6 +1,7 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
+import AccountInfo from 'eth_components/AccountInfo'
 import React, { useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import ReactGA from 'react-ga'
@@ -121,8 +122,8 @@ export default function WalletModal({
     confirmedTransactions,
     ENSName
 }: {
-    pendingTransactions: string[] // hashes of pending
-    confirmedTransactions: string[] // hashes of confirmed
+    pendingTransactions?: string[] // hashes of pending
+    confirmedTransactions?: string[] // hashes of confirmed
     ENSName?: string
 }) {
     // important that these are destructed from the account-specific web3-react context
@@ -315,7 +316,7 @@ export default function WalletModal({
         }
         if (account && walletView === WALLET_VIEWS.ACCOUNT) {
             return (
-                <AccountDetails
+                <AccountInfo
                     toggleWalletModal={toggleWalletModal}
                     pendingTransactions={pendingTransactions}
                     confirmedTransactions={confirmedTransactions}
