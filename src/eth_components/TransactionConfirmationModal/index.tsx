@@ -72,7 +72,7 @@ function TransactionSubmittedContent({
     const theme = useContext(ThemeContext)
 
     return (
-        <Wrapper className="network_modal">
+        <Wrapper>
             <Section>
                 <RowBetween>
                     <div />
