@@ -36,14 +36,14 @@
         },
         {
             "address": "0xDe8239e84c4f31875EA7A22dBdb232c28ac77bE4",
-            "chainId": 1,
+            "chainId": 4,
             "name": "Hobi",
             "symbol": "HOBI",
             "decimals": 18,
             "logoURI": "https://i.ibb.co/j5sWKRL/hobi.png"
         },
         {
-            "address": "0xeD641273b0c9dd7Bc89f0CD4c3BD58770B662d63",
+            "address": "0x79F283cf4161aAcD334a28cb55612EBa31fEdE17",
             "chainId": 1,
             "name": "Sodatsu",
             "symbol": "SODATSU",
