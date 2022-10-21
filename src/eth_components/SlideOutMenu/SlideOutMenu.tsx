@@ -182,7 +182,7 @@ const SlideOutMenu: FC = () => {
                             <a className="nav_link hover_shadow" href={`${origin}/bridge`}>
                                 Bridge
                             </a>
-                            <a className="nav_link hover_shadow" href={`${origin}/ethereum/farms/`}>
+                            <a className="nav_link hover_shadow" href={`${origin}/ethereum/farms-v2/`}>
                                 Farms
                             </a>
 
