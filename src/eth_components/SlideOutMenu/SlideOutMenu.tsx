@@ -182,10 +182,13 @@ const SlideOutMenu: FC = () => {
                             <a className="nav_link hover_shadow" href={`${origin}/bridge`}>
                                 Bridge
                             </a>
-                            <a className="nav_link hover_shadow" href={`${origin}/ethereum/farms-v2/`}>
+                            <a
+                                className="nav_link hover_transparent"
+                                href="https://app.sokuswap.finance/ethereum/farms-v2/"
+                            >
                                 Farms
                             </a>
-                            <a className="nav_link hover_shadow" href={`${origin}/ethereum/staking/`}>
+                            <a className="nav_link hover_shadow" href="https://app.sokuswap.finance/ethereum/staking/">
                                 Staking
                             </a>
                             <a className="nav_link hover_shadow" onClick={() => launchTransak()}>

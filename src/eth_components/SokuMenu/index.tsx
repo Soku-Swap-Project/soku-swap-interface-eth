@@ -88,11 +88,14 @@ const SokuMenu: React.FC = props => {
                                             </a>
                                             <a
                                                 className="nav_link hover_transparent"
-                                                href={`${origin}/ethereum/farms-v2/`}
+                                                href="https://app.sokuswap.finance/ethereum/farms-v2/"
                                             >
                                                 Farms
                                             </a>
-                                            <a className="nav_link hover_shadow" href={`${origin}/ethereum/staking/`}>
+                                            <a
+                                                className="nav_link hover_shadow"
+                                                href="https://app.sokuswap.finance/ethereum/staking/"
+                                            >
                                                 Staking
                                             </a>
                                             <a className="nav_link hover_transparent" onClick={() => launchTransak()}>
